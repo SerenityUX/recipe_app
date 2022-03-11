@@ -1,0 +1,17 @@
+.chip {
+    padding: 8px 12px;
+    background-color: #F1F3F4;
+    color: #696969;
+    font-size: 16px;
+    font-family: Helvetica, sans-serif;
+    border-radius: 14px;
+    margin: 0 8px;
+    flex-basis: content;
+    text-align: center;
+    width: fit-content;
+}
+
+.chip checked {
+    background-color: #ECF7F3;
+    color: #43AA8B;
+}
