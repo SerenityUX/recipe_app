@@ -11,7 +11,7 @@
     width: fit-content;
 }
 
-.chip checked {
+.selectedchip {
     background-color: #ECF7F3;
     color: #43AA8B;
 }
