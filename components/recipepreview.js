@@ -16,8 +16,6 @@ import recipepage from '../pages/recipe_page/[recipe]'
 
 //Use props as a parameter 
 export default function recipepreview (props) {
-    const router = useRouter()
-
     return (
         //Copying styles from the styles we have to find
         //Take div component styles

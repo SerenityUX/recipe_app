@@ -7,6 +7,9 @@ import search_icon from '../assets/search_icon.svg'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
 import recipepage from './recipe_page/[recipe]'
 import recipes_list from '../recipes.json'
+import Link from 'next/Link'
+import next from 'next'
+import react from 'react'
 
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
@@ -22,7 +25,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+      <div className={styles.topbar}>
       <h1 className={styles.maintitle}>My Recipes</h1>
+      {/* <Link href={`/create_recipe/form`}>+</Link> */}
+      </div>
+      
         <div className={styles.search_bar}>
         <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon}></img>
             <p>Search Recipes</p>

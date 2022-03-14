@@ -1,6 +1,9 @@
 import styles from '../styles/chip.module.css'
 import next from 'next'
 import react from 'react'
+import cn from "classnames"
+import button from 'react'
+
 //All components export a default function 
 //Functions have uppercase function name
 
@@ -14,7 +17,7 @@ export default function Chip (props) {
         //Copying styles from the styles we have to find
         //Take div component styles
         //Called styles bc that's what we imported 
-    <div className={styles.chip} onClick={select_chip}>
+        <div className={styles.chip}>
         {props.text}
 
     </div>
