@@ -45,7 +45,7 @@ export default function Home() {
         <div className={styles.previewwrapper}>
             {recipes_list.map(item => {
               return(
-              <Recipepreview author={item.author.name} avatar={item.author.avatar} title={item.name} key={item.key} id={item.key} thumbnail={item.thumbnail} tags={item.tags} description={item.description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
+              <Recipepreview author={item.author.name} avatar={item.author.avatar} title={item.name} key={item.id} id={item.id} thumbnail={item.thumbnail} tags={item.tags} description={item.description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
             })}
         </div>
