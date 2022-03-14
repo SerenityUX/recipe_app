@@ -13,9 +13,9 @@ export default function Recipe (props) {
     // Dynamic data stored inside { }
     const { recipe } = router.query
 
-
     //Rendering a component to the page
-    return (<div>
+    return (
+        <div>
         <div className={styles.top_bar}>
             <a href=" / "><img src="https://i.ibb.co/SVPT9Yn/backbutton.png" /></a>
             <p>{list_of_recipes[recipe - 1].name}</p>

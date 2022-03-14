@@ -2,7 +2,7 @@
     [
     {
         "name": "Quick Chickpea Bolognese",
-        "key": 1,
+        "id": 1,
         "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
         "author": {
             "name": "Leslie Alexander",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Quick Chickpea Bolognese",
-      "key": 2,
+      "id": 2,
       "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
       "author": {
           "name": "Leslie Alexander",
@@ -42,7 +42,7 @@
   },
   {
     "name": "Quick Chickpea Test",
-    "key": 3,
+    "id": 3,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
@@ -62,7 +62,7 @@
   },
   {
     "name": "Quick Chickpea Adjust",
-    "key": 4,
+    "id": 4,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
@@ -82,7 +82,7 @@
   },
   {
     "name": "Quick Chickpea Bolognese",
-    "key": 5,
+    "id": 5,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
@@ -102,7 +102,7 @@
   },
   {
     "name": "Quick Chickpea Bolognese",
-    "key": 6,
+    "id": 6,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
@@ -122,7 +122,7 @@
   },
   {
     "name": "Quick Chickpea ok",
-    "key": 7,
+    "id": 7,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
@@ -142,7 +142,7 @@
   },
   {
     "name": "Quick Chickpea Bolognese",
-    "key": 8,
+    "id": 8,
     "thumbnail": "https://i.ibb.co/mX2jJkh/recipe-thumbnail.png",
     "author": {
         "name": "Leslie Alexander",
