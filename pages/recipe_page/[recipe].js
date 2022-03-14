@@ -2,6 +2,7 @@
 import { useRouter } from "next/router"
 import list_of_recipes from "../../recipes.json";
 import styles from '../../styles/recipeview.module.css'
+import Image from 'next/image'
 
 
 
@@ -17,13 +18,13 @@ export default function Recipe (props) {
     return (
         <div>
         <div className={styles.top_bar}>
-            <a href=" / "><img src="https://i.ibb.co/SVPT9Yn/backbutton.png" /></a>
+            <a href=" / "><img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt=""/></a>
             <p>{list_of_recipes[recipe - 1].name}</p>
         </div>
-        <img src={list_of_recipes[recipe - 1].thumbnail} className={styles.thumbnail}/>
+        <img src={list_of_recipes[recipe - 1].thumbnail} className={styles.thumbnail} alt=""/>
         <h1  className={styles.title}>{list_of_recipes[recipe - 1].name}</h1>
         <div className={styles.author}>
-            <img src={list_of_recipes[recipe - 1].author.avatar}/>
+            <img src={list_of_recipes[recipe - 1].author.avatar} alt=""/>
             <p>{list_of_recipes[recipe - 1].author.name}</p>
         </div>
         <p className={styles.description}>{list_of_recipes[recipe - 1].description}</p>

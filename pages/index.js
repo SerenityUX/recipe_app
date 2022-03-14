@@ -31,7 +31,7 @@ export default function Home() {
       </div>
       
         <div className={styles.search_bar}>
-        <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon}></img>
+        <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon} alt=""></img>
             <p>Search Recipes</p>
         </div>
 
