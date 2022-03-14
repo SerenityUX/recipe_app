@@ -41,6 +41,13 @@
     justify-self: center;
 }
 
+.thumbnail {
+    height: 112px;
+    width: 83px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .left {
     display: inline;
     height: 112px;
