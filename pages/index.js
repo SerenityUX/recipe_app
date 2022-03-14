@@ -7,9 +7,9 @@ import search_icon from '../assets/search_icon.svg'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
 import recipepage from './recipe_page/[recipe]'
 import recipes_list from '../recipes.json'
-import Link from 'next/Link'
 import next from 'next'
 import react from 'react'
+import NextLink from 'next/link';
 
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 

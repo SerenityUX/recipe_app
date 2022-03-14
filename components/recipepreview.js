@@ -2,7 +2,7 @@ import styles from '../styles/recipepreview.module.css'
 import recipe_thumbnail from '../assets/recipe_thumbnail.png'
 import next from 'next'
 import react from 'react'
-import Link from 'next/Link'
+import NextLink from 'next/link';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
