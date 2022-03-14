@@ -30,14 +30,14 @@ export default function Recipe (props) {
         <h2 className={styles.section_title}>Ingredients</h2>
         {list_of_recipes[recipe - 1].ingredients.map(item => {
             return(
-                <li className={styles.recipe_ingredients}>{item}</li>
+                <li key={item} className={styles.recipe_ingredients}>{item}</li>
               )
         })}
         <h2 className={styles.section_title}>Directions</h2>
         <ol type="1.">
         {list_of_recipes[recipe - 1].directions.map(item => {
             return(
-                <li className={styles.recipe_directions}>{item}</li>
+                <li key={item} className={styles.recipe_directions}>{item}</li>
               )
         })}
         </ol>
