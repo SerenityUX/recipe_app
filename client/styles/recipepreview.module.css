@@ -1,0 +1,82 @@
+.author img {
+    width: 24px;
+    height: 24px;
+    display: inline;
+}
+
+.author p {
+    font-size: 18px;
+    display: inline;
+    margin-left: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #484848;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    width: 100%;
+    color: #181818;
+}
+
+.right {
+    display: flexbox;
+    height: 112px;
+    width: 83px;
+    float: right;
+    margin-right: 16px;
+    align-self: center;
+    justify-self: center;
+}
+
+.thumbnail {
+    height: 112px;
+    width: 83px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.left {
+    display: inline;
+    height: 112px;
+    width: calc(100vw - 131px);
+    margin-left: 16px;
+    margin-right: 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.recipepreview {
+    display: flexbox;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100vw;
+    height: fit-content;
+    margin-left: 0px;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    justify-content: space-between;
+    vertical-align: middle;
+
+}
+
+.divider {
+    height: 2px;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    background-color: #F1F3F4;
+    display: inline-flex;
+    justify-content: center;
+}
