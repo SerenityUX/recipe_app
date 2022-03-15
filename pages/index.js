@@ -27,7 +27,7 @@ export default function Home() {
       <main className={styles.main}>
       <div className={styles.topbar}>
       <h1 className={styles.maintitle}>My Recipes</h1>
-      <Link href={`/create_recipe/form`}>+</Link>
+      <Link href={`/create_recipe/form`}><img src="https://i.ibb.co/vX7FXB3/createbutton.png" /></Link>
       </div>
       
         <div className={styles.search_bar}>
