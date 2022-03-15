@@ -35,8 +35,6 @@
     width: 83px;
     float: right;
     margin-right: 16px;
-    margin-bottom: 12px;
-    margin-top: 12px;
     align-self: center;
     justify-self: center;
 }
@@ -55,8 +53,8 @@
     float: left;
     margin-left: 16px;
     margin-right: 16px;
-    margin-bottom: 12px;
-    margin-top: 12px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .recipepreview {
@@ -69,4 +67,17 @@
     margin-right: 16px;
     margin-bottom: 12px;
     margin-top: 12px;
+    justify-content: space-between;
+    vertical-align: middle;
+
+}
+
+.divider {
+    height: 2px;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    background-color: #F1F3F4;
+    display: inline-flex;
+    justify-content: center;
 }

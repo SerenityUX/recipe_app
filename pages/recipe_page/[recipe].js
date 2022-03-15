@@ -42,6 +42,7 @@ export default function Recipe (props) {
               )
         })}
         </ol>
-        </div>)
+        </div>
+        )
         
 }

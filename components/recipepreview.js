@@ -8,6 +8,7 @@ import Image from 'next/image'
 
 
 import recipepage from '../pages/recipe_page/[recipe]'
+import { isDynamicRoute } from 'next/dist/shared/lib/router/utils';
 
 //All components export a default function 
 //Functions have uppercase function name
@@ -35,6 +36,8 @@ export default function recipepreview (props) {
             </div>
             </a>
         </Link>
+
+        <div className={styles.divider}></div>
     </div>
     )
 }

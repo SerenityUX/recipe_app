@@ -49,7 +49,6 @@ export default function Home() {
               )
             })}
         </div>
-        <div className="divider"></div>
       </main>
     </div>
   )
