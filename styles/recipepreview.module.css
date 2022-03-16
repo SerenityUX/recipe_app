@@ -57,7 +57,7 @@
 }
 
 .recipepreview {
-    display: auto;
+    display: inline;
     flex-wrap: wrap;
     flex-direction: row;
     width: 100vw;
