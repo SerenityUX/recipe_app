@@ -37,7 +37,7 @@
   background-color: #F1F3F4;
   color: #484848;
   margin-left: 16px;
-  margin-right: 16px;
+  margin-right: 8px;
   border-radius: 8px;
 }
 
@@ -55,8 +55,9 @@
 }
 
 .topbar {
+  margin-right: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 16px;
 }
+
