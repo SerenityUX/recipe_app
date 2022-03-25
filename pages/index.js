@@ -11,7 +11,7 @@ import next from 'next'
 import react from 'react'
 import Link from 'next/link';
 
-const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
+const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices", "Wraps"]
 
 export default function Home() {
   return (
