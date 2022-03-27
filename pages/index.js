@@ -12,7 +12,7 @@ import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices", "Wraps"]
 
-export async function getStaticProps(props) {
+export async function getServerSideProps(context) {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
