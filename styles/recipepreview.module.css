@@ -3,6 +3,7 @@
     height: 24px;
     display: inline;
     border-radius: 100%;
+    display: cover;
 }
 
 .author p {

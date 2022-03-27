@@ -4,6 +4,7 @@
     height: 24px;
     display: inline;
     border-radius: 100%;
+    display: cover;
 }
 
 .author p {
@@ -51,6 +52,7 @@
 .thumbnail {
     margin-top: 56px;
     width: 100vw;
+    display: cover;
 }
 
 .title {
