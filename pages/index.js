@@ -14,10 +14,10 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 
 export async function getStaticProps(props) {
 
-  const user_response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/users')
+  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
-  const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/recipes')
+  const response = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
   const recipes_list = await response.json()
   return {
     props: {recipes_list, user_list}, // will be passed to the page component as props

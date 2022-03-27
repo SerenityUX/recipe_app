@@ -7,10 +7,10 @@ import Image from 'next/image'
 export async function getServerSideProps(context) {
     const { id } = context.params;
     console.log(id)
-    const user_response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/users')
+    const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
     const user_list = await user_response.json()
    
-    const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/recipes/' + id)
+    const response = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes/' + id)
     const selected_recipe = await response.json()
     //console.log(selected_recipe)
 
@@ -46,7 +46,7 @@ export default function Recipe (props) {
         </div>
         <p className={styles.description}>{props.selected_recipe.recipe_description}</p>
         <h2 className={styles.section_title}>Ingredients</h2>
-        {props.selected_recipe.Ingredients.map((item, index) => {
+        {props.selected_recipe.ingredients.map((item, index) => {
             return(
                 <li key={index} className={styles.recipe_ingredients}>{item}</li>
               )
