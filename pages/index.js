@@ -12,7 +12,7 @@ import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices", "Wraps"]
 
-export async function getStaticProps(props) {
+export async function getServerSideProps(props) {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
@@ -58,7 +58,7 @@ export default function Home(props) {
         <div className={styles.previewwrapper}>
             {props.recipes_list.map(item => {
               return(
-              <Recipepreview author={props.user_list[item.recipe_author].name} avatar={props.user_list[item.recipe_author].profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
+              <Recipepreview author={props.user_list[(parseInt(item.recipe_author) - 1)].name} avatar={props.user_list[item.recipe_author - 1].profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
             })}
         </div>
