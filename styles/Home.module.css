@@ -25,6 +25,9 @@
   min-height: 33px;
 }
 
+.tagwrapper::-webkit-scrollbar {
+  display: none;
+}
 .maintitle {
   font-size: 35px;
   font-weight: 500;
