@@ -4,7 +4,7 @@
     height: 24px;
     display: inline;
     border-radius: 100%;
-    display: cover;
+    object-fit: cover;
 }
 
 .author p {
