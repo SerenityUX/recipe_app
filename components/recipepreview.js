@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 
 
-import recipepage from '../pages/recipe_page/[recipe]'
+import recipepage from '../pages/recipe_page/[id]'
 import { isDynamicRoute } from 'next/dist/shared/lib/router/utils';
 
 //All components export a default function 

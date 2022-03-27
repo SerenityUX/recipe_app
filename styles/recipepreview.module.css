@@ -2,6 +2,7 @@
     width: 24px;
     height: 24px;
     display: inline;
+    border-radius: 100%;
 }
 
 .author p {

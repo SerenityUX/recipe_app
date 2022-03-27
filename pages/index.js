@@ -5,15 +5,28 @@ import Chip from '../components/chip'
 import Recipepreview from '../components/recipepreview'
 import search_icon from '../assets/search_icon.svg'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
-import recipepage from './recipe_page/[recipe]'
-import recipes_list from '../recipes.json'
+import recipepage from './recipe_page/[id]'
+// import recipes_list from '../recipes.json'
 import next from 'next'
 import react from 'react'
 import Link from 'next/link';
-
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices", "Wraps"]
 
-export default function Home() {
+export async function getStaticProps(props) {
+
+  const user_response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/users')
+  const user_list = await user_response.json()
+ 
+  const response = await fetch('https://x8ki-letl-twmt.n7.xano.io/api:HIeiN0nD/recipes')
+  const recipes_list = await response.json()
+  return {
+    props: {recipes_list, user_list}, // will be passed to the page component as props
+  }
+}
+
+
+export default function Home(props) {
+  console.log(props)
   return (
     <div className={styles.container}>
       <Head>
@@ -43,9 +56,9 @@ export default function Home() {
             })}
         </div>
         <div className={styles.previewwrapper}>
-            {recipes_list.map(item => {
+            {props.recipes_list.map(item => {
               return(
-              <Recipepreview author={item.author.name} avatar={item.author.avatar} title={item.name} key={item.id} id={item.id} thumbnail={item.thumbnail} tags={item.tags} description={item.description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
+              <Recipepreview author={props.user_list[item.recipe_author].name} avatar={props.user_list[item.recipe_author].profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
             })}
         </div>
