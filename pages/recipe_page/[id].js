@@ -17,7 +17,7 @@ export async function getStaticProps(context) {
 
     return {
       props: {selected_recipe, user_list}, // will be passed to the page component as props
-      revalidate: 100
+      revalidate: 100,
     }
   }
 
