@@ -10,7 +10,7 @@ import recipepage from './recipe_page/[id]'
 import next from 'next'
 import react from 'react'
 import Link from 'next/link';
-const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices", "Wraps"]
+const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
 export async function getStaticProps(props) {
 
