@@ -4,11 +4,9 @@ import { useRouter } from "next/router"
 import styles from '../../styles/recipeview.module.css'
 import Image from 'next/image'
 
-const { id } = context.params;
-console.log(id)
-
 export async function getStaticProps(props) {
-
+    const { id } = context.params;
+    console.log(id)
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
     const user_list = await user_response.json()
    
