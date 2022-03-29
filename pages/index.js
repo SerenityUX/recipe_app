@@ -34,8 +34,6 @@ export default function Home(props) {
         <title>Leftovers</title>
         <meta name="Social Recipe Sharing Platform" content="A recipe tool to share and enjoy recipes with friends and family" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"></link>
       </Head>
 
       <main className={styles.main}>
@@ -45,7 +43,7 @@ export default function Home(props) {
       </div>
       
         <div className={styles.search_bar}>
-        <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon} alt=""></img>
+        <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon} alt="Search Icon"></img>
             <p>Search Recipes</p>
         </div>
 

@@ -37,29 +37,24 @@ const handleTagsInputChange = (event) => {
 
   return (
     <div className={styles.form_container}>
-      <form className={styles.form}>
+    <div className={styles.top_bar}>
+    <a href=" / "><img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt=""/></a>
+    <p>Create a recipe</p>
+    </div>
+      <form className={styles.form} autocomplete="off">
+      <label className={styles.thumbnail}>
+        <div className={styles.upload_container}>
+          <img src = "https://i.ibb.co/TRYVf5F/icon.png"></img> <p>Upload Image</p>
+        </div>
+      <input type="file" accept="image/*" className={styles.upload_image}>
+      </input>
+      </label>
     <div className={styles.container}>
       <main className={styles.main}>
-        <a href=" / ">back button</a>
-        <p>Create a recipe</p>
-      <label>
-        Create a new recipe
-      </label>
-      <input
-      value ={values.name}
-      className={styles.input}
-      onChange={handlenameInputChange}
-      placeholder="Input recipe title"
-      name="recipe name"
-      />
-      <input
-      value ={values.description}
-      className={styles.input}
-      onChange={handledescriptionInputChange}
-      placeholder="Input description"
-      name="recipe description"
-      />
-
+      <textarea name="title" rows="14" cols="10" wrap="soft" placeholder="Input recipe title" onChange={handlenameInputChange} className={styles.input_title}>
+      </textarea>
+      <textarea name="description" rows="14" cols="10" wrap="soft" placeholder="Insert a recipe description." onChange={handlenameInputChange} className={styles.input_description}>
+      </textarea>
       <input
       value ={values.tags}
       className={styles.input}
@@ -67,6 +62,12 @@ const handleTagsInputChange = (event) => {
       placeholder="Input tags"
       name="recipe tags"
       />
+
+
+      <input type="button" id="add" value="Add New"/>
+      <ol id="list_item">
+    
+      </ol>
 
       <input
       value ={values.ingredients}

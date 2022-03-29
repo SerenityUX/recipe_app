@@ -52,7 +52,7 @@
 .thumbnail {
     margin-top: 56px;
     width: 100vw;
-    display: cover;
+    object-fit: cover;
 }
 
 .title {

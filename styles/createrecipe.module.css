@@ -108,3 +108,158 @@
     height: 60px;
     margin: 16px;
 }
+
+.striped-section {
+    border: 10px dashed;
+    border-image-source: linear-gradient(0deg, #DFE1E5, #DFE1E5),
+    linear-gradient(0deg, #DFE1E5, #DFE1E5);
+
+
+}
+
+
+.author img {
+    margin-left: 16px;
+    width: 24px;
+    height: 24px;
+    display: inline;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.author p {
+    font-size: 18px;
+    display: inline;
+    margin-left: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #484848;
+    margin-top: 8;
+}
+
+.top_bar {
+    background-color: #F1F3F4;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+}
+
+.top_bar p {
+    font-size: 18px;
+    position: relative;
+    width: calc(100vw - 80px);
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.top_bar a {
+    align-self: middle;
+    justify-self: center;
+    position: relative;
+    display: flexbox;
+    margin-left: 16px;
+}
+
+.thumbnail {
+    margin-top: 56px;
+    width: 100vw;
+    display: cover;
+}
+
+.title {
+    font-size: 35px;
+    font-weight: 500;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+}
+
+.description {
+    font-size: 18px;
+    color: #484848;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 12px;
+}
+
+.section_title {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #181818;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.recipe_ingredients {
+    font-size: 18px;
+    color: #484848;
+    text-align: left;
+    margin-left: 16px;
+    margin-right: 16px;
+    line-height: 28px;
+}
+
+.recipe_directions {
+    font-size: 18px;
+    color: #484848;
+    text-align: left;
+
+    margin-right: 16px;
+    line-height: 28px;
+}
+
+.upload_image {
+    display: none;
+}
+
+.upload_container {
+    background-color: #DFE1E5;
+    width: 100vw;
+    display: flex;
+    aspect-ratio: 3 / 4;
+    align-items: center;
+    justify-content: center;
+}
+.upload_container p {
+    margin-left: 12px;
+    font-size: 24px;
+    color: #484848;
+}
+
+.input_title {
+    width: calc(100% - 32px);
+    height: 42.7px;
+    font-size: 35px;
+    line-height: 42.7px;
+    font-weight: 400;
+    margin-top: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input_description {
+    font-size: 18px;
+    color: #484848;
+    margin-top: 12px;
+    margin-left: 16px;
+    margin-right: 16px;
+    width: calc(100% - 32px);
+    border: none;
+    height: 29px;
+}
