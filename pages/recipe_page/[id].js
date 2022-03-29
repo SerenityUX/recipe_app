@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe (props) {
-
+  const identify_author = props.user_list.find((user) => user.id == props.selected_recipe.recipe_author)
     //Access the recipe information from router
     //const router = useRouter()
     // { } is based on file name. 
@@ -41,8 +41,9 @@ export default function Recipe (props) {
         <img src={props.selected_recipe.recipe_thumbnail?.url} className={styles.thumbnail} alt=""/>
         <h1  className={styles.title}>{props.selected_recipe.recipe_name}</h1>
         <div className={styles.author}>
-            <img src={props.user_list[props.selected_recipe.recipe_author - 1].profile_picture?.url} alt=""/>
-            <p>{props.user_list[props.selected_recipe.recipe_author - 1].name}</p>
+          
+            <img src={identify_author.profile_picture?.url} alt=""/>
+            <p>{identify_author.name}</p>
         </div>
         <p className={styles.description}>{props.selected_recipe.recipe_description}</p>
         <h2 className={styles.section_title}>Ingredients</h2>

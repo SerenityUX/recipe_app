@@ -56,8 +56,9 @@ export default function Home(props) {
         </div>
         <div className={styles.previewwrapper}>
             {props.recipes_list.map(item => {
+              const identify_author = props.user_list.find((user) => user.id == item.recipe_author)
               return(
-              <Recipepreview author={props.user_list[item.recipe_author - 1].name} avatar={props.user_list[item.recipe_author - 1].profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
+              <Recipepreview author={identify_author.name} avatar={identify_author.profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
             })}
         </div>

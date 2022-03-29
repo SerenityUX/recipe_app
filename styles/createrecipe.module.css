@@ -28,6 +28,7 @@
     position: fixed;
     align-items: center;
     width: 100%;
+    z-index: 5;
 }
 
 .top_bar p {
@@ -237,32 +238,16 @@
     color: #484848;
 }
 
-.input_title {
-    width: calc(100% - 32px);
-    height: auto;
-    font-size: 35px;
-    line-height: 42.7px;
-    font-weight: 500;
-    margin-top: 24px;
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-bottom: 8px;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    resize: none;
-}
 
-.input_title_div[contentEditable] {
+.input_title_span[contentEditable] {
     display: block;
-    width: calc(100% - 32px);
+    width: 100vmin;
+    padding: 0 16px;
     height: auto;
     font-size: 35px;
     line-height: 42.7px;
     font-weight: 500;
     margin-top: 24px;
-    margin-left: 16px;
-    margin-right: 16px;
     margin-bottom: 8px;
     border: none;
     -webkit-appearance: none;
@@ -271,17 +256,109 @@
     outline: none;
 }
 .input_title_span[contentEditable]:empty::before {
-    width: calc(100% - 32px);
+    width: 100vmin;
+    padding: 0 0px;
     height: auto;
     font-size: 35px;
     line-height: 42.7px;
     font-weight: 500;
+    margin-top: 24px;
+    margin-bottom: 8px;
     border: none;
     -webkit-appearance: none;
     appearance: none;
     resize: none;
+    outline: none;
     content: 'Untitled';
-    display: inline-block;
+    color: #484848;
+}
+
+.input_description_span[contentEditable], .input_tags_span, .input_directions_span, .input_ingredients_span {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    display: block;
+    padding: 0 16px;
+    color: #181818;
+}
+.input_description_span[contentEditable]:empty::before {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'Insert a recipe description';
+    color: #484848;
+}
+.input_tags_span[contentEditable]:empty::before {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'Insert a recipe description';
+    color: #484848;
+}
+
+.input_directions_span[contentEditable]:empty::before {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'Insert a recipe direction';
+    color: #484848;
+}
+
+.input_ingredients_span[contentEditable]:empty::before {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'Insert a recipe ingredient';
     color: #484848;
 }
 
@@ -295,4 +372,31 @@
     border: none;
     height: 29px;
     resize: none;
+}
+
+.submit_button {
+	background-color: #277DA1;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    border:none;
+    margin-top: 32px;
+    margin-bottom: 32px
+}
+
+
+.thumbnail_preview {
+    display: flex;
+    width: 100vw;
+    aspect-ratio: 3 / 4;
+    position: absolute;
+    background-size: cover;
+    width: 100vw;
+    object-fit: cover;
 }
