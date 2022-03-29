@@ -3,8 +3,13 @@ import styles from '../../styles/createrecipe.module.css'
 
 import next from 'next'
 import React, { useState } from 'react'
+import { Html, Head, Main, NextScript } from 'next/document'
 
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
+//e stands for event. When you do keyup you get the event passed in to it 
+const handleKeyUp = (e) => {
+
+}
 
 
 const Form = () => {
@@ -51,8 +56,10 @@ const handleTagsInputChange = (event) => {
       </label>
     <div className={styles.container}>
       <main className={styles.main}>
-      <textarea name="title" rows="14" cols="10" wrap="soft" placeholder="Input recipe title" onChange={handlenameInputChange} className={styles.input_title}>
-      </textarea>
+
+      <span name="title" rows="14" cols="10" wrap="soft" placeholder="Input recipe title" onChange={handlenameInputChange} onKeyUp={handleKeyUp} className={styles.input_title_span} contentEditable>
+      </span>
+
       <textarea name="description" rows="14" cols="10" wrap="soft" placeholder="Insert a recipe description." onChange={handlenameInputChange} className={styles.input_description}>
       </textarea>
       <input

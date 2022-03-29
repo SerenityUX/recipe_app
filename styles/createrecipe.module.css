@@ -239,7 +239,7 @@
 
 .input_title {
     width: calc(100% - 32px);
-    height: 42.7px;
+    height: auto;
     font-size: 35px;
     line-height: 42.7px;
     font-weight: 500;
@@ -247,10 +247,42 @@
     margin-left: 16px;
     margin-right: 16px;
     margin-bottom: 8px;
-    overflow: hidden;
     border: none;
     -webkit-appearance: none;
     appearance: none;
+    resize: none;
+}
+
+.input_title_span[contentEditable] {
+    width: calc(100% - 32px);
+    height: auto;
+    font-size: 35px;
+    line-height: 42.7px;
+    font-weight: 500;
+    margin-top: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    display: inline-block;
+}
+.input_title_span[contentEditable]:empty::before {
+    width: calc(100% - 32px);
+    height: auto;
+    font-size: 35px;
+    line-height: 42.7px;
+    font-weight: 500;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    content: 'Make a new tag';
+    display: inline-block;
 }
 
 .input_description {
@@ -262,4 +294,5 @@
     width: calc(100% - 32px);
     border: none;
     height: 29px;
+    resize: none;
 }
