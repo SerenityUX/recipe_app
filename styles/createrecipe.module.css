@@ -253,7 +253,8 @@
     resize: none;
 }
 
-.input_title_span[contentEditable] {
+.input_title_div[contentEditable] {
+    display: block;
     width: calc(100% - 32px);
     height: auto;
     font-size: 35px;
@@ -267,7 +268,7 @@
     -webkit-appearance: none;
     appearance: none;
     resize: none;
-    display: inline-block;
+    outline: none;
 }
 .input_title_span[contentEditable]:empty::before {
     width: calc(100% - 32px);
@@ -275,14 +276,13 @@
     font-size: 35px;
     line-height: 42.7px;
     font-weight: 500;
-    margin-top: 24px;
-    margin-bottom: 8px;
     border: none;
     -webkit-appearance: none;
     appearance: none;
     resize: none;
-    content: 'Make a new tag';
+    content: 'Untitled';
     display: inline-block;
+    color: #484848;
 }
 
 .input_description {
