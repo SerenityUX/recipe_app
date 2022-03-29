@@ -41,7 +41,7 @@ const handleTagsInputChange = (event) => {
     <a href=" / "><img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt=""/></a>
     <p>Create a recipe</p>
     </div>
-      <form className={styles.form} autocomplete="off">
+      <form className={styles.form} autoComplete="off">
       <label className={styles.thumbnail}>
         <div className={styles.upload_container}>
           <img src = "https://i.ibb.co/TRYVf5F/icon.png"></img> <p>Upload Image</p>
