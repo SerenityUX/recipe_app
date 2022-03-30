@@ -144,7 +144,7 @@ const uploadImageToClient = (event) => {
         {ingredients.map((i) => {
           return (
             <li key={i.id}>
-              <input value={i.tag} placeholder="Enter a recipe" onChange={(e) => {
+              <input value={i.ingredient} placeholder="Enter a recipe" onChange={(e) => {
                 const tag = e.target.value
                 setIngredients((currentIngredients) => currentIngredients.map(x => x.id === i.id ? {
                   ...x,
