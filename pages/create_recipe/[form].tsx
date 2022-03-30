@@ -39,11 +39,11 @@ const Form = () => {
   });
 
 const handlenameInputChange = (event) => {
-  setValues({... values, name: event.target.value})
+  setValues({... values, recipe_name: event.target.value})
 }
 
 const handledescriptionInputChange = (event) => {
-  setValues({... values, description: event.target.value})
+  setValues({... values, recipe_description: event.target.value})
 }
 const handleIngredientsInputChange = (event) => {
   setValues({... values, ingredients: event.target.value})
@@ -57,7 +57,6 @@ const handleTagsInputChange = (event) => {
 }
 
 const handleThumbnailChange = (event) => {
-  setValues({... values, tags: event.target.value})
   setImages([...event.target.files]);
 }
 
