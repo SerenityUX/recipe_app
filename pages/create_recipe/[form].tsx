@@ -12,9 +12,18 @@ interface Tag {
   tag: string;
 }
 
+interface Ingredient {
+  id: string;
+  ingredient: string;
+}
+
+interface Direction {
+  id: string;
+  direction: string;
+}
 const Form = () => {
   const [tags, setTags] = useState<Tag[]>([{id: "5", tag: "test"}, {id: "6", tag: "value"}]);
-
+  const [ingredients, setIngredients] = useState<Ingredient[]>([{id: "5", ingredient: "test"}, {id: "6", ingredient: "value"}]);
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
 
@@ -85,7 +94,6 @@ const uploadImageToClient = (event) => {
       </input>
       </label>
     <div className={styles.container}>
-      <main className={styles.main}>
 
       <span onChange={handlenameInputChange} className={styles.input_title_span} contentEditable>
       </span>
@@ -125,13 +133,39 @@ const uploadImageToClient = (event) => {
       <h2 className={styles.section_title}>Ingredients</h2>
       <span className={styles.input_ingredients_span} contentEditable>
       </span>
+
+      <button type="button" onClick={() => {
+          setTags(currentTags => [...currentTags, {
+            id: generate(),
+            tag: ""
+          }]);
+        }}>add new tag</button>
+
+        {ingredients.map((i) => {
+          return (
+            <li key={i.id}>
+              <input value={i.tag} placeholder="Enter a recipe" onChange={(e) => {
+                const tag = e.target.value
+                setIngredients((currentIngredients) => currentIngredients.map(x => x.id === i.id ? {
+                  ...x,
+                  tag
+                } : x))
+                //e.target.value
+              }}></input>
+                <button onClick= {() => {
+            setIngredients(currentIngredients => currentIngredients.filter(x => x.id !== i.id))
+              }
+              }>x</button>
+            </li>
+          )
+        })}
+      </div>
+
       <h2 className={styles.section_title}>Directions</h2>
       <span className={styles.input_directions_span} contentEditable>
       </span>
     <button className={styles.submit_button}>Submit</button>
-      </main>
-    </div>
-      </form>
+    </form>
     </div>
   )
 }
