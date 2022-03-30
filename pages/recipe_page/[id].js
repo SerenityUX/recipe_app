@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe (props) {
+  
   const identify_author = props.user_list.find((user) => user.id == props.selected_recipe.recipe_author)
     //Access the recipe information from router
     //const router = useRouter()

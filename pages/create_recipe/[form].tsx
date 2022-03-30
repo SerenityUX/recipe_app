@@ -1,14 +1,20 @@
 
 import styles from '../../styles/createrecipe.module.css'
-
+import {generate} from 'shortid';
 import next from 'next'
 import React, { useState, useEffect } from 'react'
-
+import { produce } from "immer";
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 //e stands for event. When you do keyup you get the event passed in to it 
 
+interface Tag {
+  id: string;
+  tag: string;
+}
 
 const Form = () => {
+  const [tags, setTags] = useState<Tag[]>([{id: "5", tag: "test"}, {id: "6", tag: "value"}]);
+
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
 
@@ -82,19 +88,46 @@ const uploadImageToClient = (event) => {
     <div className={styles.container}>
       <main className={styles.main}>
 
-      <span name="title" onChange={handlenameInputChange} className={styles.input_title_span} contentEditable>
+      <span onChange={handlenameInputChange} className={styles.input_title_span} contentEditable>
       </span>
 
-      <span name="description" className={styles.input_description_span} contentEditable>
+      <span className={styles.input_description_span} contentEditable>
       </span>
       <h2 className={styles.section_title}>Tags</h2>
-      <span name="tags" className={styles.input_tags_span} contentEditable>
+      <span className={styles.input_tags_span} contentEditable>
       </span>
+      <div>
+        <button type="button" onClick={() => {
+          setTags(currentTags => [...currentTags, {
+            id: generate(),
+            tag: ""
+          }]);
+        }}>add new tag</button>
+
+        {tags.map((p) => {
+          return (
+            <li key={p.id}>
+              <input value={p.tag} placeholder="Enter a recipe" onChange={(e) => {
+                const tag = e.target.value
+                setTags((currentTags) => currentTags.map(x => x.id === p.id ? {
+                  ...x,
+                  tag
+                } : x))
+                //e.target.value
+              }}></input>
+                <button onClick= {() => {
+            setTags(currentTags => currentTags.filter(x => x.id !== p.id))
+              }
+              }>x</button>
+            </li>
+          )
+        })}
+      </div>
       <h2 className={styles.section_title}>Ingredients</h2>
-      <span name="ingredients" className={styles.input_ingredients_span} contentEditable>
+      <span className={styles.input_ingredients_span} contentEditable>
       </span>
       <h2 className={styles.section_title}>Directions</h2>
-      <span name="directions" className={styles.input_directions_span} contentEditable>
+      <span className={styles.input_directions_span} contentEditable>
       </span>
     <button className={styles.submit_button}>Submit</button>
       </main>

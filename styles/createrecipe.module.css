@@ -322,7 +322,7 @@
     appearance: none;
     resize: none;
     outline: none;
-    content: 'Insert a recipe description';
+    content: 'Insert a recipe tag';
     color: #484848;
 }
 
