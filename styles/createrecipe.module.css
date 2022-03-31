@@ -71,7 +71,7 @@
 
 .section_title {
     margin-top: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     font-size: 25px;
     font-weight: 400;
     color: #181818;
@@ -102,12 +102,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.form input {
-    width: 300px;
-    height: 60px;
-    margin: 16px;
 }
 
 .striped-section {
@@ -192,15 +186,6 @@
     margin-top: 12px;
 }
 
-.section_title {
-    margin-top: 24px;
-    margin-bottom: 12px;
-    font-size: 25px;
-    font-weight: 400;
-    color: #181818;
-    margin-left: 16px;
-    margin-right: 16px;
-}
 
 .recipe_ingredients {
     font-size: 18px;
@@ -273,7 +258,7 @@
     color: #484848;
 }
 
-.input_description_span[contentEditable], .input_tags_span, .input_directions_span, .input_ingredients_span {
+.input_description_span[contentEditable], .input_directions_span, .input_ingredients_span {
     width: 100vmin;
     padding: 0 0px;
     height: auto;
@@ -290,7 +275,27 @@
     display: block;
     padding: 0 16px;
     color: #181818;
+    
 }
+.input_tags_span {
+    width: 100vmin;
+    padding: 0 0px;
+    height: auto;
+    font-size: 18px;
+    line-height: 21.5px;
+    font-weight: 400;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    display: block;
+    padding: 0 16px;
+    color: #484848;
+}
+
 .input_description_span[contentEditable]:empty::before {
     width: 100vmin;
     padding: 0 0px;
@@ -399,4 +404,38 @@
     background-size: cover;
     width: 100vw;
     object-fit: cover;
+}
+
+.input_file_list {
+    display: inline-block;
+    font-size: 18px;
+    color: #484848;
+    width: calc(100% - 44px);
+    overflow: hidden;
+    border: none;
+    outline: none;
+    border: none;
+    margin: 0;
+    height: fit-content;
+    color: #484848;
+}
+
+.ordered_list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+.entire_input img {
+    height: 24px;
+    width: auto;
+}
+
+.input_container {
+    margin-top: 12px;
+    margin-left: 0px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: middle;
 }
