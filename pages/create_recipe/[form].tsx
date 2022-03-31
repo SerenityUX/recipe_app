@@ -141,7 +141,7 @@ const Form = () => {
               {tags.map((p) => {
                 return (
                   <li className={styles.entire_input} key={p.id}>
-                    <div className={styles.input_container}>
+    
                       <input
                         className={styles.input_file_list}
                         value={p.tag}
@@ -182,7 +182,6 @@ const Form = () => {
                           );
                         }}
                       ></img>
-                    </div>
                   </li>
                 );
               })}
@@ -208,7 +207,6 @@ const Form = () => {
               {ingredients.map((i) => {
                 return (
                   <li className={styles.entire_input} key={i.id}>
-                    <div className={styles.input_container}>
                       <input
                         className={styles.input_file_list}
                         value={i.ingredient}
@@ -249,7 +247,6 @@ const Form = () => {
                           );
                         }}
                       ></img>
-                    </div>
                   </li>
                 );
               })}
@@ -343,7 +340,7 @@ const Form = () => {
               {directions.map((d) => {
                 return (
                   <li className={styles.entire_input} key={d.id}>
-                    <div className={styles.input_container}>
+                    
                       <input
                         className={styles.input_file_list}
                         value={d.direction}
@@ -384,7 +381,7 @@ const Form = () => {
                           );
                         }}
                       ></img>
-                    </div>
+                
                   </li>
                 );
               })}
