@@ -30,17 +30,17 @@ interface Direction {
 }
 const Form = () => {
   const [tags, setTags] = useState<Tag[]>([
-/*     { id: "5", tag: "test" },
+    /*     { id: "5", tag: "test" },
     { id: "6", tag: "value" }, */
   ]);
   const [directions, setDirections] = useState<Direction[]>([
-    { id: "5", direction: "test" },
-    { id: "6", direction: "value" },
+/*     { id: "5", direction: "test" },
+    { id: "6", direction: "value" }, */
   ]);
 
   const [ingredients, setIngredients] = useState<Ingredient[]>([
-    { id: "5", ingredient: "test" },
-    { id: "6", ingredient: "value" },
+/*     { id: "5", ingredient: "test" },
+    { id: "6", ingredient: "value" }, */
   ]);
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
@@ -142,48 +142,47 @@ const Form = () => {
                 return (
                   <li className={styles.entire_input} key={p.id}>
                     <div className={styles.input_container}>
-                    <input
-                      className={styles.input_file_list}
-                      value={p.tag}
-                      placeholder="Enter a tag"
-                      onKeyUp={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          setTags((currentTags) => [
-                            ...currentTags,
-                            {
-                              id: generate(),
-                              tag: "",
-                            },
-                          ]);
-                        }
-                      }}
-                      onChange={(e) => {
-                        const tag = e.target.value;
-                        setTags((currentTags) =>
-                          currentTags.map((x) =>
-                            x.id === p.id
-                              ? {
-                                  ...x,
-                                  tag,
-                                }
-                              : x
-                          )
-                        );
-                        //e.target.value
-                      }}
-                    ></input>
-                  
-                    <img
-                      src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
-                      onClick={() => {
-                        setTags((currentTags) =>
-                          currentTags.filter((x) => x.id !== p.id)
-                        );
-                      }}
-                    ></img>
-                  
-                  </div>
+                      <input
+                        className={styles.input_file_list}
+                        value={p.tag}
+                        placeholder="Enter a tag"
+                        onKeyUp={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setTags((currentTags) => [
+                              ...currentTags,
+                              {
+                                id: generate(),
+                                tag: "",
+                              },
+                            ]);
+                          }
+                        }}
+                        onChange={(e) => {
+                          const tag = e.target.value;
+                          setTags((currentTags) =>
+                            currentTags.map((x) =>
+                              x.id === p.id
+                                ? {
+                                    ...x,
+                                    tag,
+                                  }
+                                : x
+                            )
+                          );
+                          //e.target.value
+                        }}
+                      ></input>
+
+                      <img
+                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                        onClick={() => {
+                          setTags((currentTags) =>
+                            currentTags.filter((x) => x.id !== p.id)
+                          );
+                        }}
+                      ></img>
+                    </div>
                   </li>
                 );
               })}
@@ -204,7 +203,73 @@ const Form = () => {
             </span>
           </div>
           <h2 className={styles.section_title}>Ingredients</h2>
-          <span
+          <div>
+            <ol className={styles.ordered_list}>
+              {ingredients.map((i) => {
+                return (
+                  <li className={styles.entire_input} key={i.id}>
+                    <div className={styles.input_container}>
+                      <input
+                        className={styles.input_file_list}
+                        value={i.ingredient}
+                        placeholder="Enter an ingredient"
+                        onKeyUp={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setIngredients((currentIngredients) => [
+                              ...currentIngredients,
+                              {
+                                id: generate(),
+                                ingredient: "",
+                              },
+                            ]);
+                          }
+                        }}
+                        onChange={(e) => {
+                          const ingredient = e.target.value;
+                          setIngredients((currentIngredients) =>
+                            currentIngredients.map((x) =>
+                              x.id === i.id
+                                ? {
+                                    ...x,
+                                    ingredient,
+                                  }
+                                : x
+                            )
+                          );
+                          //e.target.value
+                        }}
+                      ></input>
+
+                      <img
+                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                        onClick={() => {
+                          setIngredients((currentIngredients) =>
+                            currentIngredients.filter((x) => x.id !== i.id)
+                          );
+                        }}
+                      ></img>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+            <span
+              className={styles.input_tags_span}
+              onClick={() => {
+                setIngredients((currentIngredients) => [
+                  ...currentIngredients,
+                  {
+                    id: generate(),
+                    ingredient: "",
+                  },
+                ]);
+              }}
+            >
+              Insert an ingredient
+            </span>
+          </div>
+{/*           <span
             className={styles.input_ingredients_span}
             contentEditable
           ></span>
@@ -271,9 +336,75 @@ const Form = () => {
             })}
           </ol>
         </div>
+ */}
+ <h2 className={styles.section_title}>Directions</h2>
+ <div>
+            <ol className={styles.ordered_list}>
+              {directions.map((d) => {
+                return (
+                  <li className={styles.entire_input} key={d.id}>
+                    <div className={styles.input_container}>
+                      <input
+                        className={styles.input_file_list}
+                        value={d.tag}
+                        placeholder="Enter a direction"
+                        onKeyUp={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault();
+                            setDirections((currentDirections) => [
+                              ...currentDirections,
+                              {
+                                id: generate(),
+                                direction: "",
+                              },
+                            ]);
+                          }
+                        }}
+                        onChange={(e) => {
+                          const direction = e.target.value;
+                          setDirections((currentDirections) =>
+                            currentDirections.map((x) =>
+                              x.id === d.id
+                                ? {
+                                    ...x,
+                                    direction,
+                                  }
+                                : x
+                            )
+                          );
+                          //e.target.value
+                        }}
+                      ></input>
 
-        <h2 className={styles.section_title}>Directions</h2>
-        <span className={styles.input_directions_span} contentEditable></span>
+                      <img
+                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                        onClick={() => {
+                          setDirections((currentDirections) =>
+                            currentDirections.filter((x) => x.id !== d.id)
+                          );
+                        }}
+                      ></img>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+            <span
+              className={styles.input_tags_span}
+              onClick={() => {
+                setDirections((currentDirections) => [
+                  ...currentDirections,
+                  {
+                    id: generate(),
+                    direction: "",
+                  },
+                ]);
+              }}
+            >
+              Insert a direction
+            </span>
+          </div>
+{/*         <span className={styles.input_directions_span} contentEditable></span>
         <div>
           <button
             type="button"
@@ -337,9 +468,12 @@ const Form = () => {
             })}
           </ol>
         </div>
-        <button className={styles.submit_button}>Submit</button>
+        
+ */}        <button className={styles.submit_button}>Submit</button>
+ </div>
       </form>
     </div>
+    
   );
 };
 
