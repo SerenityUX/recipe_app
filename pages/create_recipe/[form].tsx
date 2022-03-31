@@ -346,7 +346,7 @@ const Form = () => {
                     <div className={styles.input_container}>
                       <input
                         className={styles.input_file_list}
-                        value={d.tag}
+                        value={d.direction}
                         placeholder="Enter a direction"
                         onKeyUp={(e) => {
                           if (e.key === "Enter") {
