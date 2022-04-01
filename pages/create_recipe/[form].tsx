@@ -80,27 +80,28 @@ const Form = () => {
   const upload = async () => {
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
-    console.log(imageURLs[0]);
-    /*     const data = {
+    console.log(images);
+    const reader = new FileReader();
+    const data = {
       recipe_name: myrecipename.current.innerText,
-      thumbnail_as_file_resource: images[0],
+      content: reader.readAsBinaryString(images[0]),
       recipe_author: values.recipe_author,
       recipe_description: mydescriptionname.current.innerText,
       shared_with: values.shared_with,
       ingredients: ingredients.map((ingredient) => ingredient.ingredient),
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
-    }; */
+    };
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
     console.log(myrecipename.current.innerText);
     console.log(mydescriptionname.current.innerText);
-    console.log({...images[0],path: URL.createObjectURL(images[0])});
+    console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
-        content: {...images[0],path: URL.createObjectURL(images[0])},
+        content: { ...images[0], path: URL.createObjectURL(images[0]) },
         recipe_author: values.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
         shared_with: values.shared_with,
