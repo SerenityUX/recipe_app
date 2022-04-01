@@ -1,7 +1,7 @@
 import styles from "../../styles/createrecipe.module.css";
 import { generate } from "shortid";
 import next from "next";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
 const categories = [
   "All",
@@ -28,24 +28,28 @@ interface Direction {
   id: string;
   direction: string;
 }
+
 const Form = () => {
+  const myrecipename = useRef(null);
+  const mydescriptionname = useRef(null);
   const [tags, setTags] = useState<Tag[]>([
     /*     { id: "5", tag: "test" },
     { id: "6", tag: "value" }, */
   ]);
   const [directions, setDirections] = useState<Direction[]>([
-/*     { id: "5", direction: "test" },
+    /*     { id: "5", direction: "test" },
     { id: "6", direction: "value" }, */
   ]);
 
   const [ingredients, setIngredients] = useState<Ingredient[]>([
-/*     { id: "5", ingredient: "test" },
+    /*     { id: "5", ingredient: "test" },
     { id: "6", ingredient: "value" }, */
   ]);
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
 
   useEffect(() => {
+    // console.log(images);
     if (images.length < 1) return;
 
     const newImagesUrls = [];
@@ -56,35 +60,62 @@ const Form = () => {
   const [values, setValues] = useState({
     recipe_name: "",
     recipe_thumbnail: "",
-    recipe_author: "",
+    recipe_author: 1,
     recipe_description: "",
-    shared_with: "",
-    ingredients: "",
-    directions: "",
-    tags: "",
-    author: "",
+    shared_with: 1,
   });
 
-  const handlenameInputChange = (event) => {
+  /*   const handlenameInputChange = (event) => {
     setValues({ ...values, recipe_name: event.target.value });
   };
 
   const handledescriptionInputChange = (event) => {
     setValues({ ...values, recipe_description: event.target.value });
-  };
-  const handleIngredientsInputChange = (event) => {
-    setValues({ ...values, ingredients: event.target.value });
-  };
-
-  const handleDirectionsInputChange = (event) => {
-    setValues({ ...values, directions: event.target.value });
-  };
-  const handleTagsInputChange = (event) => {
-    setValues({ ...values, tags: event.target.value });
-  };
+  }; */
 
   const handleThumbnailChange = (event) => {
     setImages([...event.target.files]);
+  };
+
+  const upload = async () => {
+    //setValues({...values, recipe_name})
+    //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
+    const data = {
+      recipe_name: myrecipename.current.innerText,
+      recipe_thumbnail: images[0],
+      recipe_author: values.recipe_author,
+      recipe_description: mydescriptionname.current.innerText,
+      shared_with: values.shared_with,
+      ingredients: ingredients.map((ingredient) => ingredient.ingredient),
+      directions: directions.map((direction) => direction.direction),
+      tags: tags.map((tag) => tag.tag),
+    };
+    console.log((images[0]["path"] = URL.createObjectURL(images[0])));
+    //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
+    console.log(myrecipename.current.innerText);
+    console.log(mydescriptionname.current.innerText);
+    fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+      method: "POST",
+      body: (images[0]["path"] = URL.createObjectURL(images[0])),
+    }).then((image) => {
+      console.log(image);
+      fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipe_name: myrecipename.current.innerText,
+          recipe_thumbnail: image,
+          recipe_author: values.recipe_author,
+          recipe_description: mydescriptionname.current.innerText,
+          shared_with: values.shared_with,
+          ingredients: ingredients.map((ingredient) => ingredient.ingredient),
+          directions: directions.map((direction) => direction.direction),
+          tags: tags.map((tag) => tag.tag),
+        }),
+      }).then((response) => {
+        console.log(response);
+      });
+    });
   };
 
   const uploadImageToClient = (event) => {
@@ -126,14 +157,14 @@ const Form = () => {
         </label>
         <div className={styles.container}>
           <span
-            onChange={handlenameInputChange}
             className={styles.input_title_span}
+            ref={myrecipename}
             contentEditable
           ></span>
-
           <span
             className={styles.input_description_span}
             contentEditable
+            ref={mydescriptionname}
           ></span>
           <h2 className={styles.section_title}>Tags</h2>
           <div>
@@ -141,47 +172,46 @@ const Form = () => {
               {tags.map((p) => {
                 return (
                   <li className={styles.entire_input} key={p.id}>
-    
-                      <input
-                        className={styles.input_file_list}
-                        value={p.tag}
-                        placeholder="Enter a tag"
-                        onKeyUp={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            setTags((currentTags) => [
-                              ...currentTags,
-                              {
-                                id: generate(),
-                                tag: "",
-                              },
-                            ]);
-                          }
-                        }}
-                        onChange={(e) => {
-                          const tag = e.target.value;
-                          setTags((currentTags) =>
-                            currentTags.map((x) =>
-                              x.id === p.id
-                                ? {
-                                    ...x,
-                                    tag,
-                                  }
-                                : x
-                            )
-                          );
-                          //e.target.value
-                        }}
-                      ></input>
+                    <input
+                      className={styles.input_file_list}
+                      value={p.tag}
+                      placeholder="Enter a tag"
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setTags((currentTags) => [
+                            ...currentTags,
+                            {
+                              id: generate(),
+                              tag: "",
+                            },
+                          ]);
+                        }
+                      }}
+                      onChange={(e) => {
+                        const tag = e.target.value;
+                        setTags((currentTags) =>
+                          currentTags.map((x) =>
+                            x.id === p.id
+                              ? {
+                                  ...x,
+                                  tag,
+                                }
+                              : x
+                          )
+                        );
+                        //e.target.value
+                      }}
+                    ></input>
 
-                      <img
-                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
-                        onClick={() => {
-                          setTags((currentTags) =>
-                            currentTags.filter((x) => x.id !== p.id)
-                          );
-                        }}
-                      ></img>
+                    <img
+                      src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                      onClick={() => {
+                        setTags((currentTags) =>
+                          currentTags.filter((x) => x.id !== p.id)
+                        );
+                      }}
+                    ></img>
                   </li>
                 );
               })}
@@ -207,46 +237,46 @@ const Form = () => {
               {ingredients.map((i) => {
                 return (
                   <li className={styles.entire_input} key={i.id}>
-                      <input
-                        className={styles.input_file_list}
-                        value={i.ingredient}
-                        placeholder="Enter an ingredient"
-                        onKeyUp={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            setIngredients((currentIngredients) => [
-                              ...currentIngredients,
-                              {
-                                id: generate(),
-                                ingredient: "",
-                              },
-                            ]);
-                          }
-                        }}
-                        onChange={(e) => {
-                          const ingredient = e.target.value;
-                          setIngredients((currentIngredients) =>
-                            currentIngredients.map((x) =>
-                              x.id === i.id
-                                ? {
-                                    ...x,
-                                    ingredient,
-                                  }
-                                : x
-                            )
-                          );
-                          //e.target.value
-                        }}
-                      ></input>
+                    <input
+                      className={styles.input_file_list}
+                      value={i.ingredient}
+                      placeholder="Enter an ingredient"
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setIngredients((currentIngredients) => [
+                            ...currentIngredients,
+                            {
+                              id: generate(),
+                              ingredient: "",
+                            },
+                          ]);
+                        }
+                      }}
+                      onChange={(e) => {
+                        const ingredient = e.target.value;
+                        setIngredients((currentIngredients) =>
+                          currentIngredients.map((x) =>
+                            x.id === i.id
+                              ? {
+                                  ...x,
+                                  ingredient,
+                                }
+                              : x
+                          )
+                        );
+                        //e.target.value
+                      }}
+                    ></input>
 
-                      <img
-                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
-                        onClick={() => {
-                          setIngredients((currentIngredients) =>
-                            currentIngredients.filter((x) => x.id !== i.id)
-                          );
-                        }}
-                      ></img>
+                    <img
+                      src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                      onClick={() => {
+                        setIngredients((currentIngredients) =>
+                          currentIngredients.filter((x) => x.id !== i.id)
+                        );
+                      }}
+                    ></img>
                   </li>
                 );
               })}
@@ -266,7 +296,7 @@ const Form = () => {
               Insert an ingredient
             </span>
           </div>
-{/*           <span
+          {/*           <span
             className={styles.input_ingredients_span}
             contentEditable
           ></span>
@@ -334,54 +364,52 @@ const Form = () => {
           </ol>
         </div>
  */}
- <h2 className={styles.section_title}>Directions</h2>
- <div>
+          <h2 className={styles.section_title}>Directions</h2>
+          <div>
             <ol className={styles.ordered_list}>
               {directions.map((d) => {
                 return (
                   <li className={styles.entire_input} key={d.id}>
-                    
-                      <input
-                        className={styles.input_file_list}
-                        value={d.direction}
-                        placeholder="Enter a direction"
-                        onKeyUp={(e) => {
-                          if (e.key === "Enter") {
-                            e.preventDefault();
-                            setDirections((currentDirections) => [
-                              ...currentDirections,
-                              {
-                                id: generate(),
-                                direction: "",
-                              },
-                            ]);
-                          }
-                        }}
-                        onChange={(e) => {
-                          const direction = e.target.value;
-                          setDirections((currentDirections) =>
-                            currentDirections.map((x) =>
-                              x.id === d.id
-                                ? {
-                                    ...x,
-                                    direction,
-                                  }
-                                : x
-                            )
-                          );
-                          //e.target.value
-                        }}
-                      ></input>
+                    <input
+                      className={styles.input_file_list}
+                      value={d.direction}
+                      placeholder="Enter a direction"
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          setDirections((currentDirections) => [
+                            ...currentDirections,
+                            {
+                              id: generate(),
+                              direction: "",
+                            },
+                          ]);
+                        }
+                      }}
+                      onChange={(e) => {
+                        const direction = e.target.value;
+                        setDirections((currentDirections) =>
+                          currentDirections.map((x) =>
+                            x.id === d.id
+                              ? {
+                                  ...x,
+                                  direction,
+                                }
+                              : x
+                          )
+                        );
+                        //e.target.value
+                      }}
+                    ></input>
 
-                      <img
-                        src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
-                        onClick={() => {
-                          setDirections((currentDirections) =>
-                            currentDirections.filter((x) => x.id !== d.id)
-                          );
-                        }}
-                      ></img>
-                
+                    <img
+                      src="https://i.ibb.co/SV1vzR6/delete-black-24dp-2-1.png"
+                      onClick={() => {
+                        setDirections((currentDirections) =>
+                          currentDirections.filter((x) => x.id !== d.id)
+                        );
+                      }}
+                    ></img>
                   </li>
                 );
               })}
@@ -401,7 +429,7 @@ const Form = () => {
               Insert a direction
             </span>
           </div>
-{/*         <span className={styles.input_directions_span} contentEditable></span>
+          {/*         <span className={styles.input_directions_span} contentEditable></span>
         <div>
           <button
             type="button"
@@ -466,11 +494,19 @@ const Form = () => {
           </ol>
         </div>
         
- */}        <button className={styles.submit_button}>Submit</button>
- </div>
+ */}{" "}
+          <button
+            className={styles.submit_button}
+            onClick={() => {
+              upload();
+            }}
+          >
+            {" "}
+            Submit
+          </button>
+        </div>
       </form>
     </div>
-    
   );
 };
 
