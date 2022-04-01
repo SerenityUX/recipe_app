@@ -80,41 +80,36 @@ const Form = () => {
   const upload = async () => {
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
-    const data = {
+    console.log(imageURLs[0]);
+    /*     const data = {
       recipe_name: myrecipename.current.innerText,
-      recipe_thumbnail: images[0],
+      thumbnail_as_file_resource: images[0],
       recipe_author: values.recipe_author,
       recipe_description: mydescriptionname.current.innerText,
       shared_with: values.shared_with,
       ingredients: ingredients.map((ingredient) => ingredient.ingredient),
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
-    };
-    console.log((images[0]["path"] = URL.createObjectURL(images[0])));
+    }; */
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
     console.log(myrecipename.current.innerText);
     console.log(mydescriptionname.current.innerText);
-    fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+    console.log({...images[0],path: URL.createObjectURL(images[0])});
+    fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
       method: "POST",
-      body: (images[0]["path"] = URL.createObjectURL(images[0])),
-    }).then((image) => {
-      console.log(image);
-      fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          recipe_name: myrecipename.current.innerText,
-          recipe_thumbnail: image,
-          recipe_author: values.recipe_author,
-          recipe_description: mydescriptionname.current.innerText,
-          shared_with: values.shared_with,
-          ingredients: ingredients.map((ingredient) => ingredient.ingredient),
-          directions: directions.map((direction) => direction.direction),
-          tags: tags.map((tag) => tag.tag),
-        }),
-      }).then((response) => {
-        console.log(response);
-      });
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        recipe_name: myrecipename.current.innerText,
+        content: {...images[0],path: URL.createObjectURL(images[0])},
+        recipe_author: values.recipe_author,
+        recipe_description: mydescriptionname.current.innerText,
+        shared_with: values.shared_with,
+        ingredients: ingredients.map((ingredient) => ingredient.ingredient),
+        directions: directions.map((direction) => direction.direction),
+        tags: tags.map((tag) => tag.tag),
+      }),
+    }).then((response) => {
+      console.log(response);
     });
   };
 
