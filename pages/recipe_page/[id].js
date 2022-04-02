@@ -4,21 +4,20 @@ import { useRouter } from "next/router"
 import styles from '../../styles/recipeview.module.css'
 import Image from 'next/image'
 
-export async function getStaticProps(props) {
+export async function getServerSideProps(context) {
+    const { id } = context.params;
+    console.log(id)
+    const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
+    const user_list = await user_response.json()
+   
+    const response = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes/' + id)
+    const selected_recipe = await response.json()
+    //console.log(selected_recipe)
 
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
-  const user_list = await user_response.json()
- 
-  const response = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
-  const recipes_list = await response.json()
-  return {
-    props: {
-      recipes_list, 
-      user_list,
-    }, // will be passed to the page component as props
-  revalidate: 10,
-}
-};
+    return {
+      props: {selected_recipe, user_list}, // will be passed to the page component as props
+    }
+  }
 
 
 
