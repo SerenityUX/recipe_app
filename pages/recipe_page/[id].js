@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import styles from '../../styles/recipeview.module.css'
 import Image from 'next/image'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const { id } = context.params;
     console.log(id)
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')

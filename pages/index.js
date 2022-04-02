@@ -24,7 +24,7 @@ export async function getServerSideProps(props) {
     props: {recipes_list, user_list,}, // will be passed to the page component as props
   }
 } catch(error) {
-  console.log("Error fetching data")
+  console.log(error)
 }
 }
 
