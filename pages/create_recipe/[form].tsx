@@ -75,7 +75,8 @@ const Form = () => {
   }; */
 
   const handleThumbnailChange = (event) => {
-    console.log(event.target.files);
+    console.log(event.target.files[0]);
+
     // console.log(event.target.files[0]);
     setImages([...event.target.files]);
   };
@@ -85,49 +86,84 @@ const Form = () => {
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
     // console.log(images);
     const reader = new FileReader();
-    /*     const data = {
+
+    const data = {
       recipe_name: myrecipename.current.innerText,
-      recipe_thumbnail: images[0],
+      recipe_thumbnail: imageURLs[0],
       recipe_author: values.recipe_author,
       recipe_description: mydescriptionname.current.innerText,
       shared_with: values.shared_with,
       ingredients: ingredients.map((ingredient) => ingredient.ingredient),
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
-    }; */
+    };
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
-    /*     console.log(myrecipename.current.innerText);
-    console.log(mydescriptionname.current.innerText);
-    console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
- */
-    /*     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+    //console.log(myrecipename.current.innerText);
+    //console.log(mydescriptionname.current.innerText);
+    //console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
+
+    let formData = new FormData();
+    formData.append("image_url", images[0]);
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+    };
+    axios
+      .post(
+        "https://dev.createforever.media/api:lSOVAmsS/upload/image",
+        formData,
+        config
+      )
+      .then((response) => {
+        console.log("IT WORKED")
+        console.log(response.data.image);
+        fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
+          method: "POST",
+          headers: { "Content-Type": "application/JSON" },
+          body: JSON.stringify({
+            recipe_name: myrecipename.current.innerText,
+            recipe_thumbnail: response.data.image,
+            recipe_author: values.recipe_author,
+            recipe_description: mydescriptionname.current.innerText,
+            shared_with: values.shared_with,
+            ingredients: ingredients.map((ingredient) => ingredient.ingredient),
+            directions: directions.map((direction) => direction.direction),
+            tags: tags.map((tag) => tag.tag),
+          }),
+        }).then((response) => {
+          console.log(response);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(images[0]);
+    fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" }, 
-      // footers: { "accept" : "application/json"},
+      headers: {
+        "Content-Type": "multipart/form-data",
+        accept: "application/json",
+      },
       body: JSON.stringify({
-        content: URL.createObjectURL(images[0]),
+        image_url: imageURLs[0],
       }),
-    }).then((response) => {
-      console.log("Image response below")
-      console.log(response);
-    });
- */
-    console.log(imageURLs);
-    fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
-      method: "POST",
-      headers: { "Content-Type": "application/JSON" },
-      body: JSON.stringify({
-        recipe_name: myrecipename.current.innerText,
-        file_resource: imageURLs,
-        recipe_author: values.recipe_author,
-        recipe_description: mydescriptionname.current.innerText,
-        shared_with: values.shared_with,
-        ingredients: ingredients.map((ingredient) => ingredient.ingredient),
-        directions: directions.map((direction) => direction.direction),
-        tags: tags.map((tag) => tag.tag),
-      }),
-    }).then((response) => {
-      console.log(response);
+    }).then((output) => {
+      console.log(output);
+      fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/JSON" },
+        body: JSON.stringify({
+          recipe_name: myrecipename.current.innerText,
+          recipe_thumbnail: output,
+          recipe_author: values.recipe_author,
+          recipe_description: mydescriptionname.current.innerText,
+          shared_with: values.shared_with,
+          ingredients: ingredients.map((ingredient) => ingredient.ingredient),
+          directions: directions.map((direction) => direction.direction),
+          tags: tags.map((tag) => tag.tag),
+        }),
+      }).then((response) => {
+        console.log(response);
+      });
     });
   };
 
