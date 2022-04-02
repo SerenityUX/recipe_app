@@ -3,7 +3,7 @@ import { generate } from "shortid";
 import next from "next";
 import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
-import axios from 'axios';
+import axios from "axios";
 const categories = [
   "All",
   "Breakfast",
@@ -75,14 +75,15 @@ const Form = () => {
   }; */
 
   const handleThumbnailChange = (event) => {
-    console.log(event.target.files[0]);
+    console.log(event.target.files);
+    // console.log(event.target.files[0]);
     setImages([...event.target.files]);
   };
 
   const upload = async () => {
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
-    console.log(images);
+    // console.log(images);
     const reader = new FileReader();
     /*     const data = {
       recipe_name: myrecipename.current.innerText,
@@ -95,11 +96,11 @@ const Form = () => {
       tags: tags.map((tag) => tag.tag),
     }; */
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
-/*     console.log(myrecipename.current.innerText);
+    /*     console.log(myrecipename.current.innerText);
     console.log(mydescriptionname.current.innerText);
     console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
  */
-/*     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+    /*     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
       method: "POST",
       headers: { "Content-Type": "multipart/form-data" }, 
       // footers: { "accept" : "application/json"},
@@ -111,12 +112,13 @@ const Form = () => {
       console.log(response);
     });
  */
+    console.log(images);
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
-        file_resource: imageURLs[0],
+        file_resource: images,
         recipe_author: values.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
         shared_with: values.shared_with,
