@@ -87,7 +87,7 @@ const Form = () => {
     // console.log(images);
     const reader = new FileReader();
 
-    const data = {
+/*     const data = {
       recipe_name: myrecipename.current.innerText,
       recipe_thumbnail: imageURLs[0],
       recipe_author: values.recipe_author,
@@ -96,7 +96,7 @@ const Form = () => {
       ingredients: ingredients.map((ingredient) => ingredient.ingredient),
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
-    };
+    }; */
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
     //console.log(myrecipename.current.innerText);
     //console.log(mydescriptionname.current.innerText);
@@ -136,6 +136,7 @@ const Form = () => {
       .catch((error) => {
         console.log(error);
       });
+/*       
     console.log(images[0]);
     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
       method: "POST",
@@ -164,9 +165,9 @@ const Form = () => {
       }).then((response) => {
         console.log(response);
       });
-    });
+    });*/
   };
-
+ 
   const uploadImageToClient = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImages((imageList) => [...imageList, event.target.files[0]]);
