@@ -12,7 +12,7 @@ import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const id = context.params;
   console.log(id)
 
