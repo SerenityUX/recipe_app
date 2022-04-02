@@ -12,7 +12,7 @@ import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(props) {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
@@ -24,8 +24,9 @@ export async function getServerSideProps(context) {
       recipes_list, 
       user_list,
     }, // will be passed to the page component as props
+  revalidate: 10,
 }
-};
+}
 
 export default function Home(props) {
   console.log(props)
