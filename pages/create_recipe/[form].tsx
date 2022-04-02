@@ -112,13 +112,13 @@ const Form = () => {
       console.log(response);
     });
  */
-    console.log(images);
+    console.log(imageURLs);
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
-        file_resource: images,
+        file_resource: imageURLs,
         recipe_author: values.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
         shared_with: values.shared_with,
