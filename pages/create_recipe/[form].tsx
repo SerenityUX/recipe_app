@@ -116,7 +116,7 @@ const Form = () => {
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
-        file_resource: imageURLs,
+        file_resource: imageURLs[0],
         recipe_author: values.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
         shared_with: values.shared_with,
