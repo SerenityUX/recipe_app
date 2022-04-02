@@ -18,7 +18,7 @@ export async function getStaticProps(props) {
     }, // will be passed to the page component as props
   revalidate: 10,
 }
-}
+};
 
 
 
