@@ -20,9 +20,12 @@ export async function getStaticProps(props) {
   const response = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
   const recipes_list = await response.json()
   return {
-    props: {recipes_list, user_list}, // will be passed to the page component as props
-    revalidate: 100
-  }
+    props: {
+      recipes_list, 
+      user_list,
+    }, // will be passed to the page component as props
+  revalidate: 10,
+}
 }
 
 
