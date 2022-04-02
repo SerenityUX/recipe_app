@@ -29,7 +29,7 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 }
 }  */
 
-export async function getServerSideProps(props) {
+export async function getStaticProps(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
