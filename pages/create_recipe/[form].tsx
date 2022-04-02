@@ -3,6 +3,7 @@ import { generate } from "shortid";
 import next from "next";
 import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
+import axios from 'axios';
 const categories = [
   "All",
   "Breakfast",
@@ -74,6 +75,7 @@ const Form = () => {
   }; */
 
   const handleThumbnailChange = (event) => {
+    console.log(event.target.files[0]);
     setImages([...event.target.files]);
   };
 
@@ -82,26 +84,39 @@ const Form = () => {
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
     console.log(images);
     const reader = new FileReader();
-    const data = {
+    /*     const data = {
       recipe_name: myrecipename.current.innerText,
-      content: reader.readAsBinaryString(images[0]),
+      recipe_thumbnail: images[0],
       recipe_author: values.recipe_author,
       recipe_description: mydescriptionname.current.innerText,
       shared_with: values.shared_with,
       ingredients: ingredients.map((ingredient) => ingredient.ingredient),
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
-    };
+    }; */
     //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
-    console.log(myrecipename.current.innerText);
+/*     console.log(myrecipename.current.innerText);
     console.log(mydescriptionname.current.innerText);
     console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
+ */
+/*     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+      method: "POST",
+      headers: { "Content-Type": "multipart/form-data" }, 
+      // footers: { "accept" : "application/json"},
+      body: JSON.stringify({
+        content: URL.createObjectURL(images[0]),
+      }),
+    }).then((response) => {
+      console.log("Image response below")
+      console.log(response);
+    });
+ */
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
-        content: { ...images[0], path: URL.createObjectURL(images[0]) },
+        file_resource: imageURLs,
         recipe_author: values.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
         shared_with: values.shared_with,
