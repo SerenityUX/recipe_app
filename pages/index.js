@@ -1,26 +1,21 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Chip from '../components/chip'
 import Recipepreview from '../components/recipepreview'
-import search_icon from '../assets/search_icon.svg'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
-import recipepage from './recipe_page/[id]'
 // import  props.recipes_list from '../recipes.json'
-import next from 'next'
-import react from 'react'
+
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
-import axios from "axios";
 import * as React from 'react'
-import { useRouter } from "next/router"
+
 
 /*       export async function getStaticProps() {
 
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
+  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
+  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
   const  recipes_list = await response.json()
   return {
     props: {
