@@ -21,7 +21,9 @@ import * as React from 'react'
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?buildCache=false')
   const user_list = await user_response.json()
- 
+  user_list.setHeader('Cache-Control', 's-maxage=1');
+
+
   const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
   const recipes_list = await response.json()
   return {
