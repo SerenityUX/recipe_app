@@ -17,7 +17,7 @@ import * as React from 'react'
  
 
 
-    export async function getStaticProps() {
+ /*      export async function getStaticProps() {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
   const user_list = await user_response.json()
@@ -31,19 +31,19 @@ import * as React from 'react'
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-}   
-
+}    
+  */
 
 //Version that should work below 
-/*    export async function getServerSideProps(props) {
+      export async function getServerSideProps(props) {
     const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1';
     const res = await axios.get(url);
     const { recipes_list } = res;
     const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1';
     const res2 = await axios.get(url2);
     const { user_list } = res2;
-    return { props: {user_list: user_list, recipes_list: recipes_list} } // this returns data as posts in the props to the component
-}     */
+    return { props: {user_list, recipes_list} } // this returns data as posts in the props to the component
+}       
 /* 
 export async function getStaticPaths(index) {
 
@@ -155,8 +155,9 @@ export async function getStaticProps({ params }) {
   }
 }
  */
-export default function Home(props) {
 
+
+export default function Home(props) {
   console.log(props)
   return (
     <div className={styles.container}>
@@ -185,12 +186,12 @@ export default function Home(props) {
             })}
         </div>
         <div className={styles.previewwrapper}>
-            {props.recipes_list.map(item => {
+{/*             {recipes_list.map(item => {
               const identify_author = props.user_list.find((user) => user.id == item.recipe_author)
               return(
               <Recipepreview author={identify_author.name} avatar={identify_author.profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
-            })}
+            })} */}
         </div>
       </main>
     </div>
