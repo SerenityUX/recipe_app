@@ -7,7 +7,6 @@ const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
 
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
-import * as React from 'react'
 
 
 /*       export async function getStaticProps() {
