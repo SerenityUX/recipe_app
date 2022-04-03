@@ -15,25 +15,25 @@ import axios from "axios";
 import * as React from 'react'
 
 
- /*      export async function getStaticProps() {
+      export async function getStaticProps() {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
   const user_list = await user_response.json()
  
   const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
-  const  props.recipes_list = await response.json()
+  const  recipes_list = await response.json()
   return {
     props: {
-       props.recipes_list, 
+       recipes_list, 
       user_list,
     }, // will be passed to the page component as props
     revalidate: 10,
 }
 }    
-  */
+
 
 //Version that should work below 
-      export async function getServerSideProps(props) {
+/*       export async function getServerSideProps(props) {
         try {
         const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
         console.log(user_response)
@@ -49,7 +49,7 @@ import * as React from 'react'
           return {}
         }
 
-}       
+}      */  
 /* 
 export async function getStaticPaths(index) {
 
