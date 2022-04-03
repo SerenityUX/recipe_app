@@ -17,14 +17,12 @@ import * as React from 'react'
  
 
 
-   export async function getStaticProps(props) {
+    export async function getStaticProps() {
 
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?buildCache=false')
+  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
   const user_list = await user_response.json()
-  user_list.setHeader('Cache-Control', 's-maxage=1');
-
-
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
+ 
+  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
   const recipes_list = await response.json()
   return {
     props: {
@@ -33,7 +31,7 @@ import * as React from 'react'
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-}  
+}   
 
 
 //Version that should work below 
@@ -47,23 +45,20 @@ import * as React from 'react'
     return { props: {user_list: user_list, recipes_list: recipes_list} } // this returns data as posts in the props to the component
 }     */
 /* 
-export async function getStaticPaths(props) {
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
-  const user_list = await user_response.json()
+export async function getStaticPaths(index) {
 
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
+  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
   const recipes_list = await response.json()
-
   // Get the paths we want to pre-render based on posts
   const paths = recipes_list.map((recipes) => ({
-    params: { id: recipes_list.id, id: user_list.id },
+    params: { id: recipes_list.id },
   }))
 
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
   return { paths, fallback: 'blocking' }
-} */
+}  */
 
 /* Home.getInitialProps = async (ctx) => {
   const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes';
@@ -132,6 +127,34 @@ export async function getStaticPaths(props) {
    return { paths, fallback: 'blocking' }
 }  */
 
+/* export async function getStaticPaths(recipes) {
+  return {
+    // Only `/posts/1` and `/posts/2` are generated at build time
+
+    paths: [], 
+    fallback: false
+  }
+} */
+
+/* // This also gets called at build time
+export async function getStaticProps({ params }) {
+  // params contains the post `id`.
+  // If the route is like /posts/1, then params.id is 1
+  console.log(params)
+  const res = await fetch(`https://dev.createforever.media/api:lSOVAmsS/recipes/` + params.id)
+  const recipe = await res.json() 
+
+  const user_reponse = await fetch("https://dev.createforever.media/api:lSOVAmsS/users")
+  const user_list = await user_response.json()
+  // Pass post data to the page via props
+  return {
+    props: {recipes_list: { recipe }},
+    // Re-generate the post at most once per second
+    // if a request comes in
+    revalidate: 1,
+  }
+}
+ */
 export default function Home(props) {
 
   console.log(props)
