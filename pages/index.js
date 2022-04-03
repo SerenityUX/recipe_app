@@ -37,9 +37,13 @@ import * as React from 'react'
 //Version that should work below 
       export async function getServerSideProps(props) {
         const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
+        console.log(user_response)
         const user_list = await user_response.json()
+        console.log(user_list)
         const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
+        console.log(response)
         const  recipes_list = await response.json()
+        console.log(recipes_list)
     return { props: {user_list,  recipes_list} } // this returns data as posts in the props to the component
 }       
 /* 
