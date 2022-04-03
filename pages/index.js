@@ -36,7 +36,6 @@ import * as React from 'react'
 
 //Version that should work below 
       export async function getServerSideProps(props) {
-        //axios.get('https://api.github.com/orgs/axios')
         const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
         const user_list = await user_response.json()
         const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
