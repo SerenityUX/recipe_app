@@ -2,10 +2,6 @@
   "name": "recipe_app",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-  "node": "14.x",
-  "npm": "~1.0.20"
-},
   "scripts": {
     "dev": "next dev",
     "build": "next build",
