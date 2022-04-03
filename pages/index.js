@@ -74,7 +74,7 @@ export async function getStaticPaths(props) {
   return { props: {user_list: data2, recipes_list: data} } // this returns data as posts in the props to the component
 };
  */
-/* export async function getInitialProps (props) {
+ export async function getInitialProps (props) {
   {
     const user_response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/users')
     const user_list = response.data
@@ -89,7 +89,7 @@ export async function getStaticPaths(props) {
       props: {recipes_list, user_list}, // will be passed to the page component as props
     }
   }
-}  */
+} 
 
 export default function Home(props) {
 
