@@ -14,7 +14,7 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 import axios from "axios";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import * as React from 'react'
-/* 
+ 
  export async function getStaticProps(props) {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
@@ -29,11 +29,11 @@ import * as React from 'react'
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-}  */
+}
 
 
-//Version that works below 
- export async function getServerSideProps(props) {
+//Version that should work below 
+/*  export async function getServerSideProps(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
@@ -44,7 +44,7 @@ import * as React from 'react'
   return {
     props: {recipes_list, user_list}, // will be passed to the page component as props
   }
-}  
+}   */
 /* 
 export async function getStaticPaths(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
