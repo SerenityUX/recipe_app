@@ -15,12 +15,14 @@ import axios from "axios";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import * as React from 'react'
  
+
+
  export async function getStaticProps(props) {
 
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
+  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?buildCache=false')
   const user_list = await user_response.json()
  
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
+  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
   const recipes_list = await response.json()
   return {
     props: {
@@ -29,22 +31,19 @@ import * as React from 'react'
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-}
+} 
 
 
 //Version that should work below 
-/*  export async function getServerSideProps(props) {
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
-  const user_list = await user_response.json()
- 
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
-  const recipes_list = await response.json()
-  //console.log(selected_recipe)
-
-  return {
-    props: {recipes_list, user_list}, // will be passed to the page component as props
-  }
-}   */
+/*   export async function getServerSideProps(props) {
+    const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes';
+    const res = await axios.get(url);
+    const { recipes_list } = res;
+    const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users';
+    const res2 = await axios.get(url2);
+    const { user_list } = res2;
+    return { props: {user_list: user_list, recipes_list: recipes_list} } // this returns data as posts in the props to the component
+}    */
 /* 
 export async function getStaticPaths(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
@@ -74,7 +73,7 @@ export async function getStaticPaths(props) {
   return { props: {user_list: data2, recipes_list: data} } // this returns data as posts in the props to the component
 };
  */
- export async function getInitialProps (props) {
+/*  export async function getInitialProps (props) {
   {
     const user_response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/users')
     const user_list = response.data
@@ -90,7 +89,7 @@ export async function getStaticPaths(props) {
     }
   }
 } 
-
+ */
 export default function Home(props) {
 
   console.log(props)
