@@ -12,9 +12,7 @@ import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 import axios from "axios";
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import * as React from 'react'
-import { NextApiRequest, NextApiResponse } from "next";
 
 
  /*      export async function getStaticProps() {
