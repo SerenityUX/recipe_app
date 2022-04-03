@@ -11,7 +11,9 @@ import next from 'next'
 import react from 'react'
 import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
-
+import axios from "axios";
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import * as React from 'react'
 /* 
  export async function getStaticProps(props) {
 
@@ -30,8 +32,8 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 }  */
 
 
-
-export async function getStaticProps(props) {
+//Version that works below 
+ export async function getServerSideProps(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
@@ -42,23 +44,52 @@ export async function getStaticProps(props) {
   return {
     props: {recipes_list, user_list}, // will be passed to the page component as props
   }
-}
+}  
+/* 
+export async function getStaticPaths(props) {
+  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
+  const user_list = await user_response.json()
 
-/* export async function getInitialProps () {
+  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
+  const recipes_list = await response.json()
+
+  // Get the paths we want to pre-render based on posts
+  const paths = recipes_list.map((recipes) => ({
+    params: { id: recipes_list.id, id: user_list.id },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: blocking } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: 'blocking' }
+} */
+
+/* Home.getInitialProps = async (ctx) => {
+  const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes';
+  const res = await axios.get(url);
+  const { data } = res;
+  const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users';
+  const res2 = await axios.get(url2);
+  const { data2 } = res2;
+  return { props: {user_list: data2, recipes_list: data} } // this returns data as posts in the props to the component
+};
+ */
+/* export async function getInitialProps (props) {
   {
-    const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
-    const user_list = await user_response.json()
-   
-    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
-    const recipes_list = await response.json()
+    const user_response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/users')
+    const user_list = response.data
+    
+    const response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/recipes')
+    const recipes_list = response.data
     //console.log(selected_recipe)
     
+
   
     return {
       props: {recipes_list, user_list}, // will be passed to the page component as props
     }
   }
-} */
+}  */
 
 export default function Home(props) {
 
