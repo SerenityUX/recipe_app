@@ -6,7 +6,7 @@ import Recipepreview from '../components/recipepreview'
 import search_icon from '../assets/search_icon.svg'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
 import recipepage from './recipe_page/[id]'
-// import recipes_list from '../recipes.json'
+// import  props.recipes_list from '../recipes.json'
 import next from 'next'
 import react from 'react'
 import Link from 'next/link';
@@ -23,10 +23,10 @@ import * as React from 'react'
   const user_list = await user_response.json()
  
   const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
-  const recipes_list = await response.json()
+  const  props.recipes_list = await response.json()
   return {
     props: {
-      recipes_list, 
+       props.recipes_list, 
       user_list,
     }, // will be passed to the page component as props
     revalidate: 10,
@@ -36,22 +36,20 @@ import * as React from 'react'
 
 //Version that should work below 
       export async function getServerSideProps(props) {
-    const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1';
-    const res = await axios.get(url);
-    const { recipes_list } = res;
-    const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1';
-    const res2 = await axios.get(url2);
-    const { user_list } = res2;
-    return { props: {user_list, recipes_list} } // this returns data as posts in the props to the component
+        const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1')
+        const user_list = await user_response.json()
+        const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1")
+        const  recipes_list = await response.json()
+    return { props: {user_list,  recipes_list} } // this returns data as posts in the props to the component
 }       
 /* 
 export async function getStaticPaths(index) {
 
   const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
-  const recipes_list = await response.json()
+  const  props.recipes_list = await response.json()
   // Get the paths we want to pre-render based on posts
-  const paths = recipes_list.map((recipes) => ({
-    params: { id: recipes_list.id },
+  const paths =  props.recipes_list.map((recipes) => ({
+    params: { id:  props.recipes_list.id },
   }))
 
   // We'll pre-render only these paths at build time.
@@ -67,7 +65,7 @@ export async function getStaticPaths(index) {
   const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users';
   const res2 = await axios.get(url2);
   const { data2 } = res2;
-  return { props: {user_list: data2, recipes_list: data} } // this returns data as posts in the props to the component
+  return { props: {user_list: data2,  props.recipes_list: data} } // this returns data as posts in the props to the component
 };
  */
 /*  export async function getInitialProps (props) {
@@ -76,13 +74,13 @@ export async function getStaticPaths(index) {
     const user_list = response.data
     
     const response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/recipes')
-    const recipes_list = response.data
+    const  props.recipes_list = response.data
     //console.log(selected_recipe)
     
 
   
     return {
-      props: {recipes_list, user_list}, // will be passed to the page component as props
+      props: { props.recipes_list, user_list}, // will be passed to the page component as props
     }
   }
 } 
@@ -94,11 +92,11 @@ export async function getStaticPaths(index) {
 // revalidation is enabled and a new request comes in
 /* export async function getStaticProps() {
   const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
-  const recipes_list = await res.json()
+  const  props.recipes_list = await res.json()
 
   return {
     props: {
-      recipes_list,
+       props.recipes_list,
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
@@ -112,11 +110,11 @@ export async function getStaticPaths(index) {
 // the path has not been generated.
 /*  export async function getStaticPaths(context) {
   const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
-  const recipes_list = await res.json()
+  const  props.recipes_list = await res.json()
   const { slug } = context;
   // Get the paths we want to pre-render based on posts
-  const paths = recipes_list.map((recipe) => ({
-    params: { recipes_list.params: context.params },
+  const paths =  props.recipes_list.map((recipe) => ({
+    params: {  props.recipes_list.params: context.params },
   }))
 
 
@@ -148,7 +146,7 @@ export async function getStaticProps({ params }) {
   const user_list = await user_response.json()
   // Pass post data to the page via props
   return {
-    props: {recipes_list: { recipe }},
+    props: { props.recipes_list: { recipe }},
     // Re-generate the post at most once per second
     // if a request comes in
     revalidate: 1,
@@ -186,12 +184,12 @@ export default function Home(props) {
             })}
         </div>
         <div className={styles.previewwrapper}>
-{/*             {recipes_list.map(item => {
+             { props.recipes_list.map(item => {
               const identify_author = props.user_list.find((user) => user.id == item.recipe_author)
               return(
               <Recipepreview author={identify_author.name} avatar={identify_author.profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
               )
-            })} */}
+            })}
         </div>
       </main>
     </div>
