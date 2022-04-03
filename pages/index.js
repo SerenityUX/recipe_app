@@ -14,7 +14,7 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 import axios from "axios";
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
 import * as React from 'react'
- 
+import { NextApiRequest, NextApiResponse } from "next";
 
 
  /*      export async function getStaticProps() {
