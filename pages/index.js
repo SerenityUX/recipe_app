@@ -17,7 +17,7 @@ import * as React from 'react'
  
 
 
- export async function getStaticProps(props) {
+   export async function getStaticProps(props) {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users?buildCache=false')
   const user_list = await user_response.json()
@@ -31,19 +31,19 @@ import * as React from 'react'
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-} 
+}  
 
 
 //Version that should work below 
-/*   export async function getServerSideProps(props) {
-    const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes';
+/*    export async function getServerSideProps(props) {
+    const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes?_vercel_no_cache=1';
     const res = await axios.get(url);
     const { recipes_list } = res;
-    const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users';
+    const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users?_vercel_no_cache=1';
     const res2 = await axios.get(url2);
     const { user_list } = res2;
     return { props: {user_list: user_list, recipes_list: recipes_list} } // this returns data as posts in the props to the component
-}    */
+}     */
 /* 
 export async function getStaticPaths(props) {
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
@@ -90,6 +90,46 @@ export async function getStaticPaths(props) {
   }
 } 
  */
+
+
+// This function gets called at build time on server-side.
+// It may be called again, on a serverless function, if
+// revalidation is enabled and a new request comes in
+/* export async function getStaticProps() {
+  const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
+  const recipes_list = await res.json()
+
+  return {
+    props: {
+      recipes_list,
+    },
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 10 seconds
+    revalidate: 10, // In seconds
+  }
+} */
+
+// This function gets called at build time on server-side.
+// It may be called again, on a serverless function, if
+// the path has not been generated.
+/*  export async function getStaticPaths(context) {
+  const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
+  const recipes_list = await res.json()
+  const { slug } = context;
+  // Get the paths we want to pre-render based on posts
+  const paths = recipes_list.map((recipe) => ({
+    params: { recipes_list.params: context.params },
+  }))
+
+
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: blocking } will server-render pages
+  // on-demand if the path doesn't exist.
+   return { paths, fallback: 'blocking' }
+}  */
+
 export default function Home(props) {
 
   console.log(props)
