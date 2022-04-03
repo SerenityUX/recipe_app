@@ -9,7 +9,7 @@ import Link from 'next/link';
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
 
-/*       export async function getStaticProps() {
+      export async function getStaticProps() {
 
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
@@ -23,11 +23,11 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
     }, // will be passed to the page component as props
     revalidate: 10,
 }
-}     */
+}     
 
 
 //Version that should work below 
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
   try {
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
     console.log(user_response)
@@ -42,7 +42,7 @@ export async function getServerSideProps() {
     console.log(error)
     return { props: {}}
   }
-}      
+}    */   
 /* 
 export async function getStaticPaths(index) {
 
