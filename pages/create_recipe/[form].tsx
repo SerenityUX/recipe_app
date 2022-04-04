@@ -4,7 +4,15 @@ import next from "next";
 import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
 import axios from "axios";
+import { rootCertificates } from "tls";
+import SubmitButton from '../../components/submit_button'
 
+export enum UploadState {
+  Default,
+  Uploading,
+  Uploaded,
+  Failed
+}
 
 const categories = [
   "All",
@@ -52,6 +60,8 @@ const Form = () => {
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
 
+  
+
   useEffect(() => {
     // console.log(images);
     if (images.length < 1) return;
@@ -85,8 +95,10 @@ const Form = () => {
   };
 
   const upload = async () => {
-      btnRef.current.setAttribute("disabled", "disabled");
-      let button_text = "Uploading"
+    console.log(UploadState)
+    if ("dog" == "dog") {
+    setIsUploading( UploadState.Uploading )
+
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
     // console.log(images);
@@ -136,14 +148,21 @@ const Form = () => {
           }),
         }).then((response) => {
           console.log(response);
-          let button_text = "Submitted"
+          setIsUploading( UploadState.Uploaded )
+          //let button_text = "Submitted"
         });
       })
       .catch((error) => {
         console.log(error);
-        let button_text = "Failed"
+        setIsUploading( UploadState.Failed )
+        //let button_text = "Failed"
       });
-/*       
+
+  
+
+/*    
+
+
     console.log(images[0]);
     fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
       method: "POST",
@@ -173,6 +192,7 @@ const Form = () => {
         console.log(response);
       });
     });*/
+  }
   };
  
   const uploadImageToClient = (event) => {
@@ -184,6 +204,10 @@ const Form = () => {
       ]);
     }
   };
+
+  const [isUploading, setIsUploading] = useState<UploadState>(UploadState.Default)
+  const [disable, setDisable] = React.useState(false);
+
   return (
     <div className={styles.form_container}>
       <div className={styles.top_bar}>
@@ -552,15 +576,12 @@ const Form = () => {
         </div>
         
  */}{" "}
-          <button
-            className={styles.submit_button}
+ 
+          <SubmitButton value={isUploading}
             onClick={() => {
               upload();
             }}
-            ref={btnRef}
-          >
-            Submit
-          </button>
+          />
         </div>
       </form>
     </div>
