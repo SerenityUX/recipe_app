@@ -50,10 +50,8 @@
 
 .thumbnail {
     margin-top: 56px;
-}
-.upload_container {
     width: 100vw;
-    height: (100vw * 4/3);
+    aspect-ratio: 3 / 4;
 }
 
 .title {
@@ -168,6 +166,7 @@
 }
 
 .thumbnail {
+    height: (100vw * 4/3);
     margin-top: 56px;
     width: 100vw;
     display: cover;
@@ -216,7 +215,7 @@
     background-color: #DFE1E5;
     width: 100vw;
     display: flex;
-    aspect-ratio: 3 / 4;
+    height: 100%;
     align-items: center;
     justify-content: center;
 }
