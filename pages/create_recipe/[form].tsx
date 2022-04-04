@@ -4,6 +4,8 @@ import next from "next";
 import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
 import axios from "axios";
+
+
 const categories = [
   "All",
   "Breakfast",
@@ -31,6 +33,7 @@ interface Direction {
 }
 
 const Form = () => {
+  let btnRef = useRef(null);
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
   const [tags, setTags] = useState<Tag[]>([
@@ -82,6 +85,8 @@ const Form = () => {
   };
 
   const upload = async () => {
+      btnRef.current.setAttribute("disabled", "disabled");
+      let button_text = "Uploading"
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
     // console.log(images);
@@ -131,10 +136,12 @@ const Form = () => {
           }),
         }).then((response) => {
           console.log(response);
+          let button_text = "Submitted"
         });
       })
       .catch((error) => {
         console.log(error);
+        let button_text = "Failed"
       });
 /*       
     console.log(images[0]);
@@ -550,8 +557,8 @@ const Form = () => {
             onClick={() => {
               upload();
             }}
+            ref={btnRef}
           >
-            {" "}
             Submit
           </button>
         </div>

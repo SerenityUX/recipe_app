@@ -50,7 +50,10 @@
 
 .thumbnail {
     margin-top: 56px;
-    min-width: 100vw;
+}
+.upload_container {
+    width: 100vw;
+    height: (100vw * 4/3);
 }
 
 .title {
@@ -440,3 +443,7 @@
     align-content: middle;
 }
 
+
+.submit_button:focused{
+    background-color:olive;
+}
