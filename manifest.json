@@ -1,5 +1,6 @@
 {
- "name": "App",
+ "short_name": "Meal Pack",
+ "name": "Meal Pack",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
