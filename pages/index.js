@@ -33,7 +33,7 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
     console.log(user_response)
     const user_list = await user_response.json()
     console.log(user_list)
-    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=1")
+    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=2")
     console.log(response)
     const  recipes_list = await response.json()
     console.log(recipes_list)
