@@ -8,10 +8,10 @@ import { rootCertificates } from "tls";
 import SubmitButton from '../../components/submit_button'
 
 export enum UploadState {
-  Default,
-  Uploading,
-  Uploaded,
-  Failed
+  Default = "Default",
+  Uploading = "Uploading",
+  Uploaded = "Uploaded",
+  Failed = "Failed"
 }
 
 const categories = [
@@ -96,7 +96,7 @@ const Form = () => {
 
   const upload = async () => {
     console.log(UploadState)
-    if ("dog" == "dog") {
+    if (isUploading == UploadState.Default || isUploading == UploadState.Failed) {
     setIsUploading( UploadState.Uploading )
 
     //setValues({...values, recipe_name})
@@ -253,7 +253,7 @@ const Form = () => {
               {tags.map((p) => {
                 return (
                   <li className={styles.entire_input} key={p.id}>
-                    <input
+                    <input autoFocus
                       className={styles.input_file_list}
                       value={p.tag}
                       placeholder="Enter a tag"
@@ -318,7 +318,7 @@ const Form = () => {
               {ingredients.map((i) => {
                 return (
                   <li className={styles.entire_input} key={i.id}>
-                    <input
+                    <input autoFocus
                       className={styles.input_file_list}
                       value={i.ingredient}
                       placeholder="Enter an ingredient"
@@ -451,7 +451,7 @@ const Form = () => {
               {directions.map((d) => {
                 return (
                   <li className={styles.entire_input} key={d.id}>
-                    <input
+                    <input autoFocus
                       className={styles.input_file_list}
                       value={d.direction}
                       placeholder="Enter a direction"
@@ -577,7 +577,7 @@ const Form = () => {
         
  */}{" "}
  
-          <SubmitButton value={isUploading}
+          <SubmitButton value={isUploading} 
             onClick={() => {
               upload();
             }}

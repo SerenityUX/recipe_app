@@ -381,8 +381,8 @@
     resize: none;
 }
 
-.submit_button {
-	background-color: #277DA1;
+.Default {
+	background-color: #2874E8;
     padding-top: 16px;
     padding-bottom: 16px;
     border-radius: 8px;
@@ -397,6 +397,53 @@
     margin-bottom: 32px
 }
 
+.Uploading {
+	background-color: #EBF3FF;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #277DA1;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    border:none;
+    margin-top: 32px;
+    margin-bottom: 32px  
+}
+
+.Failed {
+	background-color: #FFE8E9;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #FF1826;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    border:none;
+    margin-top: 32px;
+    margin-bottom: 32px  
+}
+
+.Uploaded {
+	background-color: #00AE11;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    border:none;
+    margin-top: 32px;
+    margin-bottom: 32px  
+}
 
 .thumbnail_preview {
     display: flex;
