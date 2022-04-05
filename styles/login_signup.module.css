@@ -1,0 +1,91 @@
+.top_bar {
+    background-color: #fff;
+    display: flex;
+    align-items: middle;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.top_bar .navcontainer {
+    width: 100%;
+    border-bottom: 1px solid #F1F3F4;
+    overflow: hidden;
+    margin-left: 16px;
+    margin-right: 16px; 
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.top_bar a {
+    padding-right: 24px;
+    font-size: 18px;
+    position: relative;
+    width: calc(100vw - 80px);
+    text-align: left;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.top_bar .navcontainer .selected_nav {
+    color: #181818;
+    text-decoration: underline;    
+}
+.top_bar .navcontainer .unselected_nav {
+    color: #696969;
+    text-decoration: none;
+}
+
+
+.inputgroup {
+    display: block;
+    margin-top: 16px;
+}
+.inputlabel {
+    color: #484848;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 4px;
+}
+.inputgroup input {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: calc(100% - 32px);
+    display: block;
+    border: 1px solid #DFE1E5;
+    padding: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #181818;
+}
+
+.title {
+    font-size: 35px;
+    font-weight: 500;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 16px;
+    margin-bottom: 0px;
+}
+
+.loginbutton {
+	background-color: #2874E8;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    outline: none;
+    border:none;
+    margin-top: 24px;
+    margin-bottom: 32px
+}
