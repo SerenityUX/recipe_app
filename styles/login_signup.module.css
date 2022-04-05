@@ -10,8 +10,6 @@
     width: 100%;
     border-bottom: 1px solid #F1F3F4;
     overflow: hidden;
-    margin-left: 16px;
-    margin-right: 16px; 
     padding-top: 24px;
     padding-bottom: 24px;
 }
@@ -26,13 +24,18 @@
     margin-bottom: 24px;
 }
 
-.top_bar .navcontainer .selected_nav {
+.top_bar .navcontainer .selected_nav, .unselected_nav {
     color: #181818;
     text-decoration: underline;    
+    display: inline;
+    margin: 0px 0px 0px 16px;
 }
+
+
 .top_bar .navcontainer .unselected_nav {
     color: #696969;
     text-decoration: none;
+    display: inline;
 }
 
 

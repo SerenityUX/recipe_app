@@ -4,6 +4,7 @@ import next from "next";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { rootCertificates } from "tls";
+import Link from 'next/link';
 
 
 
@@ -13,8 +14,8 @@ const Login = () => {
     <div>
     <div className={styles.top_bar}>
     <div className={styles.navcontainer}>
-    <a className={styles.selected_nav} href="/signin">Login</a>
-    <a className={styles.unselected_nav} href="/signup">Sign Up</a>
+    <Link href="/login"><p className={styles.selected_nav}>Login</p></Link>
+    <Link href="/signup"><p className={styles.unselected_nav}>Sign Up</p></Link>
     </div>
     </div>
 
