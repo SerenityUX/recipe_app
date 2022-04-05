@@ -13,8 +13,8 @@ const Login = () => {
     <div>
     <div className={styles.top_bar}>
     <div className={styles.navcontainer}>
-    <a className={styles.selected_nav}>Login</a>
-    <a className={styles.unselected_nav}>Sign Up</a>
+    <a className={styles.selected_nav} href="/signin">Login</a>
+    <a className={styles.unselected_nav} href="/signup">Sign Up</a>
     </div>
     </div>
 

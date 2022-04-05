@@ -89,3 +89,124 @@
     margin-top: 24px;
     margin-bottom: 32px
 }
+
+.upload_container {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    height: 28vw;
+    width: 28vw;
+    background-color: #DFE1E5;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content:center;
+    overflow: hidden;
+}
+
+
+.upload_container .upload_button {
+    position: absolute;
+    overflow: hidden;
+}
+
+.profile_preview {
+    display: inline;
+    height: 28vw;
+    width: 28vw;
+    z-index: 2;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+}
+.upload_image {
+    display: none;
+    overflow: hidden;
+}
+
+
+
+.nameInput[contentEditable] {
+    display: inline;
+    width: calc(72vw - 32px);
+    padding: 0 16px;
+    height: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    margin-bottom: 4px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+}
+.nameInput[contentEditable]:empty::before {
+    width: calc(72vw - 32px);
+    padding: 0 0px;
+    height: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'First and last name';
+    color: #707070;
+}
+
+.phoneInput[contentEditable] {
+    width: calc(72vw - 32px);
+    display: inline;
+    padding: 0 16px;
+    height: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    color: #2874E8;
+    margin: 0px;
+}
+.phoneInput[contentEditable]:empty::before {
+    width: calc(72vw - 48px);
+    padding: 0 0px;
+    height: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+    content: 'Phone Number';
+    color: #707070;
+    margin: 0px;
+}
+.stack {
+    margin: 0px;
+    width: calc(72vw - 48px);
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
