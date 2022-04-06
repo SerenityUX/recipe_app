@@ -1,20 +1,28 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Chip from '../components/chip'
-import Recipepreview from '../components/recipepreview'
-const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Chip from "../components/chip";
+import Recipepreview from "../components/recipepreview";
+const recipe_thumbnail_test = "../assets/recipe_thumbnail.png";
 // import  props.recipes_list from '../recipes.json'
-import Cookies from 'js-cookie';
-import * as cookie from 'cookie'
-
-import Link from 'next/link';
+import Cookies from "js-cookie";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
-import React, { PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import { Redirect } from 'react-router'
 
-const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
+import React from "react";
+
+
+
+const categories = [
+  "All",
+  "Breakfast",
+  "Lunch",
+  "Dinner",
+  "Dessert",
+  "Smoothies",
+  "Snacks",
+  "Juices",
+];
 
 //const cookies = context.req.cookies.User_ID
 /*       export async function getStaticProps() {
@@ -33,41 +41,42 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 }
 }      */
 
-
-
-
-//Version that should work below 
- export async function getServerSideProps(context) {
-  
-/*   
+//Version that should work below
+export async function getServerSideProps(context) {
+  /*   
     if(context.req.cookies.User_ID == "") {
       context.redirect = {
         url: "/signup"
       };
     } */
- 
 
   try {
+    const cookies = context.req.cookies.User_ID;
 
-    const cookies = context.req.cookies.User_ID
-    
-    const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
+    const user_response = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/users"
+    );
     //console.log(user_response)
-    const user_list = await user_response.json()
+    const user_list = await user_response.json();
     //console.log(user_list)
-    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" + cookies)
+    const response = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" +
+        cookies
+    );
     //console.log(response)
-    const  recipes_list = await response.json()
+    const recipes_list = await response.json();
     //console.log(recipes_list)
-    return { props: {user_list, recipes_list} } // this returns data as posts in the props to the component
-  } catch(error) {
-    console.log(error)
-    
-    return { props: {
-      cookies: cookies
-    }}
+    return { props: { user_list, recipes_list } }; // this returns data as posts in the props to the component
+  } catch (error) {
+    console.log(error);
+
+    return {
+      props: {
+        cookies: cookies,
+      },
+    };
   }
-}      
+}
 /* 
 export async function getStaticPaths(index) {
 
@@ -111,7 +120,6 @@ export async function getStaticPaths(index) {
   }
 } 
  */
-
 
 // This function gets called at build time on server-side.
 // It may be called again, on a serverless function, if
@@ -180,38 +188,95 @@ export async function getStaticProps({ params }) {
 }
  */
 
-
-
 export default function Home(props) {
-  console.log({props})
-  if (typeof window !== 'undefined') {
+  console.log({ props });
   const router = useRouter();
-  const cookies = Cookies.get('User_ID')
-  console.log(cookies)
-  if(typeof cookies === "undefined") {
-    router.push("/signup");
-  } 
+
+  if (typeof window !== "undefined") {
+    const cookies = Cookies.get("User_ID");
+    console.log(cookies);
+    if (typeof cookies === "undefined") {
+      router.push("/signup");
+    }
   }
-  
-  
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Meal Pack</title>
-        <meta name="Social Recipe Sharing Platform" content="A recipe tool to share and enjoy recipes with friends and family" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"/>
-        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png"/>
-        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png"/>
-        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+        <meta
+          name="Social Recipe Sharing Platform"
+          content="A recipe tool to share and enjoy recipes with friends and family"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="/apple-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="60x60"
+          href="/apple-icon-60x60.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="/apple-icon-72x72.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="76x76"
+          href="/apple-icon-76x76.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="/apple-icon-114x114.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="120x120"
+          href="/apple-icon-120x120.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="/apple-icon-144x144.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="152x152"
+          href="/apple-icon-152x152.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-icon-180x180.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/android-icon-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="96x96"
+          href="/favicon-96x96.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
@@ -219,33 +284,50 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-      <div className={styles.topbar}>
-      <h1 className={styles.maintitle}>My Recipes</h1>
-      <Link href={`/create_recipe/form`}><img src="https://i.ibb.co/vX7FXB3/createbutton.png" /></Link>
-      </div>
-      
+        <div className={styles.topbar}>
+          <h1 className={styles.maintitle}>My Recipes</h1>
+          <Link href={`/create_recipe/form`}>
+            <img src="https://i.ibb.co/vX7FXB3/createbutton.png" />
+          </Link>
+        </div>
+
         <div className={styles.search_bar}>
-        <img src="https://i.ibb.co/nssL0qW/search-icon.png" className={styles.search_icon} alt="Search Icon"></img>
-            <p>Search Recipes</p>
+          <img
+            src="https://i.ibb.co/nssL0qW/search-icon.png"
+            className={styles.search_icon}
+            alt="Search Icon"
+          ></img>
+          <p>Search Recipes</p>
         </div>
 
         <div className={styles.tagwrapper}>
-            {categories.map(item => {
-              return(
-              <Chip text={item} key={item}></Chip>
-              )
-            })}
+          {categories.map((item) => {
+            return <Chip text={item} key={item}></Chip>;
+          })}
         </div>
         <div className={styles.previewwrapper}>
-         
-               {Array.isArray(props.recipes_list) && props.recipes_list.map(item => {
-              const identify_author = props.user_list.find((user) => user.id == item.recipe_author)
-              return(
-              <Recipepreview author={identify_author.name} avatar={identify_author.profile_picture.url} title={item.recipe_name} key={item.id} id={item.id} thumbnail={item.recipe_thumbnail.url} tags={item.tags} description={item.recipe_description} ingredients={item.ingredients} directions={item.directions}></Recipepreview>
-              )
+          {Array.isArray(props.recipes_list) &&
+            props.recipes_list.map((item) => {
+              const identify_author = props.user_list.find(
+                (user) => user.id == item.recipe_author
+              );
+              return (
+                <Recipepreview
+                  author={identify_author.name}
+                  avatar={identify_author.profile_picture.url}
+                  title={item.recipe_name}
+                  key={item.id}
+                  id={item.id}
+                  thumbnail={item.recipe_thumbnail.url}
+                  tags={item.tags}
+                  description={item.recipe_description}
+                  ingredients={item.ingredients}
+                  directions={item.directions}
+                ></Recipepreview>
+              );
             })}
         </div>
       </main>
     </div>
-  )
+  );
 }
