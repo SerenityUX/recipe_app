@@ -44,10 +44,14 @@ const Login = () => {
       })
       .then(async function (final_user_id) {
         localStorage.setItem("User_ID", JSON.stringify(final_user_id.id));
+        if (typeof final_user_id.id !== "undefined") {
         document.cookie = `User_ID=${JSON.stringify(
           final_user_id.id
         )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
-        router.push("/");
+        
+        router.push("/")} else {
+          alert("Incorrect username or password. Please try again")
+        }
       });
   };
   
