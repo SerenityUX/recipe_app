@@ -12,6 +12,8 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
+
+
   const attemptLogin = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/auth/login", {
       method: "POST",
@@ -26,6 +28,9 @@ const Login = () => {
       })
       .then(async function (total) {
         localStorage.setItem("Auth_token", total.authToken);
+        document.cookie = `User_ID=${JSON.stringify(
+          total.authToken
+        )};`
         return total.authToken;
       })
       .then(async function (auth_token) {

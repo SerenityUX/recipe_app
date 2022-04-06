@@ -6,6 +6,12 @@ import { produce } from "immer";
 import axios from "axios";
 import { rootCertificates } from "tls";
 import SubmitButton from '../../components/submit_button'
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+const user_id = cookies.get('User_ID')
+
 
 export enum UploadState {
   Default = "Default",
@@ -74,9 +80,9 @@ const Form = () => {
   const [values, setValues] = useState({
     recipe_name: "",
     recipe_thumbnail: "",
-    recipe_author: 1,
+    recipe_author: user_id,
     recipe_description: "",
-    shared_with: 1,
+    shared_with: user_id,
   });
 
   /*   const handlenameInputChange = (event) => {
@@ -98,7 +104,7 @@ const Form = () => {
     console.log(UploadState)
     if (isUploading == UploadState.Default || isUploading == UploadState.Failed) {
     setIsUploading( UploadState.Uploading )
-
+      
     //setValues({...values, recipe_name})
     //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
     // console.log(images);
