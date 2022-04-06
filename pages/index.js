@@ -194,7 +194,7 @@ export default function Home(props) {
     const cookies = Cookies.get("User_ID");
     console.log(cookies);
     if (typeof cookies === "undefined") {
-      router.push("/signup");
+      router.push("/login");
     }
   }
 
