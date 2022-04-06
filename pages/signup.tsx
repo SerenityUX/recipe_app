@@ -32,34 +32,49 @@ const Signup = () => {
   };
 
   const attemptSignup = async () => {
-    console.log("clicked button")
+    
+    console.log("clicked button");
     let formData = new FormData();
     formData.append("image_url", images[0]);
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
+    try {
     axios
       .post(
         "https://dev.createforever.media/api:lSOVAmsS/upload/image",
         formData,
         config
       )
+    } catch {
+      alert("Please include a valid profile picture, name, phone number, email address, and pasword.")
+    }
+  
       .then(async function (response) {
-        console.log(response)
-        return fetch("https://dev.createforever.media/api:lSOVAmsS/auth/signup", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: email.current.value,
-            password: password.current.value,
-            phone_number: phoneInput.current.innerText,
-            name: nameInput.current.innerText,
-            profile_picture: response.data.image
-          }),
-        });
+        console.log(response);
+        try {
+          return fetch(
+            "https://dev.createforever.media/api:lSOVAmsS/auth/signup",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: email.current.value,
+                password: password.current.value,
+                phone_number: phoneInput.current.innerText,
+                name: nameInput.current.innerText,
+                profile_picture: response.data.image,
+              }),
+            }
+          );
+        } catch {
+          alert(
+            "Please include a valid profile picture, name, phone number, email address, and pasword."
+          );
+        }
       })
       .then(async function (response) {
-        console.log(response.json)
+        console.log(response.json);
         return response.json();
       })
       .then(async function (total) {
@@ -81,7 +96,17 @@ const Signup = () => {
         document.cookie = `User_ID=${JSON.stringify(
           final_user_id.id
         )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
-        router.push("/");
+        if (typeof final_user_id.id !== "undefined") {
+          document.cookie = `User_ID=${JSON.stringify(
+            final_user_id.id
+          )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+
+          router.push("/");
+        } else {
+          alert(
+            "Please include a valid profile picture, name, phone number, email address, and pasword."
+          );
+        }
       });
   };
   return (
@@ -118,8 +143,16 @@ const Signup = () => {
           ></input>
         </label>
         <div className={styles.stack}>
-          <span contentEditable className={styles.nameInput} ref={nameInput}></span>
-          <span contentEditable className={styles.phoneInput} ref={phoneInput}></span>
+          <span
+            contentEditable
+            className={styles.nameInput}
+            ref={nameInput}
+          ></span>
+          <span
+            contentEditable
+            className={styles.phoneInput}
+            ref={phoneInput}
+          ></span>
         </div>
       </div>
 
@@ -137,9 +170,12 @@ const Signup = () => {
           id="password"
           name="password"
         ></input>
-        <button className={styles.loginbutton} onClick={() => {
-              attemptSignup();
-            }}>
+        <button
+          className={styles.loginbutton}
+          onClick={() => {
+            attemptSignup();
+          }}
+        >
           Sign up
         </button>
       </div>
