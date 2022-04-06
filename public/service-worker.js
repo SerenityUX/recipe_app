@@ -24,7 +24,7 @@ self.addEventListener("activate", event => {
   event.waitUntil(clients.claim());
 });
 self.addEventListener('fetch', function(event) {
-  console.log('Fetch!', event.request);
+  //console.log('Fetch!', event.request);
 });
 
 
