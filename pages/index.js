@@ -33,8 +33,8 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 //Version that should work below 
  export async function getServerSideProps(context) {
   try {
-    //const cookies = context.req.cookies.User_ID
-    const cookies = 1
+    const cookies = context.req.cookies.User_ID
+
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
     //console.log(user_response)
     const user_list = await user_response.json()
