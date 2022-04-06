@@ -8,6 +8,11 @@ import Cookies from 'js-cookie';
 import * as cookie from 'cookie'
 
 import Link from 'next/link';
+import { useRouter } from "next/router";
+
+import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router'
 
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
@@ -30,11 +35,14 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 
 
 
+
 //Version that should work below 
  export async function getServerSideProps(context) {
+  
+  
   try {
     const cookies = context.req.cookies.User_ID
-
+    
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
     //console.log(user_response)
     const user_list = await user_response.json()
@@ -46,7 +54,10 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
     return { props: {user_list, recipes_list} } // this returns data as posts in the props to the component
   } catch(error) {
     console.log(error)
-    return { props: {}}
+    
+    return { props: {
+      cookies: cookies
+    }}
   }
 }      
 /* 
@@ -162,7 +173,12 @@ export async function getStaticProps({ params }) {
  */
 
 
+
 export default function Home(props) {
+  const cookies = props.cookies
+
+    
+  
   //console.log(props)
   return (
     <div className={styles.container}>
