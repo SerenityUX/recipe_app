@@ -4,8 +4,11 @@ import Chip from '../components/chip'
 import Recipepreview from '../components/recipepreview'
 const recipe_thumbnail_test = '../assets/recipe_thumbnail.png'
 // import  props.recipes_list from '../recipes.json'
+import Cookies from 'js-cookie';
+import * as cookie from 'cookie'
 
 import Link from 'next/link';
+
 const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies", "Snacks", "Juices"]
 
 
@@ -26,18 +29,21 @@ const categories = ["All", "Breakfast", "Lunch", "Dinner", "Dessert", "Smoothies
 }      */
 
 
+
 //Version that should work below 
- export async function getServerSideProps() {
+ export async function getServerSideProps(context) {
+
   try {
+    const cookies = context.req.cookies.User_ID
     const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
-    console.log(user_response)
+    //console.log(user_response)
     const user_list = await user_response.json()
-    console.log(user_list)
-    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=1")
-    console.log(response)
+    //console.log(user_list)
+    const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" + cookies)
+    //console.log(response)
     const  recipes_list = await response.json()
-    console.log(recipes_list)
-    return { props: {user_list,  recipes_list} } // this returns data as posts in the props to the component
+    //console.log(recipes_list)
+    return { props: {user_list, recipes_list} } // this returns data as posts in the props to the component
   } catch(error) {
     console.log(error)
     return { props: {}}
@@ -157,7 +163,7 @@ export async function getStaticProps({ params }) {
 
 
 export default function Home(props) {
-  console.log(props)
+  //console.log(props)
   return (
     <div className={styles.container}>
       <Head>

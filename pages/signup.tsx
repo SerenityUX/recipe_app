@@ -44,7 +44,9 @@ const Signup = () => {
     </div>
 
     <h1 className={styles.title}>Create a new account</h1>
-    <form>
+    <form onSubmit={(e) => {
+          e.preventDefault();
+    }}>
     {/*Below the user inputs their profile details */}
 
     <div className={styles.profile}>
