@@ -21,7 +21,11 @@ self.addEventListener('install', function() {
 });
 self.addEventListener("activate", event => {
   console.log('Activate!');
+  event.waitUntil(clients.claim());
 });
 self.addEventListener('fetch', function(event) {
   console.log('Fetch!', event.request);
 });
+
+
+
