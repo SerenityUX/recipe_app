@@ -49,7 +49,9 @@ const Login = () => {
           final_user_id.id
         )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
         
-        router.push("/")} else {
+        router.push("/")
+        console.log("Correct!")
+      } else {
           alert("Incorrect username or password. Please try again")
         }
       });

@@ -7,10 +7,32 @@ import axios from "axios";
 import { rootCertificates } from "tls";
 import SubmitButton from '../../components/submit_button'
 import Cookies from 'universal-cookie';
+import getSelf from "../../lib/getSelf";
+import { getServerSideProps } from "../recipe_page/[id]";
 
-const cookies = new Cookies();
+export async function getServerSideProps(context) {
+  try {
+    const token = context.req?.cookies?.token
+    if (!token) return {
+      redirection: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+    const user = await getSelf( token )
+    return { props: { 
+      user
+    } };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+    }
+  }
+}
 
-const user_id = cookies.get('User_ID')
+
+
 
 
 export enum UploadState {
@@ -46,7 +68,20 @@ interface Direction {
   direction: string;
 }
 
-const Form = () => {
+
+/* const token = context.req?.cookies?.token;
+if (!token) return { 
+redirect: {
+destination: '/login',
+permanent: false,
+  } 
+}
+const user = getSelf( token )
+user_id = user.id
+ */
+const Form = ({user}) => {
+
+
   let btnRef = useRef(null);
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
@@ -80,9 +115,9 @@ const Form = () => {
   const [values, setValues] = useState({
     recipe_name: "",
     recipe_thumbnail: "",
-    recipe_author: user_id,
+    recipe_author: user.id,
     recipe_description: "",
-    shared_with: user_id,
+    shared_with: user.id,
   });
 
   /*   const handlenameInputChange = (event) => {
@@ -101,6 +136,7 @@ const Form = () => {
   };
 
   const upload = async () => {
+    
     console.log(UploadState)
     if (isUploading == UploadState.Default || isUploading == UploadState.Failed) {
     setIsUploading( UploadState.Uploading )
