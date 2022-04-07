@@ -32,6 +32,7 @@ const Signup = () => {
   };
 
   const attemptSignup = async () => {
+    
     console.log("clicked button");
     let formData = new FormData();
     formData.append("image_url", images[0]);
@@ -39,8 +40,7 @@ const Signup = () => {
       headers: { "content-type": "multipart/form-data" },
     };
     try {
-      const res = await axios.post(
-        "https://dev.createforever.media/api:lSOVAmsS/upload/image",
+      const res = await axios.post("https://dev.createforever.media/api:lSOVAmsS/upload/image",
         formData,
         config
       );
@@ -57,28 +57,21 @@ const Signup = () => {
             profile_picture: res.data.image,
           }),
         }
-      );
-      const data = await res2.json();
+      )
+      const data = await res2.json()
       localStorage.setItem("Auth_token", data.authToken);
       document.cookie = `User_ID=${JSON.stringify(data.authToken)};`;
-
-      const loginResult = await fetch(
-        "https://dev.createforever.media/api:lSOVAmsS/auth/me",
-        {
-          method: "GET",
-          headers: { Authorization: "Bearer " + data.auth_token },
-        }
-      );
-      const loginData = await loginResult.json();
-
+    
+      const loginResult = await fetch("https://dev.createforever.media/api:lSOVAmsS/auth/me", {
+            method: "GET",
+            headers: { Authorization: "Bearer " + data.auth_token },
+        })
+      const loginData = await loginResult.json()
+      
       localStorage.setItem("User_ID", JSON.stringify(loginData.id));
-      document.cookie = `User_ID=${JSON.stringify(
-        loginData.id
-      )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+      document.cookie = `User_ID=${JSON.stringify(loginData.id)}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
       if (typeof loginData.id !== "undefined") {
-        document.cookie = `User_ID=${JSON.stringify(
-          loginData.id
-        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+        document.cookie = `User_ID=${JSON.stringify(loginData.id)}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
         router.push("/");
       } else {
         alert(
@@ -86,12 +79,10 @@ const Signup = () => {
         );
       }
     } catch (error) {
-      alert(
-        "Please include a valid profile picture, name, phone number, email address, and pasword."
-      );
-      console.log(error);
-    }
-  };
+      alert("Please include a valid profile picture, name, phone number, email address, and pasword.")
+      console.log(error)
+    }    
+  }
   return (
     <div>
       <div className={styles.top_bar}>
