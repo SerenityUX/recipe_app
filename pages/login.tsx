@@ -47,7 +47,7 @@ const Login = () => {
         if (typeof final_user_id.id !== "undefined") {
         document.cookie = `User_ID=${JSON.stringify(
           final_user_id.id
-        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`
         
         router.push("/")
         console.log("Correct!")
