@@ -32,7 +32,6 @@ const Signup = () => {
   };
 
   const attemptSignup = async () => {
-    
     console.log("clicked button");
     let formData = new FormData();
     formData.append("image_url", images[0]);
@@ -40,74 +39,58 @@ const Signup = () => {
       headers: { "content-type": "multipart/form-data" },
     };
     try {
-    axios
-      .post(
+      const res = await axios.post(
         "https://dev.createforever.media/api:lSOVAmsS/upload/image",
         formData,
         config
-      )
-    } catch {
-      alert("Please include a valid profile picture, name, phone number, email address, and pasword.")
-    }
-  
-      .then(async function (response) {
-        console.log(response);
-        try {
-          return fetch(
-            "https://dev.createforever.media/api:lSOVAmsS/auth/signup",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                email: email.current.value,
-                password: password.current.value,
-                phone_number: phoneInput.current.innerText,
-                name: nameInput.current.innerText,
-                profile_picture: response.data.image,
-              }),
-            }
-          );
-        } catch {
-          alert(
-            "Please include a valid profile picture, name, phone number, email address, and pasword."
-          );
+      );
+      const res2 = await fetch(
+        "https://dev.createforever.media/api:lSOVAmsS/auth/signup",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email.current.value,
+            password: password.current.value,
+            phone_number: phoneInput.current.innerText,
+            name: nameInput.current.innerText,
+            profile_picture: res.data.image,
+          }),
         }
-      })
-      .then(async function (response) {
-        console.log(response.json);
-        return response.json();
-      })
-      .then(async function (total) {
-        localStorage.setItem("Auth_token", total.authToken);
-        document.cookie = `User_ID=${JSON.stringify(total.authToken)};`;
-        return total.authToken;
-      })
-      .then(async function (auth_token) {
-        return fetch("https://dev.createforever.media/api:lSOVAmsS/auth/me", {
-          method: "GET",
-          headers: { Authorization: "Bearer " + auth_token },
-        });
-      })
-      .then(async function (user_id) {
-        return user_id.json();
-      })
-      .then(async function (final_user_id) {
-        localStorage.setItem("User_ID", JSON.stringify(final_user_id.id));
-        document.cookie = `User_ID=${JSON.stringify(
-          final_user_id.id
-        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
-        if (typeof final_user_id.id !== "undefined") {
-          document.cookie = `User_ID=${JSON.stringify(
-            final_user_id.id
-          )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+      );
+      const data = await res2.json();
+      localStorage.setItem("Auth_token", data.authToken);
+      document.cookie = `User_ID=${JSON.stringify(data.authToken)};`;
 
-          router.push("/");
-        } else {
-          alert(
-            "Please include a valid profile picture, name, phone number, email address, and pasword."
-          );
+      const loginResult = await fetch(
+        "https://dev.createforever.media/api:lSOVAmsS/auth/me",
+        {
+          method: "GET",
+          headers: { Authorization: "Bearer " + data.auth_token },
         }
-      });
+      );
+      const loginData = await loginResult.json();
+
+      localStorage.setItem("User_ID", JSON.stringify(loginData.id));
+      document.cookie = `User_ID=${JSON.stringify(
+        loginData.id
+      )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+      if (typeof loginData.id !== "undefined") {
+        document.cookie = `User_ID=${JSON.stringify(
+          loginData.id
+        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`;
+        router.push("/");
+      } else {
+        alert(
+          "Please include a valid profile picture, name, phone number, email address, and pasword."
+        );
+      }
+    } catch (error) {
+      alert(
+        "Please include a valid profile picture, name, phone number, email address, and pasword."
+      );
+      console.log(error);
+    }
   };
   return (
     <div>
