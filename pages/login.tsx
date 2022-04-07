@@ -28,7 +28,7 @@ const Login = () => {
       })
       .then(async function (total) {
         localStorage.setItem("Auth_token", total.authToken);
-        document.cookie = `User_ID=${JSON.stringify(
+        document.cookie = `token=${JSON.stringify(
           total.authToken
         )};`
         return total.authToken;
@@ -49,11 +49,12 @@ const Login = () => {
           final_user_id.id
         )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`
         
-        router.push("/")
+        
         console.log("Correct!")
       } else {
           alert("Incorrect username or password. Please try again")
         }
+      router.push("/")
       });
   };
   
