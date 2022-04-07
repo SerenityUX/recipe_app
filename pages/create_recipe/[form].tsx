@@ -8,7 +8,7 @@ import { rootCertificates } from "tls";
 import SubmitButton from '../../components/submit_button'
 import Cookies from 'universal-cookie';
 import getSelf from "../../lib/getSelf";
-import { getServerSideProps } from "../recipe_page/[id]";
+
 
 export async function getServerSideProps(context) {
   try {
