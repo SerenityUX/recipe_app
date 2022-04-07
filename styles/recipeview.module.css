@@ -98,3 +98,129 @@
     margin-right: 16px;
     line-height: 28px;
 }
+
+.giftIcon {
+    height: 24px;
+    width: 24px;
+    padding: none;
+}
+
+.giftIconButton {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 0px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.modalTopText {
+    font-size: 18px;
+    height: fit-content;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.modalTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.modalTopButton {
+    display: inline-flex;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 0px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;  
+}
+
+.inputgroup input {
+    margin-top: 4px;
+    height: 45px;
+
+    width: calc(100%);
+    display: block;
+    border: 1px solid #DFE1E5;
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: 12px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    border-radius: 12px;
+    color: #181818;
+}
+
+.Default {
+	background-color: #2874E8;
+    height: 45px;
+    margin-top: 16px;
+    font-weight: normal;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    border:none;
+
+}
+.Gifting {
+	background-color: #EBF3FF;
+    height: 45px;
+    margin-top: 16px;
+    font-weight: normal;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #277DA1;
+    width: 100%;
+    outline: none;
+    border:none;
+
+}
+.Gifted {
+	background-color: #00AE11;
+    height: 45px;
+    margin-top: 16px;
+    font-weight: normal;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    width: 100%;
+    outline: none;
+    border:none;
+
+}
+
+.Failed {
+	background-color: #FFE8E9;
+    height: 45px;
+    margin-top: 16px;
+    font-weight: normal;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #FF1826;
+    width: 100%;
+    outline: none;
+    border:none;
+
+}
+
+.inputlabel {
+    color: #484848;
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
