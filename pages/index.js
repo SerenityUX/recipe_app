@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 
 
 import React from "react";
+import getSelf from "../lib/getSelf";
+import getAllUsers from "../lib/getAllUsers";
 
 const categories = [
   "All",
@@ -41,37 +43,26 @@ const categories = [
 
 //Version that should work below
 export async function getServerSideProps(context) {
-  /*   
-    if(context.req.cookies.User_ID == "") {
-      context.redirect = {
-        url: "/signup"
-      };
-    } */
-
   try {
-    const cookies = context.req.cookies.User_ID;
+    const token = context.req?.cookies?.token;
+    if (!token) return { 
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      } 
+    }
 
-    const user_response = await fetch(
-      "https://dev.createforever.media/api:lSOVAmsS/users"
-    );
-    //console.log(user_response)
-    const user_list = await user_response.json();
-    //console.log(user_list)
-    const response = await fetch(
-      "https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" +
-        cookies
-    );
-    //console.log(response)
-    const recipes_list = await response.json();
-    //console.log(recipes_list)
+    const user = await getSelf( token )
+    const user_list = await getAllUsers()
+
+   const recipes_list = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" + user?.id)
+      .then( res => res.json() );
+
     return { props: { user_list, recipes_list } }; // this returns data as posts in the props to the component
   } catch (error) {
     console.log(error);
-
     return {
-      props: {
-        cookies: cookies,
-      },
+      props: {},
     };
   }
 }
@@ -187,17 +178,6 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
-  console.log({ props });
-  const router = useRouter();
-
-  if (typeof window !== "undefined") {
-    const cookies = Cookies.get("User_ID");
-    console.log(cookies);
-    if (typeof cookies === "undefined") {
-      router.push("/login");
-    }
-  }
-
   return (
     <div className={styles.container}>
       <Head>

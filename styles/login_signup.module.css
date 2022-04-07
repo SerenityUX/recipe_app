@@ -119,13 +119,11 @@
     overflow: hidden;
 }
 
-
-
-.nameInput[contentEditable] {
+.nameInput {
     display: inline;
     width: calc(72vw - 32px);
     padding: 0 16px;
-    height: auto;
+    height: 40px;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -137,28 +135,10 @@
     resize: none;
     outline: none;
 }
-.nameInput[contentEditable]:empty::before {
-    width: calc(72vw - 32px);
-    padding: 0 0px;
-    height: auto;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 30px;
-    margin-top: 24px;
-    margin-bottom: 8px;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    resize: none;
-    outline: none;
-    content: 'First and last name';
-    color: #707070;
-}
 
-.phoneInput[contentEditable] {
+
+.phoneInput {
     width: calc(72vw - 32px);
-    display: inline;
     padding: 0 16px;
     height: auto;
     font-style: normal;
@@ -172,28 +152,10 @@
     appearance: none;
     resize: none;
     outline: none;
-    color: #2874E8;
     margin: 0px;
 }
-.phoneInput[contentEditable]:empty::before {
-    width: calc(72vw - 48px);
-    padding: 0 0px;
-    height: auto;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    margin-top: 24px;
-    margin-bottom: 8px;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
-    resize: none;
-    outline: none;
-    content: 'Phone Number';
-    color: #707070;
-    margin: 0px;
-}
+
+
 .stack {
     margin: 0px;
     width: calc(72vw - 48px);
