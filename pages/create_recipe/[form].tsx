@@ -160,15 +160,16 @@ const Form = ({user}) => {
     //console.log(myrecipename.current.innerText);
     //console.log(mydescriptionname.current.innerText);
     //console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
-
+    
     let formData = new FormData();
     formData.append("image_url", images[0]);
+    
     const config = {
       headers: { "content-type": "multipart/form-data" },
     };
     axios
       .post(
-        "https://dev.createforever.media/api:lSOVAmsS/upload/image",
+        "https://dev.createforever.media/api:lSOVAmsS/upload/image?tpl=original",
         formData,
         config
       )

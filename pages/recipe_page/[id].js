@@ -7,6 +7,7 @@ import Modal from "react-modal";
 import React, { useState } from "react";
 import ShareButton from "../../components/share_button";
 
+
 export const ShareState = {
   Default: "Default",
   Gifting: "Gifting",
@@ -15,6 +16,8 @@ export const ShareState = {
 };
 
 export async function getServerSideProps(context) {
+
+  
   const { id } = context.params;
   const user_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/users"
@@ -28,12 +31,13 @@ export async function getServerSideProps(context) {
   //console.log(selected_recipe)
 
   return {
-    props: { selected_recipe, id, user_list }, // will be passed to the page component as props
+    props: { selected_recipe, id,user_list }, // will be passed to the page component as props
   };
 }
 
 //Start of recipe page component
 export default function Recipe(props) {
+
   const recipe_id = props.id;
   const [isSharing, setIsSharing] = useState(ShareState.Default);
   const [email, setEmail] = useState("");
