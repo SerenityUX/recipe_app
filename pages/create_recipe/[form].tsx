@@ -258,12 +258,8 @@ const Form = ({user}) => {
         </a>
         <p>Create a recipe</p>
       </div>
-      <form
+      <div
         className={styles.form}
-        autoComplete="off"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
       >
         <label className={styles.thumbnail}>
           <div className={styles.upload_container}>
@@ -625,7 +621,7 @@ const Form = ({user}) => {
             }}
           />
         </div>
-      </form>
+      </div>
     </div>
   );
 };
