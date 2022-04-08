@@ -11,13 +11,11 @@ export const ShareState = {
   Default: "Default",
   Gifting: "Gifting",
   Gifted: "Gifted",
-  Failed: "Failed"
-}
+  Failed: "Failed",
+};
 
 export async function getServerSideProps(context) {
-  
   const { id } = context.params;
-  console.log(id);
   const user_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/users"
   );
@@ -30,21 +28,46 @@ export async function getServerSideProps(context) {
   //console.log(selected_recipe)
 
   return {
-    props: { selected_recipe, user_list }, // will be passed to the page component as props
+    props: { selected_recipe, id, user_list }, // will be passed to the page component as props
   };
 }
 
 //Start of recipe page component
 export default function Recipe(props) {
+  const recipe_id = props.id;
+  const [isSharing, setIsSharing] = useState(ShareState.Default);
+  const [email, setEmail] = useState("");
 
-  const [isSharing, setIsSharing] = useState(ShareState.Default)
-
+  const GiftBody = {
+    email: email,
+    recipe_id: recipe_id,
+    //Not sure I can do ""
+  };
 
   const attemptToGift = async () => {
-    setIsSharing( ShareState.Gifting )
-    setIsSharing( ShareState.Gifted )
-    setIsSharing( ShareState.Failed )
-  }
+    setIsSharing(ShareState.Gifting);
+
+    const response = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/gift",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          recipes_id: recipe_id,
+        }),
+      }
+    );
+
+    console.log(email);
+    console.log(recipe_id);
+    console.log(response);
+    if (response.status == 200) {
+      setIsSharing(ShareState.Gifted);
+    } else {
+      setIsSharing(ShareState.Failed);
+    }
+  };
   //The default value is false
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const identify_author = props.user_list.find(
@@ -65,15 +88,21 @@ export default function Recipe(props) {
           <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
         </a>
         <p>{props.selected_recipe.recipe_name}</p>
-        <button className={styles.giftIconButton} onClick={() => setModalIsOpen(true)}>
-          <img className={styles.giftIcon} src="https://i.ibb.co/xjkJTn5/gift.png" alt="Gift" />
+        <button
+          className={styles.giftIconButton}
+          onClick={() => setModalIsOpen(true)}
+        >
+          <img
+            className={styles.giftIcon}
+            src="https://i.ibb.co/xjkJTn5/gift.png"
+            alt="Gift"
+          />
         </button>
       </div>
       <Modal
         className={styles.shareModal}
         isOpen={modalIsOpen}
-        onRequestClose={() => 
-          setModalIsOpen(false)}
+        onRequestClose={() => setModalIsOpen(false)}
         preventScroll={true}
         style={{
           overlay: {
@@ -103,16 +132,33 @@ export default function Recipe(props) {
         }}
       >
         <div className={styles.modalTop}>
-        <p className={styles.modalTopText}>Gift this Recipe</p>
-        <button className={styles.modalTopButton} onClick={() => setModalIsOpen(false)}>
-        <img className={styles.giftIcon} src="https://i.ibb.co/DCYgfwk/close-black-24dp-5-1.png" alt="Gift" />
-        </button>
+          <p className={styles.modalTopText}>Gift this Recipe</p>
+          <button
+            className={styles.modalTopButton}
+            onClick={() => setModalIsOpen(false)}
+          >
+            <img
+              className={styles.giftIcon}
+              src="https://i.ibb.co/DCYgfwk/close-black-24dp-5-1.png"
+              alt="Gift"
+            />
+          </button>
         </div>
         <div className={styles.inputgroup}>
           <label className={styles.inputlabel}>Email Address</label>
-          <input type="email" id="email" name="email"></input>
+          <input
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            type="email"
+            id="email"
+            name="email"
+          ></input>
         </div>
-        <ShareButton className={styles.loginbutton} value={isSharing} onClick={attemptToGift}></ShareButton>
+        <ShareButton
+          className={styles.loginbutton}
+          value={isSharing}
+          onClick={attemptToGift}
+        ></ShareButton>
       </Modal>
       <img
         src={props.selected_recipe.recipe_thumbnail?.url}
@@ -136,7 +182,7 @@ export default function Recipe(props) {
         );
       })}
       <h2 className={styles.section_title}>Directions</h2>
-      <ol type="1.">
+      <ol type="1">
         {props.selected_recipe.directions.map((item, index) => {
           return (
             <li key={index} className={styles.recipe_directions}>
