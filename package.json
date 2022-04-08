@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "blueimp-load-image": "^5.16.0",
     "classnames": "^2.3.1",
     "cookie": "^0.4.2",
     "exif-js": "^2.3.0",

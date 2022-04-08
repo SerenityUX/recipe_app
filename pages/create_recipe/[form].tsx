@@ -9,7 +9,6 @@ import SubmitButton from '../../components/submit_button'
 import Cookies from 'universal-cookie';
 import getSelf from "../../lib/getSelf";
 
-
 export async function getServerSideProps(context) {
   try {
     const token = context.req?.cookies?.token

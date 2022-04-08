@@ -92,7 +92,7 @@ export default function Recipe(props) {
           <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
         </a>
         <p>{props.selected_recipe.recipe_name}</p>
-        <button
+        <a
           className={styles.giftIconButton}
           onClick={() => setModalIsOpen(true)}
         >
@@ -101,7 +101,7 @@ export default function Recipe(props) {
             src="https://i.ibb.co/xjkJTn5/gift.png"
             alt="Gift"
           />
-        </button>
+        </a>
       </div>
       <Modal
         className={styles.shareModal}
@@ -137,7 +137,7 @@ export default function Recipe(props) {
       >
         <div className={styles.modalTop}>
           <p className={styles.modalTopText}>Gift this Recipe</p>
-          <button
+          <a
             className={styles.modalTopButton}
             onClick={() => setModalIsOpen(false)}
           >
@@ -146,7 +146,7 @@ export default function Recipe(props) {
               src="https://i.ibb.co/DCYgfwk/close-black-24dp-5-1.png"
               alt="Gift"
             />
-          </button>
+          </a>
         </div>
         <div className={styles.inputgroup}>
           <label className={styles.inputlabel}>Email Address</label>
@@ -164,11 +164,17 @@ export default function Recipe(props) {
           onClick={attemptToGift}
         ></ShareButton>
       </Modal>
-      <img
+      <div
         src={props.selected_recipe.recipe_thumbnail?.url}
         className={styles.thumbnail}
         alt=""
-      />
+      >
+        
+        <img
+        className={styles.thumbnailcontent}
+        src={props.selected_recipe.recipe_thumbnail?.url}
+        ></img>
+      </div>
       <h1 className={styles.title}>{props.selected_recipe.recipe_name}</h1>
       <div className={styles.author}>
         <img src={identify_author.profile_picture?.url} alt="" />

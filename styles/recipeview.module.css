@@ -1,4 +1,5 @@
 .author img {
+    transform: rotate(90deg);
     margin-left: 16px;
     width: 24px;
     height: 24px;
@@ -25,6 +26,9 @@
 }
 
 .top_bar {
+    margin-top: -69.5px;
+    z-index: 10;
+    margin-top: none;
     background-color: #F1F3F4;
     display: flex;
     position: fixed;
@@ -50,10 +54,27 @@
 }
 
 .thumbnail {
-    margin-top: 56px;
+    display: block;
+    z-index: 0;
+    margin-top: 69.5px;
     width: 100vw;
+    height: 133.33vw;
+    overflow: hidden;
+    display: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.thumbnailcontent {
+    position: absolute;
+    z-index: 0;
+    display: inline-block;
+    height: 100vw;
+    width: 133.33vw;
+    transform: rotate(0.25turn);
     object-fit: cover;
-    image-orientation: from-image;
 }
 
 .title {
@@ -112,6 +133,7 @@
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    margin-right: 16px;
     border: 0px;
     height: 24px;
     width: 24px;
@@ -121,6 +143,7 @@
 }
 
 .modalTopText {
+    z-index: 10;
     font-size: 18px;
     height: fit-content;
     margin-top: 0px;
@@ -128,12 +151,14 @@
 }
 
 .modalTop {
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
 }
 
 .modalTopButton {
+    z-index: 10;
     display: inline-flex;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -226,3 +251,4 @@
     font-size: 14px;
     line-height: 17px;
 }
+
