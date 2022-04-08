@@ -6,6 +6,7 @@ import axios from "axios";
 import { rootCertificates } from "tls";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import requestLogin from "../lib/requestLogin";
 
 const Login = () => {
   const router = useRouter();
@@ -15,7 +16,19 @@ const Login = () => {
 
 
   const attemptLogin = async () => {
-    fetch("https://dev.createforever.media/api:lSOVAmsS/auth/login", {
+    let formData = new FormData();
+
+    const [token, userError] = (await requestLogin({
+      email: email.current.value,
+      password: password.current.value
+    })) as [any, any];
+
+    if (userError) return alert(userError);
+
+    document.cookie = `token=${token}; expires=Wed, 05 Aug 2035 23:00:00 UTC"`; // fix this, this really bad --Yofou
+    router.push("/");
+  };
+/*     fetch("https://dev.createforever.media/api:lSOVAmsS/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -27,36 +40,13 @@ const Login = () => {
         return response.json();
       })
       .then(async function (total) {
-        localStorage.setItem("Auth_token", total.authToken);
-        document.cookie = `token=${JSON.stringify(
+        document.cookie = `token=${
           total.authToken
-        )};`
+        }; expires=Wed, 05 Aug 2035 23:00:00 UTC"`
         return total.authToken;
       })
-      .then(async function (auth_token) {
-        return fetch("https://dev.createforever.media/api:lSOVAmsS/auth/me", {
-          method: "GET",
-          headers: { Authorization: "Bearer " + auth_token },
-        });
-      })
-      .then(async function (user_id) {
-        return user_id.json();
-      })
-      .then(async function (final_user_id) {
-        localStorage.setItem("User_ID", JSON.stringify(final_user_id.id));
-        if (typeof final_user_id.id !== "undefined") {
-        document.cookie = `User_ID=${JSON.stringify(
-          final_user_id.id
-        )}; expires=Thu, 18 Dec 2033 12:00:00 UTC`
-        
-        router.push("/")
-        console.log("Correct!")
-      } else {
-          alert("Incorrect username or password. Please try again")
-        }
-      
-      });
-  };
+      router.push("/")
+  }; */
   
   return (
     <div>

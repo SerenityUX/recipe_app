@@ -98,7 +98,7 @@ export default function Recipe(props) {
             WebkitOverflowScrolling: "touch",
             outline: "none",
             padding: "16px",
-            height: "max-content",
+            height: "200px",
           },
         }}
       >

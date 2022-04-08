@@ -3,26 +3,26 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import getImage from "../lib/getImage";
 import requestSignUp from "../lib/requestSignUp";
-import { ChangeEventHandler } from "react"
+import { ChangeEventHandler } from "react";
 import { useRouter } from "next/router";
 
 const Signup = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
-  const textArea = useRef<HTMLTextAreaElement>()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [nameInput, setNameInput] = useState("")
-  const [phoneInput, setPhoneInput] = useState("")
+  const textArea = useRef<HTMLTextAreaElement>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nameInput, setNameInput] = useState("");
+  const [phoneInput, setPhoneInput] = useState("");
 
   const onTextAreaChange = () => {
-    const value = textArea.current.value
-    textArea.current.style.height = "5px"
-    textArea.current.style.height = `${textArea.current.scrollHeight}px`
+    const value = textArea.current.value;
+    textArea.current.style.height = "5px";
+    textArea.current.style.height = `${textArea.current.scrollHeight}px`;
 
-    setNameInput( value.replaceAll("\n", "") )
-  }
+    setNameInput(value.replaceAll("\n", ""));
+  };
 
   useEffect(() => {
     if (images.length < 1) return;
@@ -38,21 +38,21 @@ const Signup = () => {
   const attemptSignup = async () => {
     let formData = new FormData();
     formData.append("image_url", images[0]);
-    const [image, imageError] = await getImage(formData) 
-    if (imageError) return alert("Image API Error - Try again")
+    const [image, imageError] = await getImage(formData);
+    if (imageError) return alert("Image API Error - Try again");
 
-    const [token, userError] = await requestSignUp({
+    const [token, userError] = (await requestSignUp({
       email,
       password,
       phone_number: phoneInput,
       name: nameInput,
       profile_picture: image,
-    }) as [any, any]
+    })) as [any, any];
 
     if (userError) return alert(userError);
 
-    document.cookie = `token=${token}` // fix this, this really bad --Yofou
-    router.push("/")
+    document.cookie = `token=${token}; expires=Wed, 05 Aug 2035 23:00:00 UTC"`; // fix this, this really bad --Yofou
+    router.push("/");
   };
 
   return (
@@ -78,7 +78,8 @@ const Signup = () => {
             <img
               src="https://i.ibb.co/TRYVf5F/icon.png"
               className={styles.upload_button}
-            ></img>{""}
+            ></img>
+            {""}
           </div>
           <input
             type="file"
@@ -88,23 +89,47 @@ const Signup = () => {
           ></input>
         </label>
         <div className={styles.stack}>
-          <textarea value={nameInput} ref={textArea} onChange={onTextAreaChange} className={styles.nameInput} placeholder="First and last name" name="" id=""></textarea>
-          <input type="tel" placeholder="Phone Number" value={phoneInput} onChange={(event) => setPhoneInput(event.target.value)} className={styles.phoneInput} />
+          <textarea
+            value={nameInput}
+            ref={textArea}
+            onChange={onTextAreaChange}
+            className={styles.nameInput}
+            placeholder="First and last name"
+            name=""
+            id=""
+          ></textarea>
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneInput}
+            onChange={(event) => setPhoneInput(event.target.value)}
+            className={styles.phoneInput}
+          />
         </div>
       </div>
 
       {/*Below the user inputs their login details */}
       <div className={styles.inputgroup}>
-        <label htmlFor="email" className={styles.inputlabel}>Email Address</label>
-        <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" id="email" name="email"></input>
+        <label htmlFor="email" className={styles.inputlabel}>
+          Email Address
+        </label>
+        <input
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          type="email"
+          id="email"
+          name="email"
+        ></input>
       </div>
 
       <div className={styles.inputgroup}>
-        <label htmlFor="password" className={styles.inputlabel}>Password</label>
+        <label htmlFor="password" className={styles.inputlabel}>
+          Password
+        </label>
         <input
           className={styles.inputcreds}
           value={password}
-          onChange={event => setPassword(event.target.value)}
+          onChange={(event) => setPassword(event.target.value)}
           type="password"
           id="password"
           name="password"

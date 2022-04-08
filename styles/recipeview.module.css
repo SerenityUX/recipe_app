@@ -100,12 +100,14 @@
 }
 
 .giftIcon {
+    background-color: transparent;
     height: 24px;
     width: 24px;
     padding: none;
 }
 
 .giftIconButton {
+    background-color: transparent;
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
@@ -132,6 +134,7 @@
 }
 
 .modalTopButton {
+    background-color: transparent;
     display: inline-flex;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -209,7 +212,7 @@
     font-weight: normal;
     border-radius: 8px;
     font-size: 18px;
-    color: #FF1826;
+    color: #FF1826; 
     width: 100%;
     outline: none;
     border:none;
