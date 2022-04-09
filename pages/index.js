@@ -350,7 +350,6 @@ export default function Home(props) {
             alt="Search Icon"
           ></img>
           <input
-          type="search"
           id="searchinput"
           name="searchinput"
           ref={searchinput}
