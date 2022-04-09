@@ -1,17 +1,21 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Chip from "../components/chip";
+import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
 const recipe_thumbnail_test = "../assets/recipe_thumbnail.png";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React, { useState, useRef } from "react";
 
-
-import React from "react";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
+
+export const CheckState = {
+  Unchecked: "Unchecked",
+  Checked: "Checked",
+}; 
 
 const categories = [
   "All",
@@ -45,18 +49,21 @@ const categories = [
 export async function getServerSideProps(context) {
   try {
     const token = context.req?.cookies?.token;
-    if (!token) return { 
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      } 
-    }
+    if (!token)
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
 
-    const user = await getSelf( token )
-    const user_list = await getAllUsers()
+    const user = await getSelf(token);
+    const user_list = await getAllUsers();
 
-   const recipes_list = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" + user?.id)
-      .then( res => res.json() );
+    const recipes_list = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" +
+        user?.id
+    ).then((res) => res.json());
 
     return { props: { user_list, recipes_list } }; // this returns data as posts in the props to the component
   } catch (error) {
@@ -178,6 +185,20 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+  const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
+
+   const toggleCheck = async () => {
+    console.log(event.path[0].className)
+    if (isChecked != CheckState.Checked) {
+      
+      setIsChecking(CheckState.Checked);
+    } else {
+      setIsChecking(CheckState.Unchecked);
+    }
+  }; 
+  const searchinput = useRef(null);
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -260,16 +281,56 @@ export default function Home(props) {
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
         {/* Tool used for splash screens: https://appsco.pe/developer/splash-screens */}
-        <link href="/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-        <link href="/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-        <link href="/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
-        <link href="/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
-        <link href="/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+        <link
+          href="/iphone5_splash.png"
+          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/iphone6_splash.png"
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/iphoneplus_splash.png"
+          media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/iphonex_splash.png"
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/iphonexr_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/iphonexsmax_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/ipad_splash.png"
+          media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/ipadpro1_splash.png"
+          media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/ipadpro3_splash.png"
+          media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="/ipadpro2_splash.png"
+          media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
@@ -288,12 +349,26 @@ export default function Home(props) {
             className={styles.search_icon}
             alt="Search Icon"
           ></img>
-          <p>Search Recipes</p>
+          <input
+          type="search"
+          id="searchinput"
+          name="searchinput"
+          ref={searchinput}
+         >
+
+          </input>
         </div>
 
         <div className={styles.tagwrapper}>
           {categories.map((item) => {
-            return <Chip text={item} key={item}></Chip>;
+            return (
+              <Chip
+                value={item}
+                key={item}
+                checked={isChecked}
+                onClick={() => {toggleCheck()}}
+              ></Chip>
+            );
           })}
         </div>
         <div className={styles.previewwrapper}>

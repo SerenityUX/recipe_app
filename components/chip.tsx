@@ -3,9 +3,11 @@ import next from 'next'
 import react from 'react'
 import cn from "classnames"
 import button from 'react'
+import { CheckState} from "../pages/index"
 
 //All components export a default function 
 //Functions have uppercase function name
+
 
 function select_chip() {
     console.log("You clicked a chip")

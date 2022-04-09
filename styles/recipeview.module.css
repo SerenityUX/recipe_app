@@ -1,8 +1,8 @@
 .author img {
     transform: rotate(90deg);
     margin-left: 16px;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: inline;
     border-radius: 100%;
     object-fit: cover;
