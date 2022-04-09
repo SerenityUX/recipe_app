@@ -120,8 +120,9 @@ export default function Recipe(props) {
           content: {
             "border-radius": "12px",
             position: "absolute",
-            top: "40px",
-            left: "max-content",
+            top: "86px",
+            right: "16px",
+            left: "100px",
             bottom: "40px",
             border: "none",
             background: "#F1F3F4",
@@ -132,6 +133,7 @@ export default function Recipe(props) {
             outline: "none",
             padding: "16px",
             height: "200px",
+            "z-index": "150",
           },
         }}
       >
