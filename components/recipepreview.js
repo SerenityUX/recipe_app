@@ -33,7 +33,7 @@ export default function recipepreview (props) {
             </div>
             <div className={styles.right}>
                 <div  className={styles.thumbnail}>
-                <img src={props.thumbnail}  className={styles.thumbnailcontent} alt=""/>
+                <img src={props.thumbnail} alt="" className={styles.thumbnailcontent} />
                 </div>
             </div>
             </a>
