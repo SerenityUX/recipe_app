@@ -28,7 +28,6 @@
 .top_bar {
     margin-top: -69.5px;
     z-index: 9;
-    margin-top: none;
     background-color: #F1F3F4;
     display: flex;
     position: fixed;
