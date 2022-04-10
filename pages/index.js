@@ -188,17 +188,21 @@ export default function Home(props) {
   const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
 
   const toggleCheck = async () => {
-    console.log(event.path[0].className);
     if (isChecked != CheckState.Checked) {
       //setIsChecking(CheckState.Checked);
+      setSearchTag(event.target.innerHTML);
       console.log("Checked");
     } else {
       //setIsChecking(CheckState.Unchecked);
       console.log("Unchecked");
+      setSearchTag("");
     }
+    console.log(searchTag);
   };
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchTag, setSearchTag] = useState("Sample");
+
   return (
     <div className={styles.container}>
       <Head>
@@ -359,7 +363,7 @@ export default function Home(props) {
           ></input>
         </div>
 
-        <div className={styles.tagwrapper}>
+{/*         <div className={styles.tagwrapper}>
           {categories.map((item) => {
             return (
               <Chip
@@ -372,17 +376,25 @@ export default function Home(props) {
               ></Chip>
             );
           })}
-        </div>
+        </div> */}
         <div className={styles.previewwrapper}>
           {Array.isArray(props.recipes_list) &&
             props.recipes_list.filter((item) => {
-             if (searchTerm == "") {
-              return item
-             } else if(item.recipe_name.toLowerCase().includes(searchTerm.toLowerCase())) {
-               return item
-             }
-              
-            }).map((item) => {
+              console.log(searchTag)
+            
+              if (searchTerm == "") {
+                return item
+               } else if(item.recipe_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+                 return item
+               } else if(item.ingredients.join().toLowerCase().includes(searchTerm.toLowerCase())) {
+                return item
+               } else if(item.tags.join().toLowerCase().includes(searchTerm.toLowerCase())) {
+                return item
+               } else if(item.directions.join().toLowerCase().includes(searchTerm.toLowerCase())) {
+                return item
+               }              
+            } 
+            ).map((item) => {
               const identify_author = props.user_list.find(
                 (user) => user.id == item.recipe_author
               );

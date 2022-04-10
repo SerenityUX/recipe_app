@@ -17,7 +17,7 @@
 }
 
 .tagwrapper {
-  margin: 16px 16px 16px 0px;
+  margin: 0px 16px 16px 0px;
   display: flex;
   overflow-x: scroll;
   width: 100%;
@@ -35,6 +35,7 @@
 }
 
 .search_bar {
+  margin-bottom: 24px;
   padding: 12px;
   align-items: center;
   display: flex;
@@ -43,6 +44,7 @@
   margin-left: 16px;
   margin-right: 16px;
   border-radius: 8px;
+  
 }
 
 .search_icon {
