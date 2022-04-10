@@ -15,7 +15,7 @@ import getAllUsers from "../lib/getAllUsers";
 export const CheckState = {
   Unchecked: "Unchecked",
   Checked: "Checked",
-}; 
+};
 
 const categories = [
   "All",
@@ -187,18 +187,18 @@ export async function getStaticProps({ params }) {
 export default function Home(props) {
   const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
 
-   const toggleCheck = async () => {
-    console.log(event.path[0].className)
+  const toggleCheck = async () => {
+    console.log(event.path[0].className);
     if (isChecked != CheckState.Checked) {
-      
-      setIsChecking(CheckState.Checked);
+      //setIsChecking(CheckState.Checked);
+      console.log("Checked");
     } else {
-      setIsChecking(CheckState.Unchecked);
+      //setIsChecking(CheckState.Unchecked);
+      console.log("Unchecked");
     }
-  }; 
-  const searchinput = useRef(null);
+  };
 
-
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className={styles.container}>
       <Head>
@@ -350,12 +350,13 @@ export default function Home(props) {
             alt="Search Icon"
           ></img>
           <input
-          id="searchinput"
-          name="searchinput"
-          ref={searchinput}
-         >
-
-          </input>
+            id="searchinput"
+            name="searchinput"
+            placeholder="Search Recipes"
+            onChange={(event) => {
+              setSearchTerm(event.target.value);
+            }}
+          ></input>
         </div>
 
         <div className={styles.tagwrapper}>
@@ -365,14 +366,23 @@ export default function Home(props) {
                 value={item}
                 key={item}
                 checked={isChecked}
-                onClick={() => {toggleCheck()}}
+                onClick={() => {
+                  toggleCheck();
+                }}
               ></Chip>
             );
           })}
         </div>
         <div className={styles.previewwrapper}>
           {Array.isArray(props.recipes_list) &&
-            props.recipes_list.map((item) => {
+            props.recipes_list.filter((item) => {
+             if (searchTerm == "") {
+              return item
+             } else if(item.recipe_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+               return item
+             }
+              
+            }).map((item) => {
               const identify_author = props.user_list.find(
                 (user) => user.id == item.recipe_author
               );
