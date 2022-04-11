@@ -34,6 +34,12 @@
   margin-left: 16px;
 }
 
+
+.navButtonCreation {
+  display: inline-block;
+  margin: -1rem;
+  padding: 1rem;
+}
 .search_bar {
   margin-bottom: 24px;
   padding: 12px;

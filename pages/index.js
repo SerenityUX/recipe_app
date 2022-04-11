@@ -342,8 +342,8 @@ export default function Home(props) {
       <main className={styles.main}>
         <div className={styles.topbar}>
           <h1 className={styles.maintitle}>My Recipes</h1>
-          <Link href={`/create_recipe/form`}>
-            <img src="https://i.ibb.co/vX7FXB3/createbutton.png" />
+          <Link href={`/create_recipe/form`} className={styles.navButtonCreation}>
+            <img className={styles.navButtonCreation} src="https://i.ibb.co/vX7FXB3/createbutton.png" />
           </Link>
         </div>
 
@@ -384,15 +384,13 @@ export default function Home(props) {
             
               if (searchTerm == "") {
                 return item
-               } else if(item.recipe_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+               } else if(item.recipe_name.toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
                  return item
-               } else if(item.ingredients.join().toLowerCase().includes(searchTerm.toLowerCase())) {
+               } else if(item.ingredients.join().toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
                 return item
-               } else if(item.tags.join().toLowerCase().includes(searchTerm.toLowerCase())) {
+               } else if(item.tags.join().toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
                 return item
-               } else if(item.directions.join().toLowerCase().includes(searchTerm.toLowerCase())) {
-                return item
-               }              
+               }           
             } 
             ).map((item) => {
               const identify_author = props.user_list.find(

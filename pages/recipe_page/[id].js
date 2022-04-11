@@ -89,7 +89,7 @@ export default function Recipe(props) {
     <div>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
+          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" className={styles.backbutton}/>
         </a>
         <p>{props.selected_recipe.recipe_name}</p>
         <a
