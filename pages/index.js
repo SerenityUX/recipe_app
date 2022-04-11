@@ -384,11 +384,11 @@ export default function Home(props) {
             
               if (searchTerm == "") {
                 return item
-               } else if(item.recipe_name.toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
+               } else if(item.recipe_name.toLowerCase().trim().includes(searchTerm.toLowerCase().trim())) {
                  return item
-               } else if(item.ingredients.join().toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
+               } else if(item.ingredients.join().toLowerCase().trim().includes(searchTerm.toLowerCase().trim())) {
                 return item
-               } else if(item.tags.join().toLowerCase().trim().includes(searchTerm.toLowerCase()).trim()) {
+               } else if(item.tags.join().toLowerCase().trim().includes(searchTerm.toLowerCase().trim())) {
                 return item
                }           
             } 
