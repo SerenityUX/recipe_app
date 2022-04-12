@@ -342,9 +342,15 @@ export default function Home(props) {
       <main className={styles.main}>
         <div className={styles.topbar}>
           <h1 className={styles.maintitle}>My Recipes</h1>
+          <div className={styles.actionItems}>
+          <Link href={`/QRScan`} className={styles.navButtonQR}>
+            <img className={styles.navButtonQR} src="https://i.ibb.co/H7d1FJk/QRCode.png" />
+          </Link>
+
           <Link href={`/create_recipe/form`} className={styles.navButtonCreation}>
             <img className={styles.navButtonCreation} src="https://i.ibb.co/vX7FXB3/createbutton.png" />
           </Link>
+          </div>
         </div>
 
         <div className={styles.search_bar}>

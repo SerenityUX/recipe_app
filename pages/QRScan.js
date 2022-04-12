@@ -31,6 +31,12 @@ const QRScan = (props) => {
   return (
     
     <div>
+      <div className={styles.top_bar}>
+        <a href=" / ">
+          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
+        </a>
+        <p>Scan a Recipe</p>
+      </div>
       <QrReader        
       onResult={(result, error) => {
           if (!!result) {
@@ -45,6 +51,7 @@ const QRScan = (props) => {
         style={{ 
             width: '100vw',
             height: '100vh',
+            display: 'absolute'
         }}
         constraints={{
             facingMode: 'environment'
@@ -60,8 +67,6 @@ const QRScan = (props) => {
             'object-fit': 'cover',            
         }}
       />
-      
-      <p>{data}</p>
     </div>
   );
 };

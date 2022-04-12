@@ -4,3 +4,28 @@
     overflow: hidden;
     display: inline-block;
 }
+.top_bar {
+    background-color: #F1F3F4;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    z-index: 5;
+}
+
+.top_bar p {
+    font-size: 18px;
+    position: relative;
+    width: calc(100vw - 80px);
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.top_bar a {
+    align-self: middle;
+    justify-self: center;
+    position: relative;
+    display: flexbox;
+    margin-left: 16px;
+}

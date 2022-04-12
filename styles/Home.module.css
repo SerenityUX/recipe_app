@@ -40,6 +40,20 @@
   margin: -1rem;
   padding: 1rem;
 }
+
+.actionItems {
+  display: flex;
+  justify-content: space-between;
+  width: 75px;
+}
+.navButtonQR {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: -1rem;
+  padding: 1rem;
+}
+
 .search_bar {
   margin-bottom: 24px;
   padding: 12px;
