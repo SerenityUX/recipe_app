@@ -31,7 +31,8 @@ const QRScan = (props) => {
   return (
     
     <div>
-      <QrReader        onResult={(result, error) => {
+      <QrReader        
+      onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
           }
@@ -44,7 +45,11 @@ const QRScan = (props) => {
             width: '100vw',
             height: '100vh',
         }}
+        constraints={{
+            facingMode: 'environment'
+        }}
       />
+      
       <p>{data}</p>
     </div>
   );
