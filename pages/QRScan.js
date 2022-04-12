@@ -35,6 +35,7 @@ const QRScan = (props) => {
       onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
+            alert(result?.text)
           }
 
           if (!!error) {
@@ -47,6 +48,16 @@ const QRScan = (props) => {
         }}
         constraints={{
             facingMode: 'environment'
+        }}
+        videoContainerStyle={{
+            height: '100vh',
+            width: '100vw',
+            'object-fit': 'cover',
+        }}
+        videoStyle={{
+            height: '100vh',
+            width: '100vw',
+            'object-fit': 'cover',            
         }}
       />
       
