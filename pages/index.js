@@ -354,7 +354,7 @@ export default function Home(props) {
             alt="Search Icon"
           ></img>
           <input
-            autocomplete="off"
+            autoComplete="off"
             id="searchinput"
             name="searchinput"
             placeholder="Search Recipes"

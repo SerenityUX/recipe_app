@@ -26,7 +26,7 @@ import { QrReader } from 'react-qr-reader';
 
 const QRScan = (props) => {
   const [data, setData] = useState('No result');
-
+//https://www.npmjs.com/package/react-qr-reader
   return (
     <>
       <QrReader
