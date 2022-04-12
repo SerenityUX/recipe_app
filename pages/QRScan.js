@@ -23,14 +23,15 @@ export async function getServerSideProps(context) {
 
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
+import styles from "../styles/qr_scan.module.css";
 
 const QRScan = (props) => {
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState('Scan a recipe');
 //https://www.npmjs.com/package/react-qr-reader
   return (
-    <>
-      <QrReader
-        onResult={(result, error) => {
+    
+    <div>
+      <QrReader        onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
           }
@@ -39,10 +40,13 @@ const QRScan = (props) => {
             console.info(error);
           }
         }}
-        style={{ width: '100%' }}
+        style={{ 
+            width: '100vw',
+            height: '100vh',
+        }}
       />
       <p>{data}</p>
-    </>
+    </div>
   );
 };
 
