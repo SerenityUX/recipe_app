@@ -1,32 +1,69 @@
+import getSelf from "../lib/getSelf";
+import getAllUsers from "../lib/getAllUsers";
 
-/* 
-export async function getServerSideProps(context) {
-  try {
-    const token = context.req?.cookies?.token
-    if (!token) return {
-      redirection: {
-        destination: '/login',
-        permanent: false,
-      }
-    }
-    const user = await getSelf( token )
-    return { props: { 
-      user
-    } };
-  } catch (error) {
-    console.log(error);
-    return {
-      props: {},
-    }
-  }
-} */
 
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import styles from "../styles/qr_scan.module.css";
 
+export async function getServerSideProps(context) {
+  try {
+    const token = context.req?.cookies?.token;
+    if (!token)
+      return {
+        redirect: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+
+    const user = await getSelf(token);
+
+    return { props: { user } }; // this returns data as posts in the props to the component
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+    };
+  }
+}
+
+
+
 const QRScan = (props) => {
-  const [data, setData] = useState('Scan a recipe');
+  const [data, setData] = useState('No result');
+
+  const upload = async (result) => {
+
+    const results = result
+    const scan_code_results = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/scan_share_code",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          users_id: props.user.id,
+          share_code: results,
+        }),
+      }
+    ).then((res) => res.json());
+
+    const response = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/share_with_id",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          users_id: props.user.id,
+          recipes_id: scan_code_results.recipe_id,
+        }),
+      }
+    ).then((res) => res.json());
+
+    alert(response.recipe_name + " Recipe added to Meal Pack")
+  }
+
+  
 //https://www.npmjs.com/package/react-qr-reader
   return (
     
@@ -41,7 +78,9 @@ const QRScan = (props) => {
       onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
-            alert(result?.text)
+            //alert(result?.text)
+            //https://dev.createforever.media/api:lSOVAmsS/scan_share_code
+            upload(result?.text)
           }
 
           if (!!error) {
