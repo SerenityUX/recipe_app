@@ -254,7 +254,7 @@ const Form = ({user}) => {
     <div className={styles.form_container}>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
+          <img src="https://svgshare.com/i/gKp.svg" alt="" />
         </a>
         <p>Create a recipe</p>
       </div>

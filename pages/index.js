@@ -2,12 +2,15 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
-const recipe_thumbnail_test = "../assets/recipe_thumbnail.png";
+import createbutton_upload from "../assets/createbutton.svg";
+
+const createbutton_const = "../assets/createbutton.svg";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useRef } from "react";
+
 
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
@@ -344,18 +347,18 @@ export default function Home(props) {
           <h1 className={styles.maintitle}>My Recipes</h1>
           <div className={styles.actionItems}>
           <Link href={`/QRScan`} className={styles.navButtonQR}>
-            <img className={styles.navButtonQR} src="https://i.ibb.co/H7d1FJk/QRCode.png" />
+            <img className={styles.navButtonQR} src="https://svgshare.com/i/gKn.svg" />
           </Link>
 
           <Link href={`/create_recipe/form`} className={styles.navButtonCreation}>
-            <img className={styles.navButtonCreation} src="https://i.ibb.co/vX7FXB3/createbutton.png" />
+            <img className={styles.navButtonCreation} src="https://svgshare.com/i/gJ_.svg" />
           </Link>
           </div>
         </div>
 
         <div className={styles.search_bar}>
           <img
-            src="https://i.ibb.co/nssL0qW/search-icon.png"
+            src="https://svgshare.com/i/gKo.svg"
             className={styles.search_icon}
             alt="Search Icon"
           ></img>

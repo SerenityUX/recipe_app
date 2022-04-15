@@ -89,7 +89,7 @@ export default function Recipe(props) {
     <div>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" className={styles.backbutton}/>
+          <img src="https://svgshare.com/i/gKp.svg" alt="" className={styles.backbutton}/>
         </a>
         <p>{props.selected_recipe.recipe_name}</p>
         <a
@@ -98,7 +98,7 @@ export default function Recipe(props) {
         >
           <img
             className={styles.giftIcon}
-            src="https://i.ibb.co/xjkJTn5/gift.png"
+            src="https://svgshare.com/i/gKe.svg"
             alt="Gift"
           />
         </a>
@@ -145,7 +145,7 @@ export default function Recipe(props) {
           >
             <img
               className={styles.giftIcon}
-              src="https://i.ibb.co/DCYgfwk/close-black-24dp-5-1.png"
+              src="https://svgshare.com/i/gJ0.svg"
               alt="Gift"
             />
           </a>

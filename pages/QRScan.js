@@ -70,7 +70,7 @@ const QRScan = (props) => {
     <div>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://i.ibb.co/SVPT9Yn/backbutton.png" alt="" />
+          <img src="https://svgshare.com/i/gKp.svg" alt="" />
         </a>
         <p>Scan a Recipe</p>
       </div>
