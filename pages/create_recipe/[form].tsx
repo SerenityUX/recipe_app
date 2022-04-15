@@ -264,7 +264,7 @@ const Form = ({user}) => {
         <label className={styles.thumbnail}>
           <div className={styles.upload_container}>
             <img src={imageURLs[0]} className={styles.thumbnail_preview} />
-            <img src="https://i.ibb.co/TRYVf5F/icon.png"></img>{" "}
+            <img src="https://svgshare.com/i/gJk.svg"></img>{" "}
             <p>Upload Image</p>
           </div>
           <input
