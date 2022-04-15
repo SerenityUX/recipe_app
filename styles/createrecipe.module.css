@@ -493,3 +493,8 @@
 .submit_button:focused{
     background-color:olive;
 }
+
+.thumbnail input[accept*="camera"] {
+    /* This is the part that actually hides the 'Choose file' text box for camera inputs */
+    display: none;
+}

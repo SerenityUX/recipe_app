@@ -270,6 +270,7 @@ const Form = ({user}) => {
           <input
             type="file"
             accept="image/*"
+            capture
             className={styles.upload_image}
             onChange={handleThumbnailChange}
           ></input>
