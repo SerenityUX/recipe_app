@@ -1,5 +1,5 @@
 .author img {
-    transform: rotate(90deg);
+
     margin-left: 16px;
     width: 32px;
     height: 32px;
@@ -74,9 +74,8 @@
     position: absolute;
     z-index: 0;
     display: inline-block;
-    height: 100vw;
-    width: 133.33vw;
-    transform: rotate(0.25turn);
+    width: 100vw;
+    height: 133.33vw;
     object-fit: cover;
 }
 

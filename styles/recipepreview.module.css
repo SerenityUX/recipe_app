@@ -51,7 +51,6 @@
 }
 
 .thumbnailcontent {
-    transform: rotate(90deg);
     object-fit: cover;
     object-position: center center;
     width: 112px;
