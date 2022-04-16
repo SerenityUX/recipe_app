@@ -47,6 +47,7 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe(props) {
+  const router = useRouter();
   const upload_change = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes/" + recipe_id, {
       method: "POST",
@@ -70,6 +71,7 @@ export default function Recipe(props) {
     console.log(props.selected_recipe.shared_with);
     console.log(ingredients.map((ingredient) => ingredient));
     console.log(directions.map((direction) => direction));
+    router.push("/");
   };
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
@@ -135,7 +137,7 @@ export default function Recipe(props) {
     <div>
       <div className={styles.top_bar}>
         {props.user.id == props.selected_recipe.recipe_author ? (
-          <a href=" / " onClick={upload_change}>
+          <a onClick={upload_change}>
             <img
               src="https://svgshare.com/i/gKp.svg"
               alt=""
