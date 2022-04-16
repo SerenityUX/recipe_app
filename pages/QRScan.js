@@ -63,8 +63,10 @@ const QRScan = (props) => {
       }
     ).then((res) => res.json());
 
-    router.push("/recipe_page/" + response.id);
-    alert(response.recipe_name + " added to Meal Pack")
+    router.push("/recipe_page/" + response.id).then(() => {
+      alert(response.recipe_name + " added to Meal Pack")
+    }
+    )    
   }
 
   
@@ -96,6 +98,9 @@ const QRScan = (props) => {
             height: '100vh',
             display: 'absolute'
         }}
+        scanDelay={
+          2500
+        }
         constraints={{
             facingMode: 'environment'
         }}

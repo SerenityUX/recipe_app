@@ -6,7 +6,7 @@ import Image from "next/image";
 import Modal from "react-modal";
 import React, { useState } from "react";
 import ShareButton from "../../components/share_button";
-
+import getSelf from "../../lib/getSelf";
 
 export const ShareState = {
   Default: "Default",
@@ -15,9 +15,20 @@ export const ShareState = {
   Failed: "Failed",
 };
 
+
 export async function getServerSideProps(context) {
 
-  
+    const token = context.req?.cookies?.token
+
+    if (!token) return {
+      redirection: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+    const user = await getSelf( token )
+    
+
   const { id } = context.params;
   const user_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/users"
@@ -31,7 +42,7 @@ export async function getServerSideProps(context) {
   //console.log(selected_recipe)
 
   return {
-    props: { selected_recipe, id,user_list }, // will be passed to the page component as props
+    props: { selected_recipe, id,user_list, user }, // will be passed to the page component as props
   };
 }
 
@@ -87,11 +98,19 @@ export default function Recipe(props) {
   return (
     //<div>{JSON.stringify(props.selected_recipe)}</div>
     <div>
-      <div className={styles.top_bar}>
+      <div className={styles.top_bar}>   
         <a href=" / ">
           <img src="https://svgshare.com/i/gKp.svg" alt="" className={styles.backbutton}/>
         </a>
         <p>{props.selected_recipe.recipe_name}</p>
+{/*         {(props.user.id == props.selected_recipe.recipe_author)? 
+        <a className={styles.giftIconButton} href={`/create_recipe/form`}>
+        <img className={styles.giftIcon} src="https://svgshare.com/i/gJH.svg" />
+        </a>
+        : null            
+        }
+ */}
+
         <a
           className={styles.giftIconButton}
           onClick={() => setModalIsOpen(true)}
@@ -102,6 +121,11 @@ export default function Recipe(props) {
             alt="Gift"
           />
         </a>
+
+      
+
+        
+
       </div>
       <Modal
         className={styles.shareModal}
@@ -177,16 +201,36 @@ export default function Recipe(props) {
         src={props.selected_recipe.recipe_thumbnail?.url}
         ></img>
       </div>
-      <h1 className={styles.title}>{props.selected_recipe.recipe_name}</h1>
+      {(props.user.id == props.selected_recipe.recipe_author)? 
+      <h1 contentEditable className={styles.title}>{props.selected_recipe.recipe_name}</h1>
+      : <h1 className={styles.title}>{props.selected_recipe.recipe_name}</h1>
+      }
       <div className={styles.author}>
         <img src={identify_author.profile_picture?.url} alt="" />
         <p>{identify_author.name}</p>
       </div>
-      <p className={styles.description}>
+      {(props.user.id == props.selected_recipe.recipe_author)? 
+      <p contentEditable className={styles.description}>
         {props.selected_recipe.recipe_description}
       </p>
+    : 
+    <p className={styles.description}>
+    {props.selected_recipe.recipe_description}
+    </p>  
+    }
       <h2 className={styles.section_title}>Ingredients</h2>
-      {props.selected_recipe.ingredients.map((item, index) => {
+      {(props.user.id == props.selected_recipe.recipe_author)? 
+      props.selected_recipe.ingredients.map((item, index) => {
+        return (
+          <li key={index} className={styles.recipe_ingredients}>
+            <span className={styles.recipe_ingredient} contentEditable>{item}</span>
+          </li>
+        );
+      }) 
+      
+      :      
+
+      props.selected_recipe.ingredients.map((item, index) => {
         return (
           <li key={index} className={styles.recipe_ingredients}>
             {item}
@@ -194,15 +238,27 @@ export default function Recipe(props) {
         );
       })}
       <h2 className={styles.section_title}>Directions</h2>
+      {(props.user.id == props.selected_recipe.recipe_author)? 
       <ol type="1">
         {props.selected_recipe.directions.map((item, index) => {
           return (
             <li key={index} className={styles.recipe_directions}>
-              {item}
+              <span className={styles.recipe_direction} contentEditable>{item}</span>
             </li>
           );
         })}
       </ol>
+    :
+    <ol type="1">
+    {props.selected_recipe.directions.map((item, index) => {
+      return (
+        <li key={index} className={styles.recipe_directions}>
+          {item}
+        </li>
+      );
+    })}
+  </ol>
+    }
     </div>
   );
 }

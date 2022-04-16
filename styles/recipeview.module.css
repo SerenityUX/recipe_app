@@ -17,7 +17,6 @@
 
 }
 .backbutton {
-    margin: -1rem;
     padding: 1rem;
 }
 
@@ -53,7 +52,7 @@
     justify-self: center;
     position: relative;
     display: flexbox;
-    margin-left: 16px;
+    
 }
 
 .thumbnail {
@@ -256,3 +255,10 @@
     line-height: 17px;
 }
 
+.title[contentEditable], .description[contentEditable], .recipe_ingredient[contentEditable], .recipe_direction {
+    border: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    outline: none;
+}
