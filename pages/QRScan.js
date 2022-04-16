@@ -5,6 +5,7 @@ import getAllUsers from "../lib/getAllUsers";
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import styles from "../styles/qr_scan.module.css";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
   try {
@@ -31,6 +32,8 @@ export async function getServerSideProps(context) {
 
 
 const QRScan = (props) => {
+  const router = useRouter();
+
   const [data, setData] = useState('No result');
 
   const upload = async (result) => {
@@ -60,7 +63,8 @@ const QRScan = (props) => {
       }
     ).then((res) => res.json());
 
-    alert(response.recipe_name + " Recipe added to Meal Pack")
+    router.push("/recipe_page/" + response.id);
+    alert(response.recipe_name + " added to Meal Pack")
   }
 
   
