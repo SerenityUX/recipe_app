@@ -26,6 +26,7 @@ export async function getServerSideProps(context) {
         permanent: false,
       }
     }
+
     const user = await getSelf( token )
     
 
@@ -40,6 +41,7 @@ export async function getServerSideProps(context) {
   );
   const selected_recipe = await response.json();
   //console.log(selected_recipe)
+
 
   return {
     props: { selected_recipe, id,user_list, user }, // will be passed to the page component as props
