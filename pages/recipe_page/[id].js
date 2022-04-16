@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/recipeview.module.css";
 import Image from "next/image";
 import Modal from "react-modal";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ShareButton from "../../components/share_button";
 import getSelf from "../../lib/getSelf";
 
@@ -15,20 +15,18 @@ export const ShareState = {
   Failed: "Failed",
 };
 
-
 export async function getServerSideProps(context) {
+  const token = context.req?.cookies?.token;
 
-    const token = context.req?.cookies?.token
-
-    if (!token) return {
+  if (!token)
+    return {
       redirection: {
-        destination: '/login',
+        destination: "/login",
         permanent: false,
-      }
-    }
+      },
+    };
 
-    const user = await getSelf( token )
-    
+  const user = await getSelf(token);
 
   const { id } = context.params;
   const user_response = await fetch(
@@ -42,14 +40,49 @@ export async function getServerSideProps(context) {
   const selected_recipe = await response.json();
   //console.log(selected_recipe)
 
-
   return {
-    props: { selected_recipe, id,user_list, user }, // will be passed to the page component as props
+    props: { selected_recipe, id, user_list, user }, // will be passed to the page component as props
   };
 }
 
 //Start of recipe page component
 export default function Recipe(props) {
+  const upload_change = async () => {
+    fetch("https://dev.createforever.media/api:lSOVAmsS/recipes/" + recipe_id, {
+      method: "POST",
+      headers: { "Content-Type": "application/JSON" },
+      body: JSON.stringify({
+        recipe_name: myrecipename.current.innerText,
+        recipe_thumbnail: props.selected_recipe.recipe_thumbnail,
+        recipe_author: props.selected_recipe.recipe_author,
+        recipe_description: mydescriptionname.current.innerText,
+        shared_with: props.selected_recipe.shared_with,
+        ingredients: ingredients.map((ingredient) => ingredient),
+        directions: directions.map((direction) => direction),
+        tags: props.tags,
+      }),
+    }).then((response) => console.log(response));
+    console.log(recipe_id);
+    console.log(myrecipename.current.innerText);
+    console.log(props.selected_recipe.recipe_thumbnail?.url);
+    console.log(props.selected_recipe.recipe_author);
+    console.log(mydescriptionname.current.innerText);
+    console.log(props.selected_recipe.shared_with);
+    console.log(ingredients.map((ingredient) => ingredient));
+    console.log(directions.map((direction) => direction));
+  };
+  const myrecipename = useRef(null);
+  const mydescriptionname = useRef(null);
+
+  const [title, setTitle] = useState(props.selected_recipe.recipe_name);
+
+  const [directions, setDirections] = useState(
+    props.selected_recipe.directions
+  );
+
+  const [ingredients, setIngredients] = useState(
+    props.selected_recipe.ingredients
+  );
 
   const recipe_id = props.id;
   const [isSharing, setIsSharing] = useState(ShareState.Default);
@@ -100,12 +133,26 @@ export default function Recipe(props) {
   return (
     //<div>{JSON.stringify(props.selected_recipe)}</div>
     <div>
-      <div className={styles.top_bar}>   
-        <a href=" / ">
-          <img src="https://svgshare.com/i/gKp.svg" alt="" className={styles.backbutton}/>
-        </a>
-        <p>{props.selected_recipe.recipe_name}</p>
-{/*         {(props.user.id == props.selected_recipe.recipe_author)? 
+      <div className={styles.top_bar}>
+        {props.user.id == props.selected_recipe.recipe_author ? (
+          <a href=" / " onClick={upload_change}>
+            <img
+              src="https://svgshare.com/i/gKp.svg"
+              alt=""
+              className={styles.backbutton}
+            />
+          </a>
+        ) : (
+          <a href=" / ">
+            <img
+              src="https://svgshare.com/i/gKp.svg"
+              alt=""
+              className={styles.backbutton}
+            />
+          </a>
+        )}
+        <p>{title}</p>
+        {/*         {(props.user.id == props.selected_recipe.recipe_author)? 
         <a className={styles.giftIconButton} href={`/create_recipe/form`}>
         <img className={styles.giftIcon} src="https://svgshare.com/i/gJH.svg" />
         </a>
@@ -123,11 +170,6 @@ export default function Recipe(props) {
             alt="Gift"
           />
         </a>
-
-      
-
-        
-
       </div>
       <Modal
         className={styles.shareModal}
@@ -197,70 +239,109 @@ export default function Recipe(props) {
         className={styles.thumbnail}
         alt=""
       >
-        
         <img
-        className={styles.thumbnailcontent}
-        src={props.selected_recipe.recipe_thumbnail?.url}
+          className={styles.thumbnailcontent}
+          src={props.selected_recipe.recipe_thumbnail?.url}
         ></img>
       </div>
-      {(props.user.id == props.selected_recipe.recipe_author)? 
-      <h1 contentEditable className={styles.title}>{props.selected_recipe.recipe_name}</h1>
-      : <h1 className={styles.title}>{props.selected_recipe.recipe_name}</h1>
-      }
+      {props.user.id == props.selected_recipe.recipe_author ? (
+        <h1
+          contentEditable
+          className={styles.title}
+          ref={myrecipename}
+          onKeyUp={(e) => {
+            console.log(title);
+            setTitle(e.target.innerText);
+          }}
+        >
+          {props.selected_recipe.recipe_name}
+        </h1>
+      ) : (
+        <h1 ref={myrecipename} className={styles.title}>
+          {props.selected_recipe.recipe_name}
+        </h1>
+      )}
       <div className={styles.author}>
         <img src={identify_author.profile_picture?.url} alt="" />
         <p>{identify_author.name}</p>
       </div>
-      {(props.user.id == props.selected_recipe.recipe_author)? 
-      <p contentEditable className={styles.description}>
-        {props.selected_recipe.recipe_description}
-      </p>
-    : 
-    <p className={styles.description}>
-    {props.selected_recipe.recipe_description}
-    </p>  
-    }
+      {props.user.id == props.selected_recipe.recipe_author ? (
+        <p
+          contentEditable
+          className={styles.description}
+          ref={mydescriptionname}
+        >
+          {props.selected_recipe.recipe_description}
+        </p>
+      ) : (
+        <p className={styles.description} ref={mydescriptionname}>
+          {props.selected_recipe.recipe_description}
+        </p>
+      )}
       <h2 className={styles.section_title}>Ingredients</h2>
-      {(props.user.id == props.selected_recipe.recipe_author)? 
-      props.selected_recipe.ingredients.map((item, index) => {
-        return (
-          <li key={index} className={styles.recipe_ingredients}>
-            <span className={styles.recipe_ingredient} contentEditable>{item}</span>
-          </li>
-        );
-      }) 
-      
-      :      
-
-      props.selected_recipe.ingredients.map((item, index) => {
-        return (
-          <li key={index} className={styles.recipe_ingredients}>
-            {item}
-          </li>
-        );
-      })}
+      {props.user.id == props.selected_recipe.recipe_author
+        ? props.selected_recipe.ingredients.map((item, index) => {
+            return (
+              <li key={index} className={styles.recipe_ingredients}>
+                <span
+                  className={styles.recipe_ingredient}
+                  contentEditable
+                  onKeyUp={(e) => {
+                    console.log(ingredients);
+                    setIngredients((current_ingredients) => {
+                      const copy_of_current = [...current_ingredients];
+                      copy_of_current[index] = e.target.innerText;
+                      return copy_of_current;
+                    });
+                  }}
+                >
+                  {item}
+                </span>
+              </li>
+            );
+          })
+        : props.selected_recipe.ingredients.map((item, index) => {
+            return (
+              <li key={index} className={styles.recipe_ingredients}>
+                {item}
+              </li>
+            );
+          })}
       <h2 className={styles.section_title}>Directions</h2>
-      {(props.user.id == props.selected_recipe.recipe_author)? 
-      <ol type="1">
-        {props.selected_recipe.directions.map((item, index) => {
-          return (
-            <li key={index} className={styles.recipe_directions}>
-              <span className={styles.recipe_direction} contentEditable>{item}</span>
-            </li>
-          );
-        })}
-      </ol>
-    :
-    <ol type="1">
-    {props.selected_recipe.directions.map((item, index) => {
-      return (
-        <li key={index} className={styles.recipe_directions}>
-          {item}
-        </li>
-      );
-    })}
-  </ol>
-    }
+      {props.user.id == props.selected_recipe.recipe_author ? (
+        <ol type="1">
+          {props.selected_recipe.directions.map((item, index) => {
+            return (
+              <li key={index} className={styles.recipe_directions}>
+                <span
+                  className={styles.recipe_direction}
+                  contentEditable
+                  onKeyUp={(e) => {
+                    console.log(directions);
+                    setDirections((current_directions) => {
+                      const copy_of_current = [...current_directions];
+                      copy_of_current[index] = e.target.innerText;
+                      return copy_of_current;
+                    });
+                  }}
+                >
+                  {item}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <ol type="1">
+          {props.selected_recipe.directions.map((item, index) => {
+            return (
+              <li key={index} className={styles.recipe_directions}>
+                {item}
+              </li>
+            );
+          })}
+        </ol>
+      )}
     </div>
   );
 }
