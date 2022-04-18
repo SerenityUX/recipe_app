@@ -39,7 +39,7 @@ const Signup = () => {
     let formData = new FormData();
     formData.append("image_url", images[0]);
     const [image, imageError] = await getImage(formData);
-    if (imageError) return alert("Image API Error - Try again");
+    if (imageError) return alert("Error - Missing Profile Picture. Upload a profile picture and try again");
 
     const [token, userError] = (await requestSignUp({
       email,

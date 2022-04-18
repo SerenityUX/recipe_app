@@ -189,8 +189,13 @@ const Form = ({user}) => {
             tags: tags.map((tag) => tag.tag),
           }),
         }).then((response) => {
-          console.log(response);
-          setIsUploading( UploadState.Uploaded )
+          console.log(response.status);
+          if(response.status === 200) {
+            setIsUploading( UploadState.Uploaded )  
+          } else {
+            setIsUploading( UploadState.Failed)
+            alert("Upload Failed, ensure that you have included a thumbnail, recipe name, description, set of ingredients, and a set of directions.")
+          }
           //let button_text = "Submitted"
         });
       })

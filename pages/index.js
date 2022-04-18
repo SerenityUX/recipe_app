@@ -20,16 +20,6 @@ export const CheckState = {
   Checked: "Checked",
 };
 
-const categories = [
-  "All",
-  "Breakfast",
-  "Lunch",
-  "Dinner",
-  "Dessert",
-  "Smoothies",
-  "Snacks",
-  "Juices",
-];
 
 //const cookies = context.req.cookies.User_ID
 /*       export async function getStaticProps() {
