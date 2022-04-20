@@ -1,4 +1,14 @@
-.author img {
+.authorimg {
+
+    margin-left: 16px;
+    width: 32px;
+    height: 32px;
+    display: inline;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.author Image {
 
     margin-left: 16px;
     width: 32px;

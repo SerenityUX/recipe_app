@@ -275,7 +275,9 @@ export default function Recipe(props) {
         </h1>
       )}
       <div className={styles.author}>
-        <img src={identify_author.profile_picture?.url} alt="" />
+        <div className={styles.authorimg}>
+        <Image width={128} height={128}  className={styles.authorimg} src={identify_author.profile_picture?.url} alt="" />
+        </div>
         <p>{identify_author.name}</p>
       </div>
       {props.user.id == props.selected_recipe.recipe_author ? (
