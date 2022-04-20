@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import styles from "../styles/qr_scan.module.css";
 import { useRouter } from "next/router";
+import backButton from "../assets/back.svg"
+import Image from 'next/image'
 
 export async function getServerSideProps(context) {
   try {
@@ -76,7 +78,7 @@ const QRScan = (props) => {
     <div>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://svgshare.com/i/gKp.svg" alt="" />
+          <Image src={backButton} alt="Back Button" width={24} height={24} />
         </a>
         <p>Scan a Recipe</p>
       </div>

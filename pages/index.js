@@ -2,16 +2,16 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
-import createbutton_upload from "../assets/createbutton.svg";
 
-const createbutton_const = "../assets/createbutton.svg";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useRef } from "react";
-
-
+import Image from 'next/image'
+import SearchIcon from '../assets/search.svg'
+import navButtonQR from '../assets/QRButton.svg'
+import createButton from '../assets/createbutton.svg'
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 
@@ -337,21 +337,23 @@ export default function Home(props) {
           <h1 className={styles.maintitle}>My Recipes</h1>
           <div className={styles.actionItems}>
           <Link href={`/QRScan`} className={styles.navButtonQR}>
-            <img className={styles.navButtonQR} src="https://svgshare.com/i/gKn.svg" />
+            <Image width={32} height={32} src={navButtonQR} className={styles.navButtonQR} />
           </Link>
 
           <Link href={`/create_recipe/form`} className={styles.navButtonCreation}>
-            <img className={styles.navButtonCreation} src="https://svgshare.com/i/gJ_.svg" />
+            <Image width={32} height={32} className={styles.navButtonCreation} src={createButton} />
           </Link>
           </div>
         </div>
 
         <div className={styles.search_bar}>
-          <img
-            src="https://svgshare.com/i/gKo.svg"
+          <Image
+            src={SearchIcon}
             className={styles.search_icon}
             alt="Search Icon"
-          ></img>
+            height={24}
+            width={24}
+          ></Image>
           <input
             autoComplete="off"
             id="searchinput"

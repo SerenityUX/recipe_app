@@ -8,7 +8,9 @@ import { rootCertificates } from "tls";
 import SubmitButton from '../../components/submit_button'
 import Cookies from 'universal-cookie';
 import getSelf from "../../lib/getSelf";
-
+import CameraButton from "../../assets/Frame48.svg"
+import backButton from "../../assets/back.svg"
+import Image from 'next/image'
 export async function getServerSideProps(context) {
   try {
     const token = context.req?.cookies?.token
@@ -259,7 +261,7 @@ const Form = ({user}) => {
     <div className={styles.form_container}>
       <div className={styles.top_bar}>
         <a href=" / ">
-          <img src="https://svgshare.com/i/gKp.svg" alt="" />
+          <Image src={backButton} width={24} height={24} alt="" />
         </a>
         <p>Create a recipe</p>
       </div>
@@ -269,7 +271,10 @@ const Form = ({user}) => {
         <label className={styles.thumbnail}>
           <div className={styles.upload_container}>
             <img src={imageURLs[0]} className={styles.thumbnail_preview} />
-            <img src="https://svgshare.com/i/gJk.svg"></img>{" "}
+            <div>
+            <Image src={CameraButton} width={32} height={32}></Image>
+            </div>
+            {" "}
             <p>Upload Image</p>
           </div>
           <input

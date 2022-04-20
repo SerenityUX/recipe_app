@@ -5,8 +5,17 @@ import getImage from "../lib/getImage";
 import requestSignUp from "../lib/requestSignUp";
 import { ChangeEventHandler } from "react";
 import { useRouter } from "next/router";
+import SignupButton from "../components/sign_up_button";
+export enum UploadState {
+  Default = "Default",
+  Uploading = "Uploading",
+  Uploaded = "Uploaded",
+  Failed = "Failed"
+}
 
 const Signup = () => {
+  const [isUploading, setIsUploading] = useState<UploadState>(UploadState.Default)
+
   const router = useRouter();
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
@@ -36,11 +45,15 @@ const Signup = () => {
   };
 
   const attemptSignup = async () => {
+    setIsUploading( UploadState.Uploading )
     let formData = new FormData();
     formData.append("image_url", images[0]);
     const [image, imageError] = await getImage(formData);
+    if (imageError) {
+      setIsUploading( UploadState.Failed )
+    }
     if (imageError) return alert("Error - Missing Profile Picture. Upload a profile picture and try again");
-
+    
     const [token, userError] = (await requestSignUp({
       email,
       password,
@@ -48,7 +61,11 @@ const Signup = () => {
       name: nameInput,
       profile_picture: image,
     })) as [any, any];
-
+    if (userError) {
+      setIsUploading( UploadState.Failed )
+    } else {
+      setIsUploading( UploadState.Uploaded )
+    }
     if (userError) return alert(userError);
 
     document.cookie = `token=${token}; expires=Wed, 05 Aug 2035 23:00:00 UTC"`; // fix this, this really bad --Yofou
@@ -134,14 +151,11 @@ const Signup = () => {
           id="password"
           name="password"
         ></input>
-        <button
-          className={styles.loginbutton}
-          onClick={() => {
-            attemptSignup();
-          }}
-        >
-          Sign up
-        </button>
+                <SignupButton value={isUploading} 
+            onClick={() => {
+              attemptSignup();
+            }}
+        />
       </div>
     </div>
   );

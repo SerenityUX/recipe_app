@@ -7,7 +7,9 @@ import Modal from "react-modal";
 import React, { useState, useEffect, useRef } from "react";
 import ShareButton from "../../components/share_button";
 import getSelf from "../../lib/getSelf";
-
+import GiftButton from "../../assets/gift.svg"
+import closeButton from "../../assets/closeicon.svg"
+import backButton from "../../assets/back.svg"
 export const ShareState = {
   Default: "Default",
   Gifting: "Gifting",
@@ -137,17 +139,21 @@ export default function Recipe(props) {
     <div>
       <div className={styles.top_bar}>
         {props.user.id == props.selected_recipe.recipe_author ? (
-          <a onClick={upload_change}>
-            <img
-              src="https://svgshare.com/i/gKp.svg"
+          <a onClick={upload_change} className={styles.backbutton}>
+            <Image
+              src={backButton}
+              width={24}
+              height={24}
               alt=""
               className={styles.backbutton}
             />
           </a>
         ) : (
-          <a href=" / ">
-            <img
-              src="https://svgshare.com/i/gKp.svg"
+          <a href=" / " className={styles.backbutton}>
+            <Image
+              src={backButton}
+              width={24}
+              height={24}
               alt=""
               className={styles.backbutton}
             />
@@ -166,9 +172,11 @@ export default function Recipe(props) {
           className={styles.giftIconButton}
           onClick={() => setModalIsOpen(true)}
         >
-          <img
+          <Image
+          width={32}
+          height={32}
             className={styles.giftIcon}
-            src="https://svgshare.com/i/gKe.svg"
+            src={GiftButton}
             alt="Gift"
           />
         </a>
@@ -213,10 +221,12 @@ export default function Recipe(props) {
             className={styles.modalTopButton}
             onClick={() => setModalIsOpen(false)}
           >
-            <img
+            <Image
+            width={24}
+            height={24}
               className={styles.giftIcon}
-              src="https://svgshare.com/i/gJ0.svg"
-              alt="Gift"
+              src={closeButton}
+              alt="Close Modal"
             />
           </a>
         </div>
@@ -241,10 +251,11 @@ export default function Recipe(props) {
         className={styles.thumbnail}
         alt=""
       >
-        <img
+        <Image
+        layout='fill'
           className={styles.thumbnailcontent}
           src={props.selected_recipe.recipe_thumbnail?.url}
-        ></img>
+        ></Image>
       </div>
       {props.user.id == props.selected_recipe.recipe_author ? (
         <h1

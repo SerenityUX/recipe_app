@@ -7,8 +7,17 @@ import { rootCertificates } from "tls";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import requestLogin from "../lib/requestLogin";
+import LoginButton from "../components/login_button";
+export enum UploadState {
+  Default = "Default",
+  Uploading = "Uploading",
+  Uploaded = "Uploaded",
+  Failed = "Failed"
+}
 
 const Login = () => {
+  const [isUploading, setIsUploading] = useState<UploadState>(UploadState.Default)
+
   const router = useRouter();
   const email = useRef(null);
   const password = useRef(null);
@@ -17,12 +26,16 @@ const Login = () => {
 
   const attemptLogin = async () => {
     let formData = new FormData();
-
+    setIsUploading( UploadState.Uploading )
     const [token, userError] = (await requestLogin({
       email: email.current.value,
       password: password.current.value
     })) as [any, any];
-
+    if (userError) {
+      setIsUploading( UploadState.Failed )
+    } else {
+      setIsUploading( UploadState.Uploaded )
+    }
     if (userError) return alert(userError);
 
     document.cookie = `token=${token}; expires=Wed, 05 Aug 2035 23:00:00 UTC"`; // fix this, this really bad --Yofou
@@ -76,9 +89,11 @@ const Login = () => {
           id="password"
           name="password"
         ></input>
-        <button className={styles.loginbutton} onClick={attemptLogin}>
-          Login
-        </button>
+        <LoginButton value={isUploading} 
+            onClick={() => {
+              attemptLogin();
+            }}
+        />
       </div>
     </div>
   );

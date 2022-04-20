@@ -27,13 +27,13 @@ export default function recipepreview (props) {
             <div className={styles.left}>
                 <h1 className={styles.title}>{props.title}</h1>
                 <div className={styles.author}>
-                    <img src={props.avatar} alt=""/>
+                    <Image src={props.avatar} alt="" height={24} width={24} />
                     <p>{props.author}</p>
                 </div>
             </div>
             <div className={styles.right}>
                 <div  className={styles.thumbnail}>
-                <img src={props.thumbnail} alt="" className={styles.thumbnailcontent} />
+                <Image src={props.thumbnail} alt="" className={styles.thumbnailcontent} height={112} width={83} />
                 </div>
             </div>
             </a>
