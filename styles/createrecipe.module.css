@@ -447,6 +447,7 @@
 
 .thumbnail_preview {
     display: flex;
+    z-index: 1;
     width: 100vw;
     aspect-ratio: 3 / 4;
     position: absolute;
