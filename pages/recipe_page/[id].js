@@ -251,11 +251,10 @@ export default function Recipe(props) {
         className={styles.thumbnail}
         alt=""
       >
-        <Image
-        layout='fill'
+        <img
           className={styles.thumbnailcontent}
           src={props.selected_recipe.recipe_thumbnail?.url}
-        ></Image>
+        ></img>
       </div>
       {props.user.id == props.selected_recipe.recipe_author ? (
         <h1
