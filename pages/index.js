@@ -450,6 +450,7 @@ export default function Home(props) {
               );
               return (
                 <motion.div
+                key={item.id}
                 initial="hidden"
                 animate="visible"
                 variants={animationvariantssearch}
