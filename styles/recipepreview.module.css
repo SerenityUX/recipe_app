@@ -5,6 +5,7 @@
     border-radius: 100%;
     object-fit: cover;
     margin-bottom: 0px;
+    background-color: #e0e0e0;
 }
 
 .author p {
@@ -47,6 +48,7 @@
     width: 83px;
     height: 112px;
     overflow: hidden;
+    background-color: #e0e0e0;
 }
 
 .thumbnailcontent {

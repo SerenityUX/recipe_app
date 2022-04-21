@@ -6,6 +6,7 @@
     display: inline;
     border-radius: 100%;
     object-fit: cover;
+    background-color: #e0e0e0;
 }
 
 .author Image {
@@ -86,6 +87,7 @@
     width: 100vw;
     height: 133.33vw;
     object-fit: cover;
+    background-color: #e0e0e0;
 }
 
 .title {

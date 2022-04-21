@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
-
+import { motion } from 'framer-motion';
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
 import Link from "next/link";
@@ -14,6 +14,27 @@ import navButtonQR from '../assets/QRButton.svg'
 import createButton from '../assets/createbutton.svg'
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
+
+const animationvariants = {
+  hidden: { 
+    opacity: 0.01,
+   },
+  visible: { opacity: 1, x: 0},
+}
+const animationvariantsbuttons = {
+  hidden: { 
+    opacity: 0.01,
+    scale: 0.0
+   },
+  visible: { opacity: 1, scale: 1 },
+}
+const animationvariantssearch = {
+  hidden: { 
+    opacity: 0.01, scale: 0.95
+   },
+  visible: { opacity: 1, scale: 1 },
+}
+
 
 export const CheckState = {
   Unchecked: "Unchecked",
@@ -333,19 +354,46 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
+
         <div className={styles.topbar}>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animationvariants}
+            transition={{ ease: "easeOut", duration: 0.15, delay: 0.05 }}
+          >
           <h1 className={styles.maintitle}>My Recipes</h1>
+          </motion.div>
           <div className={styles.actionItems}>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animationvariantsbuttons}
+            transition={{ ease: "easeOut", duration: 0.15, delay: 0.15 }}
+          >
           <Link href={`/QRScan`} className={styles.navButtonQR}>
             <Image width={32} height={32} src={navButtonQR} className={styles.navButtonQR} />
           </Link>
-
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animationvariantsbuttons}
+            transition={{ ease: "easeOut", duration: 0.15, delay: 0.05 }}
+          >
           <Link href={`/create_recipe/form`} className={styles.navButtonCreation}>
             <Image width={32} height={32} className={styles.navButtonCreation} src={createButton} />
           </Link>
+          </motion.div>
           </div>
         </div>
-
+        
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={animationvariantssearch}
+            transition={{ ease: "easeOut", duration: 0.15, delay: 0.2 }}
+          >
         <div className={styles.search_bar}>
           <Image
             src={SearchIcon}
@@ -364,6 +412,7 @@ export default function Home(props) {
             }}
           ></input>
         </div>
+        </motion.div>
 
 {/*         <div className={styles.tagwrapper}>
           {categories.map((item) => {
@@ -380,6 +429,7 @@ export default function Home(props) {
           })}
         </div> */}
         <div className={styles.previewwrapper}>
+
           {Array.isArray(props.recipes_list) &&
             props.recipes_list.filter((item) => {
               console.log(searchTag)
@@ -399,6 +449,12 @@ export default function Home(props) {
                 (user) => user.id == item.recipe_author
               );
               return (
+                <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={animationvariantssearch}
+                transition={{ ease: "easeOut", duration: 0.2, delay: 0.45 }}
+              >
                 <Recipepreview
                   author={identify_author.name}
                   avatar={identify_author.profile_picture.url}
@@ -411,8 +467,11 @@ export default function Home(props) {
                   ingredients={item.ingredients}
                   directions={item.directions}
                 ></Recipepreview>
+                </motion.div>
               );
+              
             })}
+         
         </div>
       </main>
     </div>

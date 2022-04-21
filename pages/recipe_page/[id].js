@@ -222,8 +222,8 @@ export default function Recipe(props) {
             onClick={() => setModalIsOpen(false)}
           >
             <Image
-            width={24}
-            height={24}
+              width={24}
+              height={24}
               className={styles.giftIcon}
               src={closeButton}
               alt="Close Modal"
