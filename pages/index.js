@@ -454,7 +454,7 @@ export default function Home(props) {
                 initial="hidden"
                 animate="visible"
                 variants={animationvariantssearch}
-                transition={{ ease: "easeOut", duration: 0.2, delay: 0.45 }}
+                transition={{ ease: "easeOut", duration: 0.2, delay: 0.25 }}
               >
                 <Recipepreview
                   author={identify_author.name}
