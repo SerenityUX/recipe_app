@@ -9,7 +9,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-
+import SearchIcon from "../assets/search.svg";
+import navButtonQR from "../assets/QRButton.svg";
+import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 
