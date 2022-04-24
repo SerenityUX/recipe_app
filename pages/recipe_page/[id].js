@@ -10,6 +10,8 @@ import getSelf from "../../lib/getSelf";
 import GiftButton from "../../assets/gift.svg"
 import closeButton from "../../assets/closeicon.svg"
 import backButton from "../../assets/back.svg"
+
+
 export const ShareState = {
   Default: "Default",
   Gifting: "Gifting",
@@ -19,6 +21,8 @@ export const ShareState = {
 
 export async function getServerSideProps(context) {
   const token = context.req?.cookies?.token;
+  
+
 
   if (!token)
     return {
@@ -27,13 +31,23 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
-
+    
   const user = await getSelf(token);
 
   const { id } = context.params;
+
+  const user_relationships_response = await fetch(
+    "https://dev.createforever.media/api:lSOVAmsS/get_user_relations?users_id=1"
+  )
+  const user_relationships = await user_relationships_response.json()
+  console.log(user_relationships)
+  
+
   const user_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/users"
   );
+  
+  
   const user_list = await user_response.json();
 
   const response = await fetch(
@@ -43,13 +57,53 @@ export async function getServerSideProps(context) {
   //console.log(selected_recipe)
 
   return {
-    props: { selected_recipe, id, user_list, user }, // will be passed to the page component as props
+    props: { selected_recipe, id, user_list, user, user_relationships }, // will be passed to the page component as props
   };
 }
 
+
+
 //Start of recipe page component
 export default function Recipe(props) {
+
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log(string, results)
+  }
+
+  const handleOnHover = (result) => {
+    // the item hovered
+    console.log(result)
+  }
+
+  const handleOnSelect = (item) => {
+    // the item selected
+    console.log(item)
+  }
+
+  const handleOnFocus = () => {
+    console.log('Focused')
+  }
+
+  const formatResult = (item) => {
+    return (
+      <>
+        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
+        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
+      </>
+    )
+  }
+  //Input of autocomplete ends
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (props.selected_recipe.shared_with.indexOf(props.user.id) == -1) {
+      console.log("no permission")
+    }    
+  }, [])
+
   const upload_change = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes/" + recipe_id, {
       method: "POST",
@@ -134,9 +188,11 @@ export default function Recipe(props) {
   //const { id } = router.query
 
   //Rendering a component to the page
-  return (
-    //<div>{JSON.stringify(props.selected_recipe)}</div>
-    <div>
+    
+    return <div>{props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 ? 
+      
+      ( 
+      <div>
       <div className={styles.top_bar}>
         {props.user.id == props.selected_recipe.recipe_author ? (
           <a onClick={upload_change} className={styles.backbutton}>
@@ -357,5 +413,7 @@ export default function Recipe(props) {
         </ol>
       )}
     </div>
-  );
-}
+    ) : <p>Invalid Permission</p>}
+    </div>
+  } 
+  
