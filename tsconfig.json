@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/index.js", "pages/create_recipe/[form].tsx", "pages/login.tsx", "pages/_error.js.js", "pages/recipe_page/[id].js"  ],
+, "pages/index.js", "pages/create_recipe/[form].tsx", "pages/login.tsx", "pages/_error.js.js", "pages/recipe_page/[id].js", "pages/dist/login.js", "pages/dist/signup.js"  ],
   "exclude": [
     "node_modules"
   ]
