@@ -117,7 +117,7 @@ const Signup = () => {
           ></textarea>
           <input
             type="tel"
-            placeholder="Phone Number"
+            placeholder="Phone Number (optional)"
             value={phoneInput}
             onChange={(event) => setPhoneInput(event.target.value)}
             className={styles.phoneInput}

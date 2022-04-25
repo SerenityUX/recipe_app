@@ -40,9 +40,7 @@ export async function getServerSideProps(context) {
     "https://dev.createforever.media/api:lSOVAmsS/get_user_relations?users_id=1"
   )
   const user_relationships = await user_relationships_response.json()
-  console.log(user_relationships)
   
-
   const user_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/users"
   );
@@ -65,34 +63,23 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe(props) {
+  const [suggestions, setSuggestions] = useState([]);
 
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results)
-  }
-
-  const handleOnHover = (result) => {
-    // the item hovered
-    console.log(result)
-  }
-
-  const handleOnSelect = (item) => {
-    // the item selected
-    console.log(item)
-  }
-
-  const handleOnFocus = () => {
-    console.log('Focused')
-  }
-
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
-        <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
-      </>
-    )
+  const handleChanges = async (email_value, relations) => {
+    const relations_setup = relations.user_relationships.map(item => item.email)
+    const test = relations_setup.filter((item) => {
+      if (item
+      .toLowerCase()
+      .trim()
+      .includes(email_value.toLowerCase().trim())) {
+        return item
+      }
+    })
+    setSuggestions(test)
+    console.log("test below")
+    console.log(test)
+    setEmail(email_value)
+    console.log(email)
   }
   //Input of autocomplete ends
 
@@ -145,6 +132,9 @@ export default function Recipe(props) {
   const recipe_id = props.id;
   const [isSharing, setIsSharing] = useState(ShareState.Default);
   const [email, setEmail] = useState("");
+
+
+
 
   const GiftBody = {
     email: email,
@@ -290,7 +280,7 @@ export default function Recipe(props) {
           <label className={styles.inputlabel}>Email Address</label>
           <input
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => handleChanges(event.target.value, props.user_relationships)}
             type="email"
             id="email"
             name="email"
