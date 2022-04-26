@@ -291,7 +291,7 @@ export default function Recipe(props) {
               setTimeout(() => {
                 setSuggestions([])
 
-              }, 100)
+              }, 900)
             }}
             name="email"
           ></input>
