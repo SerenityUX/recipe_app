@@ -283,7 +283,7 @@ export default function Recipe(props) {
           <label className={styles.inputlabel}>Email Address</label>
           <input
             value={email}
-            autocomplete="off"
+            autoComplete="off"
             onChange={(event) => handleChanges(event.target.value, props.user_relationships)}
             type="email"
             id="email"
