@@ -187,10 +187,12 @@
     -moz-appearance: none;  
 }
 
+.inputgroup {
+    display: relative;
+}
 .inputgroup input {
     margin-top: 4px;
     height: 45px;
-
     width: calc(100%);
     display: block;
     border: 1px solid #DFE1E5;
@@ -205,6 +207,7 @@
 }
 
 .Default {
+    
 	background-color: #2874E8;
     height: 45px;
     margin-top: 16px;
@@ -273,4 +276,22 @@
     appearance: none;
     resize: none;
     outline: none;
+}
+
+.suggestion {
+    cursor: pointer;
+    padding: 8px;
+    background-color: #fff;
+    position: relative;
+    
+}
+.suggestions {
+    margin-top: 8px;
+    border-radius: 16px;
+    position: absolute;
+    
+}
+
+.suggestion:hover {
+    background-color: rgb(240, 240, 240);
 }

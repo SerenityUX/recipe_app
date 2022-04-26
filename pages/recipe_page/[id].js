@@ -64,7 +64,10 @@ export async function getServerSideProps(context) {
 //Start of recipe page component
 export default function Recipe(props) {
   const [suggestions, setSuggestions] = useState([]);
-
+  const SuggestHandler = (text)=> {
+    setEmail(text);
+    setSuggestions([]);
+  }
   const handleChanges = async (email_value, relations) => {
     const relations_setup = relations.user_relationships.map(item => item.email)
     const test = relations_setup.filter((item) => {
@@ -280,11 +283,25 @@ export default function Recipe(props) {
           <label className={styles.inputlabel}>Email Address</label>
           <input
             value={email}
+            autocomplete="off"
             onChange={(event) => handleChanges(event.target.value, props.user_relationships)}
             type="email"
             id="email"
+            onBlur={() => {
+              setTimeout(() => {
+                setSuggestions([])
+
+              }, 100)
+            }}
             name="email"
           ></input>
+          <div className={styles.suggestions}>
+          {suggestions && suggestions.map((suggestion,i) =>
+          <div key={i} className={styles.suggestion}
+          onClick={()=>SuggestHandler(suggestion)}
+          >{suggestion}</div>
+          )}
+        </div>
         </div>
         <ShareButton
           className={styles.loginbutton}
