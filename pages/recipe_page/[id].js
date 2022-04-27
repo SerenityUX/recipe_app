@@ -51,7 +51,9 @@ export async function getServerSideProps(context) {
   const user_list = await user_response.json();
 
   const response = await fetch(
-    "https://dev.createforever.media/api:lSOVAmsS/recipes/" + id
+    "https://dev.createforever.media/api:lSOVAmsS/recipes/" + id, {
+      headers: { "Authorization": `Bearer ${token}` }
+    }
   );
   const selected_recipe = await response.json();
   //console.log(selected_recipe)
