@@ -220,7 +220,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
-      <Script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></Script>
+      <script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></script>
         <title>Meal Pack</title>
         <meta
           name="Social Recipe Sharing Platform"
