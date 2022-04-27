@@ -14,6 +14,7 @@ import navButtonQR from "../assets/QRButton.svg";
 import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
+import Script from 'next/script'
 
 const animationvariants = {
   hidden: {
@@ -219,6 +220,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
+      <Script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></Script>
         <title>Meal Pack</title>
         <meta
           name="Social Recipe Sharing Platform"
