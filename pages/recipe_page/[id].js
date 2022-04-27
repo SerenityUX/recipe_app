@@ -37,7 +37,9 @@ export async function getServerSideProps(context) {
   const { id } = context.params;
 
   const user_relationships_response = await fetch(
-    "https://dev.createforever.media/api:lSOVAmsS/get_user_relations?users_id=1"
+    "https://dev.createforever.media/api:lSOVAmsS/get_user_relations", {
+      headers: { "Authorization": `Bearer ${token}` }
+    }
   )
   const user_relationships = await user_relationships_response.json()
   
