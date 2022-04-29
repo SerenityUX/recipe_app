@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
   const token = context.req?.cookies?.token;
   
 
-
+  
   if (!token)
     return {
       redirection: {
@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
   //console.log(selected_recipe)
 
   return {
-    props: { selected_recipe, id, user_list, user, user_relationships }, // will be passed to the page component as props
+    props: { selected_recipe, id, user_list, user, user_relationships, token }, // will be passed to the page component as props
   };
 }
 
@@ -101,7 +101,9 @@ export default function Recipe(props) {
   const upload_change = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes/" + recipe_id, {
       method: "POST",
-      headers: { "Content-Type": "application/JSON" },
+      headers: { "Content-Type": "application/JSON" , 
+         "Authorization": `Bearer ${props.token}` 
+       },
       body: JSON.stringify({
         recipe_name: myrecipename.current.innerText,
         recipe_thumbnail: props.selected_recipe.recipe_thumbnail,
@@ -139,7 +141,6 @@ export default function Recipe(props) {
   const recipe_id = props.id;
   const [isSharing, setIsSharing] = useState(ShareState.Default);
   const [email, setEmail] = useState("");
-
 
 
 
