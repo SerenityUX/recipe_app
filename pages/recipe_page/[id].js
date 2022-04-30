@@ -303,7 +303,7 @@ export default function Recipe(props) {
           ></input>
           <div className={styles.suggestions}>
           {suggestions && suggestions.map((suggestion,i) =>
-        <div className={styles.suggestion} onClick={()=>SuggestHandler(suggestion)}>
+        <div key ={i} className={styles.suggestion} onClick={()=>SuggestHandler(suggestion)}>
           <p key={i}  className={styles.top_section}
           >{suggestion}
           </p>
