@@ -73,20 +73,21 @@ export default function Recipe(props) {
     setSuggestions([]);
   }
   const handleChanges = async (email_value, relations) => {
+    const test_attempt = relations.user_relationships.map(item => item)
     const relations_setup = relations.user_relationships.map(item => item.email)
+
     const test = relations_setup.filter((item) => {
       if (item
       .toLowerCase()
       .trim()
-      .includes(email_value.toLowerCase().trim())) {
+      .includes(email_value.toLowerCase().trim())){
         return item
       }
     })
+
+
     setSuggestions(test)
-    console.log("test below")
-    console.log(test)
     setEmail(email_value)
-    console.log(email)
   }
   //Input of autocomplete ends
 
@@ -302,10 +303,21 @@ export default function Recipe(props) {
           ></input>
           <div className={styles.suggestions}>
           {suggestions && suggestions.map((suggestion,i) =>
-          <div key={i} className={styles.suggestion}
-          onClick={()=>SuggestHandler(suggestion)}
-          >{suggestion}</div>
+        <div className={styles.suggestion} onClick={()=>SuggestHandler(suggestion)}>
+          <p key={i}  className={styles.top_section}
+          >{suggestion}
+          </p>
+        <div className={styles.bottom_section}>
+        <img
+          className={styles.small_suggestion_icon}
+          src={props.user_relationships.user_relationships.map(item => item)[props.user_relationships.user_relationships.findIndex(e => e.email === suggestion)].profile_picture.url}
+        ></img>          
+        <p className={styles.small_suggestion_name}>{props.user_relationships.user_relationships.map(item => item)[props.user_relationships.user_relationships.findIndex(e => e.email === suggestion)].name}</p>
+        </div>
+        </div>
+          
           )}
+          
         </div>
         </div>
         <ShareButton

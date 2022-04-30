@@ -278,20 +278,49 @@
     outline: none;
 }
 
+
 .suggestion {
     cursor: pointer;
-    padding: 8px;
+    padding: 12px;
     background-color: #fff;
     position: relative;
-    
+    border-bottom: 0.75px solid rgb(222, 222, 222)
 }
 .suggestions {
-    margin-top: 8px;
-    border-radius: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 12px;
     position: absolute;
-    
+    overflow: hidden;
+    border: 0.75px solid rgb(222, 222, 222)
 }
 
 .suggestion:hover {
     background-color: rgb(240, 240, 240);
+}
+
+.small_suggestion_icon {
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    display: inline;
+    object-fit: cover;
+}
+
+.small_suggestion_name {
+    font-size: 12px;
+    display: inline;
+    margin-left: 4px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    align-items: center;
+}
+
+.bottom_section {
+    display: flex;
+}
+.top_section {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 4px;
 }
