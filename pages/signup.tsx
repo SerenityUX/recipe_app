@@ -85,7 +85,7 @@ const Signup = () => {
         </div>
       </div>
 
-      <h1 className={styles.title}>Create a new account</h1>
+      <h1 className={styles.title}>Create Your Meal Pack</h1>
       {/*Below the user inputs their profile details */}
 
       <div className={styles.profile}>
