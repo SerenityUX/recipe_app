@@ -14,8 +14,8 @@ import navButtonQR from "../assets/QRButton.svg";
 import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
-import Script from 'next/script'
-import OneSignal from 'react-onesignal';
+import Script from "next/script";
+import OneSignal from "react-onesignal";
 //const [initialized, setInitialized] = useState(false);
 /* OneSignal.init({       appId: "da6f46fd-345a-4232-9931-83cfd8026239",
 safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
@@ -32,7 +32,7 @@ OneSignal.init({
   safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
   notifyButton: {
     enable: true,
-  }
+  },
 });
 
 const animationvariants = {
@@ -92,7 +92,7 @@ export async function getServerSideProps(context) {
 
     const user = await getSelf(token);
     const user_list = await getAllUsers();
-    
+
     const recipes_list = await fetch(
       "https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" +
         user?.id
@@ -239,8 +239,15 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
-      <script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></script>
-      <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script
+          defer
+          data-domain="mealpack.app"
+          src="https://plausible.io/js/plausible.js"
+        ></script>
+        <script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async=""
+        ></script>
 
         <title>Meal Pack</title>
         <meta
