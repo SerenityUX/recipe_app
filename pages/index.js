@@ -15,7 +15,6 @@ import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 import Script from "next/script";
-import OneSignal from 'react-onesignal';
 import { useEffect } from 'react'
 
 
@@ -243,10 +242,7 @@ export default function Home(props) {
           data-domain="mealpack.app"
           src="https://plausible.io/js/plausible.js"
         ></script>
-        <script
-          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          async=""
-        ></script>
+
 
         <title>Meal Pack</title>
         <meta
