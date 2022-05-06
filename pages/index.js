@@ -222,6 +222,19 @@ export default function Home(props) {
       <Head>
       <script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></script>
         <title>Meal Pack</title>
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+        <script>
+          window.OneSignal = window.OneSignal || [];
+          OneSignal.push(function() {
+            OneSignal.init({
+              appId: "da6f46fd-345a-4232-9931-83cfd8026239",
+              safari_web_id: "",
+              notifyButton: {
+                enable: true,
+              },
+            })
+          })
+        </script>
         <meta
           name="Social Recipe Sharing Platform"
           content="A recipe tool to share and enjoy recipes with friends and family"
