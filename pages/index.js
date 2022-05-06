@@ -15,6 +15,25 @@ import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 import Script from 'next/script'
+import OneSignal from 'react-onesignal';
+//const [initialized, setInitialized] = useState(false);
+/* OneSignal.init({       appId: "da6f46fd-345a-4232-9931-83cfd8026239",
+safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
+notifyButton: {
+  enable: true,
+}, }).then(() => {
+  setInitialized(true);
+  OneSignal.showSlidedownPrompt().then(() => {
+    // do other stuff
+  });
+}) */
+OneSignal.init({
+  appId: "da6f46fd-345a-4232-9931-83cfd8026239",
+  safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
+  notifyButton: {
+    enable: true,
+  }
+});
 
 const animationvariants = {
   hidden: {
@@ -221,20 +240,9 @@ export default function Home(props) {
     <div className={styles.container}>
       <Head>
       <script defer data-domain="mealpack.app" src="https://plausible.io/js/plausible.js"></script>
+      <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+
         <title>Meal Pack</title>
-        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-        <script>
-          window.OneSignal = window.OneSignal || [];
-          OneSignal.push(function() {
-            OneSignal.init({
-              appId: "da6f46fd-345a-4232-9931-83cfd8026239",
-              safari_web_id: "",
-              notifyButton: {
-                enable: true,
-              },
-            })
-          })
-        </script>
         <meta
           name="Social Recipe Sharing Platform"
           content="A recipe tool to share and enjoy recipes with friends and family"
