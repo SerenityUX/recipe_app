@@ -52,6 +52,7 @@
     margin-top: 56px;
     width: 100vw;
     aspect-ratio: 3 / 4;
+    height: 133.33vw;
 }
 
 .title {
@@ -453,6 +454,7 @@
     position: absolute;
     background-size: cover;
     width: 100vw;
+    height: 133.33vw;
     object-fit: cover;
 }
 
