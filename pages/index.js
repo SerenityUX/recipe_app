@@ -15,7 +15,10 @@ import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 import Script from "next/script";
-import OneSignal from "react-onesignal";
+import OneSignal from 'react-onesignal';
+import { useEffect } from 'react'
+
+
 //const [initialized, setInitialized] = useState(false);
 /* OneSignal.init({       appId: "da6f46fd-345a-4232-9931-83cfd8026239",
 safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
@@ -27,13 +30,7 @@ notifyButton: {
     // do other stuff
   });
 }) */
-OneSignal.init({
-  appId: "da6f46fd-345a-4232-9931-83cfd8026239",
-  safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
-  notifyButton: {
-    enable: true,
-  },
-});
+
 
 const animationvariants = {
   hidden: {
@@ -79,7 +76,9 @@ export const CheckState = {
 }      */
 
 //Version that should work below
+
 export async function getServerSideProps(context) {
+  
   try {
     const token = context.req?.cookies?.token;
     if (!token)
