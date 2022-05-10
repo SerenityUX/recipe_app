@@ -2,6 +2,8 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
+import Minirecipepreview from "../components/minirecipepreview";
+
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
@@ -16,6 +18,8 @@ import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 import Script from "next/script";
 import { useEffect } from 'react'
+import Modal from "react-modal";
+import closeButton from "../assets/closeicon.svg"
 
 
 //const [initialized, setInitialized] = useState(false);
@@ -223,8 +227,20 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+
+  const read_message = async () => {
+    fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
+      method: "POST",
+      headers: { "Content-Type": "application/JSON" , 
+         "Authorization": `Bearer ${props.token}` 
+       },
+      body: JSON.stringify({
+        gift_ledger_id: props.unread_messages[0].id,
+      }),
+    }).then((response) => console.log(response));}
+
   const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
-  console.log(props.unread_messages)
+  const [modalIsOpen, setModalIsOpen] = useState(true);
   const toggleCheck = async () => {
     if (isChecked != CheckState.Checked) {
       //setIsChecking(CheckState.Checked);
@@ -384,6 +400,68 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
+      {props.unread_messages.length === 0 ? 
+        null :
+      (<Modal
+        className={styles.Modal}
+        isOpen={modalIsOpen}
+        onRequestClose={() => {
+          setModalIsOpen(false)
+          read_message()
+        }}
+        preventScroll={true}
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.3)",
+            "backdrop-filter": "grayscale(30%) brightness(112.5%)",
+          },
+          content: {
+            "border-radius": "12px",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            border: "none",
+            background: "#FFFFFF",
+            "min-width": "84.5vw",
+            height: "max-content",
+            overflow: "none",
+            WebkitOverflowScrolling: "touch",
+            outline: "none",
+            padding: "16px",
+            "z-index": "150",
+          },
+        }}
+      >
+        <div className={styles.modalTop}>          
+{/*         <a
+            className={styles.modalTopButton}
+            onClick={() => setModalIsOpen(false)}
+          >
+            <Image
+              width={24}
+              height={24}
+              className={styles.giftIcon}
+              src={closeButton}
+              alt="Close Modal"
+            />
+          </a> */}
+          <p className={styles.modalTopText}>{props.unread_messages[0].new_sent_by[0].name} Sent You a Gift</p>
+          <Minirecipepreview
+                      author={props.unread_messages[0].recipes_details.recipe_author[0].name}
+                      avatar={props.unread_messages[0].recipes_details.recipe_author[0].profile_picture.url}
+                      title={props.unread_messages[0].recipes_details.recipe_name}
+                      key={props.unread_messages[0].recipes_details.id}
+                      id={props.unread_messages[0].recipes_details.id}
+                      thumbnail={props.unread_messages[0].recipes_details.recipe_thumbnail.url}
+        ></Minirecipepreview>
+        </div>
+        </Modal>)}
         <div className={styles.topbar}>
           <motion.div
             initial="hidden"
@@ -474,7 +552,6 @@ export default function Home(props) {
           {Array.isArray(props.recipes_list) &&
             props.recipes_list
               .filter((item) => {
-                console.log(searchTag);
 
                 if (searchTerm == "") {
                   return item;

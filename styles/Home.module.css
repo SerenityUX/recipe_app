@@ -120,3 +120,25 @@
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+.modalTopText {
+  font-size: 24px;
+  display: block;
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+.modalTopButton {
+  z-index: 10;
+  display: block;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: 0px;
+  height: 24px;
+  width: 24px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;  
+}

@@ -17,7 +17,35 @@
 
 }
 
+
+.miniauthor p {
+    font-size: 12px;
+    display: inline;
+    margin-left: 8px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.miniauthor img {
+    width: 16px;
+    height: 16px;
+    display: inline;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-bottom: 0px;
+    background-color: #e0e0e0;
+}
+
 .author {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #484848;
+    margin-bottom: 0px;
+}
+
+.miniauthor {
     display: flex;
     align-items: center;
     width: 100%;
@@ -34,11 +62,29 @@
     color: #181818;
 }
 
+.minititle {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    margin-top: 2px;
+    width: 100%;
+    color: #181818;
+}
+
 .right {
     display: flexbox;
     height: 112px;
     width: 83px;
     margin-right: 16px;
+    float: right;
+    align-self: center;
+    justify-self: center;
+}
+.miniright {
+    display: flex;
+    width: 15vw;
+    height: 20vw;
+    margin-right: 4px;
     float: right;
     align-self: center;
     justify-self: center;
@@ -50,6 +96,13 @@
     overflow: hidden;
     background-color: #e0e0e0;
 }
+.minithumbnail {
+    width: 15vw;
+    height: 20vw;
+    overflow: hidden;
+    object-fit: cover;
+    background-color: #e0e0e0;    
+}
 
 .thumbnailcontent {
     object-fit: cover;
@@ -58,6 +111,12 @@
     height: 100%;
 }
 
+.minithumbnailcontent {
+    object-fit: cover;
+    object-position: center center;
+    width: 15vw;
+    height: 20vw;
+}
 .left {
     display: inline-block;
     height: 112px;
@@ -66,11 +125,30 @@
     vertical-align: middle;
 }
 
+.minileft {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .recipepreview {
     display: inline;
     flex-wrap: wrap;
     flex-direction: row;
     width: 100vw;
+    height: fit-content;
+    margin-left: 0px;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    justify-content: space-between;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.minirecipepreview {
+    display: inline;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
     height: fit-content;
     margin-left: 0px;
     margin-bottom: 24px;
@@ -91,8 +169,36 @@
     justify-content: center;
 }
 
+.minidivider {
+    height: 1px;
+    width: calc(100%);
+    background-color: #F1F3F4;
+    display: flexbox;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+
 .link {
     width: 100%;
     height: 100;
     -webkit-tap-highlight-color: transparent;
+}
+
+.mini_author_profile {
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    display: inline;
+    object-fit: cover;
+    background-color: #e0e0e0;
+}
+
+.small_suggestion_name {
+    font-size: 12px;
+    display: inline;
+    margin-left: 4px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    align-items: center;
 }
