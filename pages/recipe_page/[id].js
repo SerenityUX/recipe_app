@@ -158,7 +158,7 @@ export default function Recipe(props) {
       "https://dev.createforever.media/api:lSOVAmsS/gift",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${props.token}` },
         body: JSON.stringify({
           email: email,
           recipes_id: recipe_id,

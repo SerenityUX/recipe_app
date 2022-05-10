@@ -96,7 +96,14 @@ export async function getServerSideProps(context) {
         user?.id
     ).then((res) => res.json());
 
-    return { props: { user_list, recipes_list } }; // this returns data as posts in the props to the component
+    const unread_messages = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/get_unread_messages",
+      {
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+      }
+    ).then((res) => res.json());
+
+    return { props: { user_list, recipes_list, unread_messages } }; // this returns data as posts in the props to the component
   } catch (error) {
     console.log(error);
     return {
@@ -217,7 +224,7 @@ export async function getStaticProps({ params }) {
 
 export default function Home(props) {
   const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
-
+  console.log(props.unread_messages)
   const toggleCheck = async () => {
     if (isChecked != CheckState.Checked) {
       //setIsChecking(CheckState.Checked);
@@ -228,7 +235,6 @@ export default function Home(props) {
       console.log("Unchecked");
       setSearchTag("");
     }
-    console.log(searchTag);
   };
 
   const [searchTerm, setSearchTerm] = useState("");
