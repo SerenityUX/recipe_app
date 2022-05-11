@@ -128,7 +128,6 @@
 .minileft {
     height: 78px;
     display: inline-block;
-    width: calc(100% - 68px);
     vertical-align: middle;
 }
 
@@ -147,9 +146,7 @@
 }
 
 .minirecipepreview {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: block;
     width: 100%;
     margin-left: 0px;
     -webkit-tap-highlight-color: transparent;
