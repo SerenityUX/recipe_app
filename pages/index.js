@@ -17,23 +17,10 @@ import createButton from "../assets/createbutton.svg";
 import getSelf from "../lib/getSelf";
 import getAllUsers from "../lib/getAllUsers";
 import Script from "next/script";
-import { useEffect } from 'react'
+import { useEffect } from "react";
 import Modal from "react-modal";
-import closeButton from "../assets/closeicon.svg"
-
-
-//const [initialized, setInitialized] = useState(false);
-/* OneSignal.init({       appId: "da6f46fd-345a-4232-9931-83cfd8026239",
-safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
-notifyButton: {
-  enable: true,
-}, }).then(() => {
-  setInitialized(true);
-  OneSignal.showSlidedownPrompt().then(() => {
-    // do other stuff
-  });
-}) */
-
+import closeButton from "../assets/closeicon.svg";
+import * as OneSignal from "onesignal-node";
 
 const animationvariants = {
   hidden: {
@@ -81,7 +68,6 @@ export const CheckState = {
 //Version that should work below
 
 export async function getServerSideProps(context) {
-  
   try {
     const token = context.req?.cookies?.token;
     if (!token)
@@ -103,7 +89,10 @@ export async function getServerSideProps(context) {
     const unread_messages = await fetch(
       "https://dev.createforever.media/api:lSOVAmsS/get_unread_messages",
       {
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       }
     ).then((res) => res.json());
 
@@ -227,17 +216,36 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+  const [resultApi, setResultApi] = useState();
+  useEffect(() => {
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "da6f46fd-345a-4232-9931-83cfd8026239",
+        notifyButton: {
+          enable: true,
+        },
+
+        allowLocalhostAsSecureOrigin: true,
+      });
+    });
+    return () => {
+      window.OneSignal = undefined;
+    };
+  }, []);
 
   const read_message = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
       method: "POST",
-      headers: { "Content-Type": "application/JSON" , 
-         "Authorization": `Bearer ${props.token}` 
-       },
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: `Bearer ${props.token}`,
+      },
       body: JSON.stringify({
         gift_ledger_id: props.unread_messages[0].id,
       }),
-    }).then((response) => console.log(response));}
+    }).then((response) => console.log(response));
+  };
 
   const [isChecked, setIsChecking] = useState(CheckState.Unchecked);
   const [modalIsOpen, setModalIsOpen] = useState(true);
@@ -265,8 +273,12 @@ export default function Home(props) {
           src="https://plausible.io/js/plausible.js"
         ></script>
 
-
+        <script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async=""
+        ></script>
         <title>Meal Pack</title>
+
         <meta
           name="Social Recipe Sharing Platform"
           content="A recipe tool to share and enjoy recipes with friends and family"
@@ -400,48 +412,47 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-      {props.unread_messages.length === 0 ? 
-        null :
-      (<Modal
-        className={styles.Modal}
-        isOpen={modalIsOpen}
-        onRequestClose={() => {
-          setModalIsOpen(false)
-          read_message()
-        }}
-        preventScroll={true}
-        style={{
-          overlay: {
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-            "backdrop-filter": "grayscale(30%) brightness(112.5%)",
-          },
-          content: {
-            "border-radius": "12px",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            border: "none",
-            background: "#FFFFFF",
-            "width": "300px",
-            "height": "fit-content",
-            display: "flex",
-            "align-items": "center",
-            overflow: "none",
-            WebkitOverflowScrolling: "touch",
-            outline: "none",
-            padding: "16px",
-            "z-index": "150",
-          },
-        }}
-      >
-        <div className={styles.modalTop}>          
-{/*         <a
+        {props.unread_messages.length === 0 ? null : (
+          <Modal
+            className={styles.Modal}
+            isOpen={modalIsOpen}
+            onRequestClose={() => {
+              setModalIsOpen(false);
+              read_message();
+            }}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
+                "backdrop-filter": "grayscale(30%) brightness(112.5%)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                border: "none",
+                background: "#FFFFFF",
+                width: "300px",
+                height: "fit-content",
+                display: "flex",
+                "align-items": "center",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px",
+                "z-index": "150",
+              },
+            }}
+          >
+            <div className={styles.modalTop}>
+              {/*         <a
             className={styles.modalTopButton}
             onClick={() => setModalIsOpen(false)}
           >
@@ -453,17 +464,27 @@ export default function Home(props) {
               alt="Close Modal"
             />
           </a> */}
-          <p className={styles.modalTopText}>{props.unread_messages[0].new_sent_by[0].name} Sent You a Gift</p>
-          <Minirecipepreview
-                      author={props.unread_messages[0].recipes_details.recipe_author[0].name}
-                      avatar={props.unread_messages[0].recipes_details.recipe_author[0].profile_picture.url}
-                      title={props.unread_messages[0].recipes_details.recipe_name}
-                      key={props.unread_messages[0].recipes_details.id}
-                      id={props.unread_messages[0].recipes_details.id}
-                      thumbnail={props.unread_messages[0].recipes_details.recipe_thumbnail.url}
-        ></Minirecipepreview>
-        </div>
-        </Modal>)}
+              <p className={styles.modalTopText}>
+                {props.unread_messages[0].new_sent_by[0].name} Sent You a Gift
+              </p>
+              <Minirecipepreview
+                author={
+                  props.unread_messages[0].recipes_details.recipe_author[0].name
+                }
+                avatar={
+                  props.unread_messages[0].recipes_details.recipe_author[0]
+                    .profile_picture.url
+                }
+                title={props.unread_messages[0].recipes_details.recipe_name}
+                key={props.unread_messages[0].recipes_details.id}
+                id={props.unread_messages[0].recipes_details.id}
+                thumbnail={
+                  props.unread_messages[0].recipes_details.recipe_thumbnail.url
+                }
+              ></Minirecipepreview>
+            </div>
+          </Modal>
+        )}
         <div className={styles.topbar}>
           <motion.div
             initial="hidden"
@@ -554,7 +575,6 @@ export default function Home(props) {
           {Array.isArray(props.recipes_list) &&
             props.recipes_list
               .filter((item) => {
-
                 if (searchTerm == "") {
                   return item;
                 } else if (

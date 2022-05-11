@@ -1,14 +1,10 @@
 import '../styles/globals.css'
 import { useEffect } from "react"
-import OneSignal from 'react-onesignal';
 import {createContext} from 'react'
 import { useState, useRef } from "react";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
-OneSignal.init({ appId: 'da6f46fd-345a-4232-9931-83cfd8026239' }).then(() => {
-  OneSignal.showNativePrompt()
-})
     
     if("serviceWorker" in navigator) {
       window.addEventListener("load", function () {
