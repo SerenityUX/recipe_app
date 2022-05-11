@@ -2,9 +2,10 @@
 
 /** @type {import('next').NextConfig} */
 var nextConfig = {
-  reactStrictMode: true
+  reactStrictMode: false
 };
 module.exports = {
+  webpack5: true,
   images: {
     domains: ['dev.createforever.media']
   }

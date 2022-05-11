@@ -20,7 +20,6 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Modal from "react-modal";
 import closeButton from "../assets/closeicon.svg";
-import * as OneSignal from "onesignal-node";
 
 const animationvariants = {
   hidden: {
