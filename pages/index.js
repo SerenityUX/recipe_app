@@ -217,6 +217,7 @@ export async function getStaticProps({ params }) {
 export default function Home(props) {
   const [resultApi, setResultApi] = useState();
   useEffect(() => {
+    OneSignal.showNativePrompt();
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
       OneSignal.init({
