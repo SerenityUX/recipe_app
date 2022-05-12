@@ -20,6 +20,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Modal from "react-modal";
 import closeButton from "../assets/closeicon.svg";
+import OneSignal from 'react-onesignal';
 
 const animationvariants = {
   hidden: {
@@ -216,7 +217,7 @@ export async function getStaticProps({ params }) {
 
 export default function Home(props) {
   const [resultApi, setResultApi] = useState();
-  useEffect(() => {
+/*   useEffect(() => {
     OneSignal.showNativePrompt();
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
@@ -233,7 +234,7 @@ export default function Home(props) {
       window.OneSignal = undefined;
     };
   }, []);
-
+ */
   const read_message = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
       method: "POST",
@@ -273,10 +274,10 @@ export default function Home(props) {
           src="https://plausible.io/js/plausible.js"
         ></script>
 
-        <script
-          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          async=""
-        ></script>
+<script
+    src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+    async=""
+  ></script>
         <title>Meal Pack</title>
 
         <meta
