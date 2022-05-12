@@ -6,6 +6,9 @@ import { useState, useRef } from "react";
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
+    Notification.requestPermission(status => {
+      console.log("Permission status:", status)
+    });
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
         OneSignal.init({
