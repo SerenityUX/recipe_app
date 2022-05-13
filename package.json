@@ -21,6 +21,7 @@
     "fix-image-rotation": "^2.0.0",
     "framer-motion": "^6.3.0",
     "fs": "^0.0.1-security",
+    "howler": "^2.2.3",
     "html5-qrcode": "^2.2.1",
     "http": "^0.0.1-security",
     "immer": "^9.0.12",
@@ -51,6 +52,7 @@
     "@types/shortid": "^0.0.29",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
+    "file-loader": "^6.2.0",
     "prettier": "2.6.2",
     "vercel": "^24.0.1"
   }

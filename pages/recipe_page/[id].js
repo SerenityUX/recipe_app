@@ -12,9 +12,8 @@ import closeButton from "../../assets/closeicon.svg";
 import backButton from "../../assets/back.svg";
 import nearby from "../../assets/nearby.svg";
 import email_icon from "../../assets/email.svg";
+import {Howl, Howler} from "howler";
 import { motion } from "framer-motion";
-
-
 
 const draw = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -101,6 +100,10 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe(props) {
+
+
+
+
   const [suggestions, setSuggestions] = useState([]);
   const [loadingnearby, setLoadingNearby] = useState([]);
   const SuggestHandler = (text) => {
@@ -250,8 +253,8 @@ export default function Recipe(props) {
   //const { id } = router.query
 
   //Rendering a component to the page
-
   return (
+    
     <div>
       {props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 ? (
         <div>
@@ -547,19 +550,24 @@ export default function Recipe(props) {
                 props.nearby_users.map((user, i) => (
 
                   <div
+                  key={i}
                     className={styles.individual_nearby}
                     onClick={() => {
                       setLoadingNearby(loadingnearby => [...loadingnearby, user.id])
                       console.log(loadingnearby)
                       attemptToGiftNearby(user.email, recipe_id);
                     }}>
-                    <div className={styles.stack_profile_pic}
+                    <div
+                    key={i} className={styles.stack_profile_pic}
                     >
                                       <img
+                                      key={i}
                       className={styles.nearby_profile_icon}
                       src={user.profile_picture.url}
                     ></img>
-                    <div data-isOn={loadingnearby}>
+                    <div
+                    key={i}
+                    data-isOn={loadingnearby}>
                     {loadingnearby.includes(user.id) ? (
                         <motion.svg
       width="76"
@@ -578,11 +586,11 @@ export default function Recipe(props) {
                       stroke="#43AA8B"
                       variants={draw}
                       custom={i}
-                    />
+                      key={i}/>
                     </motion.svg>) : null}
                     </div>
                   </div>
-                    <p className={styles.nearby_name}>{user.name}</p>
+                    <p key={i} className={styles.nearby_name}>{user.name}</p>
                   </div>
                 ))}
             </div>

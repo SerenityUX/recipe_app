@@ -8,4 +8,3 @@ module.exports = {
     domains: ['dev.createforever.media'],
   },
 }
-
