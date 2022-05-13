@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }) {
             },
         });
     });
-    OneSignal.showNativePrompt();
     return () => {
         window.OneSignal = undefined;
     };
