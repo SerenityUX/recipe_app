@@ -16,15 +16,19 @@ import { Howl, Howler } from "howler";
 import { motion } from "framer-motion";
 
 const draw = {
-  hidden: { pathLength: 0, opacity: 0 },
+  hidden: { pathLength: 0, opacity: 0.01, r: 30, stroke: "#ffffff", },
   visible: (i) => {
     const delay = 0.01 + i * 0.5;
     return {
       pathLength: 1,
       opacity: 1,
+      stroke: "#43AA8B",
+      r: 35.5,
       transition: {
-        pathLength: { delay, type: "spring", duration: 3.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 },
+        pathLength: { delay: 0, type: "tween", duration: 1.5, damping: 10, mass: 0.75, stiffness: 100 },
+        stroke: { delay: 1.5, type: "spring", duration: 0.5},
+        opacity: { delay: 0, duration: 0.5 },
+        r: { delay: 1.5, duration: 0.5 },
       },
     };
   },
@@ -590,8 +594,6 @@ export default function Recipe(props) {
                                 className={styles.nearbyCircle}
                                 cx="38"
                                 cy="38"
-                                r="35.5"
-                                stroke="#43AA8B"
                                 variants={draw}
                                 custom={i}
                                 key={i}
