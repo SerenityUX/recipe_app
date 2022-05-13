@@ -12,7 +12,7 @@ import closeButton from "../../assets/closeicon.svg";
 import backButton from "../../assets/back.svg";
 import nearby from "../../assets/nearby.svg";
 import email_icon from "../../assets/email.svg";
-import {Howl, Howler} from "howler";
+import { Howl, Howler } from "howler";
 import { motion } from "framer-motion";
 
 const draw = {
@@ -24,10 +24,10 @@ const draw = {
       opacity: 1,
       transition: {
         pathLength: { delay, type: "spring", duration: 3.5, bounce: 0 },
-        opacity: { delay, duration: 0.01 }
-      }
+        opacity: { delay, duration: 0.01 },
+      },
     };
-  }
+  },
 };
 
 export const ShareState = {
@@ -100,10 +100,6 @@ export async function getServerSideProps(context) {
 
 //Start of recipe page component
 export default function Recipe(props) {
-
-
-
-
   const [suggestions, setSuggestions] = useState([]);
   const [loadingnearby, setLoadingNearby] = useState([]);
   const SuggestHandler = (text) => {
@@ -254,7 +250,6 @@ export default function Recipe(props) {
 
   //Rendering a component to the page
   return (
-    
     <div>
       {props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 ? (
         <div>
@@ -292,10 +287,9 @@ export default function Recipe(props) {
             <a
               className={styles.giftIconButton}
               onClick={() => {
-                setSelectionModalIsOpen(true)
+                setSelectionModalIsOpen(true);
                 setEmailModalIsOpen(false);
                 setNearbyModalIsOpen(false);
-
               }}
             >
               <Image
@@ -403,7 +397,7 @@ export default function Recipe(props) {
                 bottom: "40px",
                 border: "none",
                 background: "#F1F3F4",
-                "width": "70vw",
+                width: "70vw",
                 "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
                 overflow: "none",
                 WebkitOverflowScrolling: "touch",
@@ -521,9 +515,9 @@ export default function Recipe(props) {
                 overflow: "none",
                 WebkitOverflowScrolling: "touch",
                 outline: "none",
-                padding: "16px 16px 0px 16px",
+                padding: "16px 16px 16px 16px",
                 "min-height": "fit-content",
-                "height": "fit-content",
+                height: "fit-content",
                 "z-index": "150",
               },
             }}
@@ -546,66 +540,73 @@ export default function Recipe(props) {
                 />
               </a>
             </div>
-            {props.nearby_users.length === 0 ? ( 
-            <div>
-            <p>There are no nearby users who have enabled this feature</p> 
-            <a className={styles.modalA}                 onClick={() => {
-                  setNearbyModalIsOpen(false);
-                  setEmailModalIsOpen(true);
-                  console.log(props.nearby_users);
-                }}>Share using email address</a>
-            </div>
-            )
-              :
-            (<div className={styles.group_of_nearby_users}>
-              {props.nearby_users &&
-                props.nearby_users.map((user, i) => (
-
-                  <div
-                  key={i}
-                    className={styles.individual_nearby}
-                    onClick={() => {
-                      setLoadingNearby(loadingnearby => [...loadingnearby, user.id])
-                      console.log(loadingnearby)
-                      attemptToGiftNearby(user.email, recipe_id);
-                    }}>
+            {props.nearby_users.length === 0 ? (
+              <div>
+                <p>There are no nearby users who have enabled this feature</p>
+                <a
+                  className={styles.modalA}
+                  onClick={() => {
+                    setNearbyModalIsOpen(false);
+                    setEmailModalIsOpen(true);
+                    console.log(props.nearby_users);
+                  }}
+                >
+                  Share using email address
+                </a>
+              </div>
+            ) : (
+              <div className={styles.group_of_nearby_users}>
+                {props.nearby_users &&
+                  props.nearby_users.map((user, i) => (
                     <div
-                    key={i} className={styles.stack_profile_pic}
+                      key={i}
+                      className={styles.individual_nearby}
+                      onClick={() => {
+                        setLoadingNearby((loadingnearby) => [
+                          ...loadingnearby,
+                          user.id,
+                        ]);
+                        console.log(loadingnearby);
+                        attemptToGiftNearby(user.email, recipe_id);
+                      }}
                     >
-                                      <img
-                                      key={i}
-                      className={styles.nearby_profile_icon}
-                      src={user.profile_picture.url}
-                    ></img>
-                    <div
-                    key={i}
-                    data-isOn={loadingnearby}>
-                    {loadingnearby.includes(user.id) ? (
-                        <motion.svg
-      width="76"
-      height="76"
-      viewBox="0 0 76 76"
-      initial="hidden"
-      animate="visible"
-      className={styles.nearbyCircleLarge}
-    >
-      
-                  <motion.circle
-                  className={styles.nearbyCircle}
-                      cx="38"
-                      cy="38"
-                      r="35.5"
-                      stroke="#43AA8B"
-                      variants={draw}
-                      custom={i}
-                      key={i}/>
-                    </motion.svg>) : null}
+                      <div key={i} className={styles.stack_profile_pic}>
+                        <img
+                          key={i}
+                          className={styles.nearby_profile_icon}
+                          src={user.profile_picture.url}
+                        ></img>
+                        <div key={i} data-isOn={loadingnearby}>
+                          {loadingnearby.includes(user.id) ? (
+                            <motion.svg
+                              width="76"
+                              height="76"
+                              viewBox="0 0 76 76"
+                              initial="hidden"
+                              animate="visible"
+                              className={styles.nearbyCircleLarge}
+                            >
+                              <motion.circle
+                                className={styles.nearbyCircle}
+                                cx="38"
+                                cy="38"
+                                r="35.5"
+                                stroke="#43AA8B"
+                                variants={draw}
+                                custom={i}
+                                key={i}
+                              />
+                            </motion.svg>
+                          ) : null}
+                        </div>
+                      </div>
+                      <p key={i} className={styles.nearby_name}>
+                        {user.name}
+                      </p>
                     </div>
-                  </div>
-                    <p key={i} className={styles.nearby_name}>{user.name}</p>
-                  </div>
-                ))}
-            </div>)}
+                  ))}
+              </div>
+            )}
           </Modal>
 
           <div
