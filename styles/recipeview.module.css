@@ -188,6 +188,12 @@
     -moz-appearance: none;  
 }
 
+.modalA {
+color: #2874E8;
+text-decoration: underline;
+
+}
+
 .inputgroup {
     display: relative;
 }

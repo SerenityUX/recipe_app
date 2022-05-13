@@ -399,7 +399,7 @@ export default function Recipe(props) {
                 position: "absolute",
                 top: "86px",
                 right: "16px",
-                left: "100px",
+                left: "calc(30vw-16px)",
                 bottom: "40px",
                 border: "none",
                 background: "#F1F3F4",
@@ -521,8 +521,9 @@ export default function Recipe(props) {
                 overflow: "none",
                 WebkitOverflowScrolling: "touch",
                 outline: "none",
-                padding: "16px",
+                padding: "16px 16px 0px 16px",
                 "min-height": "fit-content",
+                "height": "fit-content",
                 "z-index": "150",
               },
             }}
@@ -545,7 +546,18 @@ export default function Recipe(props) {
                 />
               </a>
             </div>
-            <div className={styles.group_of_nearby_users}>
+            {props.nearby_users.length === 0 ? ( 
+            <div>
+            <p>There are no nearby users who have enabled this feature</p> 
+            <a className={styles.modalA}                 onClick={() => {
+                  setNearbyModalIsOpen(false);
+                  setEmailModalIsOpen(true);
+                  console.log(props.nearby_users);
+                }}>Share using email address</a>
+            </div>
+            )
+              :
+            (<div className={styles.group_of_nearby_users}>
               {props.nearby_users &&
                 props.nearby_users.map((user, i) => (
 
@@ -593,7 +605,7 @@ export default function Recipe(props) {
                     <p key={i} className={styles.nearby_name}>{user.name}</p>
                   </div>
                 ))}
-            </div>
+            </div>)}
           </Modal>
 
           <div
