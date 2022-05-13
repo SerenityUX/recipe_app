@@ -2,7 +2,8 @@ import '../styles/globals.css'
 import { useEffect } from "react"
 import {createContext} from 'react'
 import { useState, useRef } from "react";
-
+/* import OneSignal from "react-onesignal";
+ */
 function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
@@ -15,14 +16,13 @@ function MyApp({ Component, pageProps }) {
     OneSignal.push(function () {
         OneSignal.init({
             appId: "da6f46fd-345a-4232-9931-83cfd8026239",
+            safari_web_id: "web.onesignal.auto.365cbfbd-b203-4342-b6f2-394fa1a1712a",
             notifyButton: {
                 enable: false,
             },
-
-            allowLocalhostAsSecureOrigin: true,
         });
     });
-
+    OneSignal.showNativePrompt();
     return () => {
         window.OneSignal = undefined;
     };
