@@ -25,7 +25,7 @@ const draw = {
       stroke: "#43AA8B",
       r: 35.5,
       transition: {
-        pathLength: { delay: 0, type: "tween", duration: 1.5, damping: 10, mass: 0.75, stiffness: 100 },
+        pathLength: { delay: 0, type: "tween", duration: 1.25, damping: 10, mass: 0.75, stiffness: 100 },
         stroke: { delay: 1.5, type: "spring", duration: 0.5},
         opacity: { delay: 0, duration: 0.5 },
         r: { delay: 1.5, duration: 0.5 },
