@@ -127,6 +127,7 @@
 
 .minileft {
     height: 78px;
+    width: 75%;
     display: inline-block;
     vertical-align: middle;
 }
