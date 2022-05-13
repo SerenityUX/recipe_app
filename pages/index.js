@@ -20,7 +20,9 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Modal from "react-modal";
 import closeButton from "../assets/closeicon.svg";
-import OneSignal from 'react-onesignal';
+import OneSignal from "react-onesignal";
+
+
 
 const animationvariants = {
   hidden: {
@@ -96,7 +98,7 @@ export async function getServerSideProps(context) {
       }
     ).then((res) => res.json());
 
-    return { props: { user_list, recipes_list, unread_messages } }; // this returns data as posts in the props to the component
+    return { props: { user_list, recipes_list, unread_messages, token } }; // this returns data as posts in the props to the component
   } catch (error) {
     console.log(error);
     return {
@@ -216,8 +218,42 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+  const getLocation = () => {
+    if (!navigator.geolocation) {
+      setStatus("Geolocation is not supported by your browser");
+    } else {
+      setStatus("Locating...");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setStatus(null);
+          setLat(position.coords.latitude);
+          setLng(position.coords.longitude);
+          fetch(
+            "https://dev.createforever.media/api:lSOVAmsS/store_recent_location",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/JSON",
+                Authorization: `Bearer ${props.token}`,
+              },
+              body: JSON.stringify({
+                recent_location: {
+                    lng: position.coords.longitude,
+                    lat: position.coords.latitude,
+                },
+              }),
+            }
+          ).then((response) => console.log(response));
+        },
+        () => {
+          setStatus("Unable to retrieve your location");
+        }
+      );
+    }
+  };
+
   const [resultApi, setResultApi] = useState();
-/*   useEffect(() => {
+  /*   useEffect(() => {
     OneSignal.showNativePrompt();
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
@@ -235,6 +271,11 @@ export default function Home(props) {
     };
   }, []);
  */
+
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+  const [status, setStatus] = useState(null);
+
   const read_message = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
       method: "POST",
@@ -265,6 +306,11 @@ export default function Home(props) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTag, setSearchTag] = useState("Sample");
 
+
+  useEffect(() => {
+    getLocation()
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -274,10 +320,10 @@ export default function Home(props) {
           src="https://plausible.io/js/plausible.js"
         ></script>
 
-<script
-    src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-    async=""
-  ></script>
+        <script
+          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+          async=""
+        ></script>
         <title>Meal Pack</title>
 
         <meta

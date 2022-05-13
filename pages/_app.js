@@ -9,12 +9,14 @@ function MyApp({ Component, pageProps }) {
 /*     Notification.requestPermission(status => {
       console.log("Permission status:", status)
     }); */
+    
+
     window.OneSignal = window.OneSignal || [];
     OneSignal.push(function () {
         OneSignal.init({
             appId: "da6f46fd-345a-4232-9931-83cfd8026239",
             notifyButton: {
-                enable: true,
+                enable: false,
             },
 
             allowLocalhostAsSecureOrigin: true,

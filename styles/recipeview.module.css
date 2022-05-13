@@ -163,6 +163,7 @@
     height: fit-content;
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-right: 16px;
 }
 
 .modalTop {
@@ -327,4 +328,84 @@
     display: block;
     margin-top: 0px;
     margin-bottom: 4px;
+}
+.modalOption {
+    display: flex;
+    justify-content: space-between;
+}
+
+.smalldivider {
+    background-color: #DFE1E5;
+    height: 1px;
+    width: 100%;
+    display: block;
+}
+.modalOption:first-child {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
+}
+.modalOption{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.nearby_profile_icon {
+    height: 76px;
+    width: 76px;
+    border-radius: 100%;
+    object-fit: cover;
+    position: block;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.nearby_name {
+    width: 76px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin-top: 4px;
+    color: #484848;
+}
+
+.nearbyCircle {
+  stroke-width: 5px;
+  stroke-linecap: round;
+  fill: transparent;
+  top: 0;
+  left: 0;
+}
+.nearbyCircleLarge {
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.stack_profile_pic {
+    position: relative;
+    display: inline-block;
+    width: 76px;
+    height: 76px;
+    
+}
+
+.group_of_nearby_users {
+    margin-right: 16px;
+    display: flex;
+    max-width: calc(75vw - 32px);
+    flex-wrap: wrap;
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    justify-content: left;
+    align-items: center;
 }
