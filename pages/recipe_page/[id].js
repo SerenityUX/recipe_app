@@ -435,7 +435,7 @@ export default function Recipe(props) {
                 onChange={(event) =>
                   {
                   handleChanges(event.target.value, props.user_relationships)
-                  setIsSharing(ShareState.default);
+                  setIsSharing(ShareState.Default);
                   }
                 }
                 type="email"
