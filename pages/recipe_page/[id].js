@@ -233,9 +233,9 @@ export default function Recipe(props) {
     );
 
     if (response.status == 200) {
-      setIsSharing(ShareState.Gifted);
+      console.log("worked")
     } else {
-      setIsSharing(ShareState.Failed);
+      console.log("failed")
     }
   };
   //The default value is false
@@ -433,7 +433,10 @@ export default function Recipe(props) {
                 value={email}
                 autoComplete="off"
                 onChange={(event) =>
+                  {
                   handleChanges(event.target.value, props.user_relationships)
+                  setIsSharing(ShareState.default);
+                  }
                 }
                 type="email"
                 id="email"

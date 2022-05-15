@@ -13,3 +13,87 @@
     font-weight: 500;
     margin-left: 16px;
   }
+
+  .group_member {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    margin-left: 12px;
+    object-fit: cover;
+  }
+
+  .group_name {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    margin-top: 8px;
+    width: 100%;
+    color: #181818;
+    display: block;
+  }
+  .group_leader_text {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #484848;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 8px;
+  }
+
+  .group_member_leader {
+    height: 24px;
+    width: 24px;
+    border-radius: 100%;
+    display: inline-block;
+    object-fit: cover;
+  }
+  .right_info {
+    display: flex;
+  }
+
+  .group_information {
+    justify-content: left;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .scrolling_group_members {
+    margin-top: 12px;
+    max-width: 420px;
+    border-radius: 16px;
+  }
+
+  .banner_group {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: calc(100vw - 32px);
+    height: calc((100vw - 32px) / 3 );
+    object-fit: cover;
+  }
+  .divider {
+    height: 2px;
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    background-color: #F1F3F4;
+    display: flexbox;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    justify-content: center;
+}
+
+.group_list .group_member:first-child {
+  margin-left: 0px;
+}
+
+.group_list .group_member {
+  margin-left: 8px;
+}
+
+.group_list {
+  margin-top: 12px;
+  margin-bottom: 0px;
+  height: 24px;
+}
