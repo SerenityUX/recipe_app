@@ -97,3 +97,12 @@
   margin-bottom: 0px;
   height: 24px;
 }
+
+.link {
+  cursor: pointer;
+}
+
+.group_banner {
+  cursor: pointer;
+}
+
