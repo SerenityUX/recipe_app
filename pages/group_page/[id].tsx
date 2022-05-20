@@ -19,8 +19,8 @@ import Marquee from "react-fast-marquee";
 
 export enum JoinState {
   Default = "Default",
-  Joining = "Uploading",
-  Joined = "Uploaded",
+  Joining = "Joining",
+  Joined = "Joined",
   Failed = "Failed"
 }
 
@@ -46,6 +46,8 @@ export async function getServerSideProps(context) {
 
   const user_list = await user_response.json();
 
+
+
   const response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/groups/" + id,
     {
@@ -57,21 +59,40 @@ export async function getServerSideProps(context) {
   return {
     props: {
       selected_group,
-      id,
+      id, token,
     }, // will be passed to the page component as props
   };
 }
 
+
+
 //Start of recipe page component
-export default function Recipe(props) {
+export default function Group(props) {
+
+
    const [benefitsopen, setBenefitsOpen] = useState([]);
   console.log(props.selected_group.group_leader_info[0].profile_picture?.url);
   const router = useRouter();
   const [isJoinState, setIsJoin] = useState<JoinState>(JoinState.Default)
-      const join_group = async () => {
+      const join_group = async (idspecial, tokenspecial) => {
          console.log("wow")
-         setIsJoin( JoinState.Failed )
-      }
+         setIsJoin( JoinState.Joining )
+         fetch("https://dev.createforever.media/api:lSOVAmsS/join/" + idspecial, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/JSON",
+              Authorization: `Bearer ${tokenspecial}`,
+            },
+            body: JSON.stringify({
+              groups_id: idspecial 
+            }),
+          }).then((response) => 
+             {console.log(response)
+             if (response.status == 200) {
+               setIsJoin( JoinState.Joined )
+             }}
+         )}
+      
   return (
     <div>
           <div className={styles.top_bar}>
@@ -900,7 +921,11 @@ export default function Recipe(props) {
 
       <p className={styles.section_title}>{props.selected_group.cta.heading}</p>
       <p className={styles.description}>{props.selected_group.cta.body}</p>
-      <JoinButton onClick={join_group} value={isJoinState}></JoinButton>
+      <JoinButton onClick={ () => {
+         console.log(props.id)
+         console.log(props.token)
+         join_group(props.id, props.token)
+         }} value={isJoinState}></JoinButton>
     </div>
   );
 }
