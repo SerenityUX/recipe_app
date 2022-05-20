@@ -45,7 +45,7 @@ const Cook_groups = (props) => {
       </div>
       {props.group_list.map((item, index) => {
         return (
-          <Link href={`/group_page/${item.id}`} className={styles.link}>
+          <Link key={index} href={`/group_page/${item.id}`} className={styles.link}>
           <div key={index} className={styles.group_banner}>
             <img
               className={styles.banner_group}

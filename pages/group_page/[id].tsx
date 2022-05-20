@@ -110,754 +110,754 @@ export default function Group(props) {
                   className={styles.scrolling_recipes}
                 >
                {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
                               {props.selected_group.shared_recipes.map((recipe, indexposition) => {
-                  return <p className={styles.scrolling_recipe}>{recipe.content.recipe_name}</p>;
+                  return <p className={styles.scrolling_recipe} key={indexposition}>{recipe.content.recipe_name}</p>;
                })}
           </Marquee>
           </div>
@@ -887,7 +887,7 @@ export default function Group(props) {
       <h2 className={styles.section_title}>Member Benefits</h2>
       {props.selected_group.benefits.map((benefit, indexposition) => {
         return (
-          <div className={styles.entiredropdown} onClick={ () => {
+          <div key={indexposition} className={styles.entiredropdown} onClick={ () => {
             {benefitsopen.includes(indexposition) ? (
                setBenefitsOpen(benefitsopen.filter(benefit_special => benefit_special != indexposition)) ) : ( 
                setBenefitsOpen([ ...benefitsopen, indexposition])
