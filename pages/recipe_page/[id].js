@@ -6,6 +6,7 @@ import Image from "next/image";
 import Modal from "react-modal";
 import React, { useState, useEffect, useRef } from "react";
 import ShareButton from "../../components/share_button";
+import SmartText from "../../components/smart_text";
 import getSelf from "../../lib/getSelf";
 import GiftButton from "../../assets/gift.svg";
 import closeButton from "../../assets/closeicon.svg";
@@ -688,7 +689,7 @@ export default function Recipe(props) {
             : props.selected_recipe.ingredients.map((item, index) => {
                 return (
                   <li key={index} className={styles.recipe_ingredients}>
-                    {item}
+                    <SmartText value={item}></SmartText>
                   </li>
                 );
               })}
@@ -721,7 +722,8 @@ export default function Recipe(props) {
               {props.selected_recipe.directions.map((item, index) => {
                 return (
                   <li key={index} className={styles.recipe_directions}>
-                    {item}
+                    <SmartText value={item}>
+                    </SmartText>
                   </li>
                 );
               })}
