@@ -43,7 +43,7 @@ var SmartText = function (_a) {
                     WebkitOverflowScrolling: "touch",
                     outline: "none",
                     padding: "12px",
-                    height: "fit-content",
+                    height: "136px",
                     "z-index": "150",
                     cursor: "pointer"
                 }
@@ -74,42 +74,42 @@ var SmartText = function (_a) {
                 if (value.split(" ")[index + 1] == "cups" || value.split(" ")[index + 1] == "cup") {
                     var unit_1 = value.split(" ")[index + 1];
                     var amount_1 = value.split(" ")[index];
-                    return (react_1["default"].createElement("text", { className: recipeview_module_css_1["default"].clickablecontainer },
-                        react_1["default"].createElement("text", { className: recipeview_module_css_1["default"].clickable, onClick: function (context) {
-                                console.log(context.pageX);
-                                console.log(context.pageY);
-                                if (unit_1 == "cup" || unit_1 == "cups") {
-                                    if (amount_1.includes("/")) {
-                                        var fraction = amount_1.split("/");
-                                        var first = Number(fraction[0]);
-                                        var second = Number(fraction[1]);
-                                        var cups = Number(first / second).toFixed(2);
-                                        var ounces = Number(cups) * 8;
-                                        var tablespoons = Number(ounces) * 2;
-                                        var milileters = Number(cups) * 250;
-                                        console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
-                                    }
-                                    else {
-                                        var cups = Number(amount_1);
-                                        var ounces = Number(cups) * 8;
-                                        var tablespoons = Number(ounces) * 2;
-                                        var milileters = Number(cups) * 250;
-                                        console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
-                                        setConversionModalAmount(Number(cups));
-                                        if (unit_1 == "cups") {
-                                            setConversionModalUnit("Cups");
-                                        }
-                                        if (unit_1 == "cup") {
-                                            setConversionModalUnit("Cup");
-                                        }
-                                        setConversionModalXPosition(context.clientX - 8);
-                                        setConversionModalYPosition(context.clientY - 154);
-                                        console.log(context.clientX);
-                                        setConversionModalIsOpen(true);
-                                        console.log(conversionmodalIsOpen);
-                                    }
+                    return (react_1["default"].createElement("text", { className: recipeview_module_css_1["default"].clickablecontainer, onClick: function (context) {
+                            console.log(context.pageX);
+                            console.log(context.pageY);
+                            if (unit_1 == "cup" || unit_1 == "cups") {
+                                if (amount_1.includes("/")) {
+                                    var fraction = amount_1.split("/");
+                                    var first = Number(fraction[0]);
+                                    var second = Number(fraction[1]);
+                                    var cups = Number(first / second).toFixed(2);
+                                    var ounces = Number(cups) * 8;
+                                    var tablespoons = Number(ounces) * 2;
+                                    var milileters = Number(cups) * 250;
+                                    console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
                                 }
-                            } }, item),
+                                else {
+                                    var cups = Number(amount_1);
+                                    var ounces = Number(cups) * 8;
+                                    var tablespoons = Number(ounces) * 2;
+                                    var milileters = Number(cups) * 250;
+                                    console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
+                                    setConversionModalAmount(Number(cups));
+                                    if (unit_1 == "cups") {
+                                        setConversionModalUnit("Cups");
+                                    }
+                                    if (unit_1 == "cup") {
+                                        setConversionModalUnit("Cup");
+                                    }
+                                    setConversionModalXPosition(context.clientX - 8);
+                                    setConversionModalYPosition(context.clientY - 154);
+                                    console.log(context.clientX);
+                                    setConversionModalIsOpen(true);
+                                    console.log(conversionmodalIsOpen);
+                                }
+                            }
+                        } },
+                        react_1["default"].createElement("text", { className: recipeview_module_css_1["default"].clickable }, item),
                         react_1["default"].createElement("text", null, " "),
                         react_1["default"].createElement("text", { className: recipeview_module_css_1["default"].clickable }, value.split(" ")[index + 1]),
                         react_1["default"].createElement("text", null, " ")));

@@ -51,7 +51,7 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
                           WebkitOverflowScrolling: "touch",
                           outline: "none",
                           padding: "12px",
-                          height: "fit-content",
+                          height: "136px",
                           "z-index": "150",
                           cursor: "pointer",
                         },
@@ -78,8 +78,8 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
             const amount = value.split(" ")[index]
             return (
               
-              <text className={styles.clickablecontainer}>
-              <text className={styles.clickable} onClick={(context) => {
+              <text className={styles.clickablecontainer}
+              onClick={(context) => {
                 console.log(context.pageX)
                 console.log(context.pageY)
                 if(unit == "cup" || unit == "cups") {
@@ -119,6 +119,7 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
                 }
               }
               }>
+              <text className={styles.clickable}>
                 {item}
               </text> 
               <text> </text>
