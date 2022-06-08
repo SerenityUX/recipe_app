@@ -11,14 +11,12 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
   const [conversionmodalYPosition, setConversionModalYPosition] = useState(0);
   const [conversionmodalAmount, setConversionModalAmount] = useState(0);
   const [conversionmodalUnit, setConversionModalUnit] = useState("cups");
+  const onScroll = (e) => {
+    setConversionModalIsOpen(false);
+  }
   useEffect(() => {
-    if (conversionmodalIsOpen) {
-      document.body.style.overflow = 'hidden'
-    }
-    if (!conversionmodalIsOpen) {
-      document.body.style.overflow = 'auto'
-    }
-  }, [conversionmodalIsOpen])
+    window.addEventListener('scroll', onScroll);
+  },[]);
   return (
     
     <text onClick={onClick}>
@@ -91,7 +89,22 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
                     const ounces = Number(cups) * 8
                     const tablespoons = Number(ounces) * 2
                     const milileters = Number(cups) * 250
+                    console.log(cups + " " + unit + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters")
+                    setConversionModalAmount(Number(cups))
+                    if (unit == "cups") {
+                      setConversionModalUnit("Cups")
+                    }
+                    if (unit == "cup") {
+                      setConversionModalUnit("Cup")
+                    }
 
+                    setConversionModalXPosition(context.clientX - 8)
+                    setConversionModalYPosition(context.clientY - 154)
+                    console.log(context.clientX)
+
+                    setConversionModalIsOpen(true)
+                    console.log(conversionmodalIsOpen)
+                    
         
                     console.log(cups + " " + unit + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters")
                   } else {
@@ -112,8 +125,8 @@ const SmartText: React.FC<ButtonProps> = ({ value, onClick }) => {
                     setConversionModalYPosition(context.clientY - 154)
                     console.log(context.clientX)
 
-                      setConversionModalIsOpen(true)
-                      console.log(conversionmodalIsOpen)
+                    setConversionModalIsOpen(true)
+                    console.log(conversionmodalIsOpen)
                     
                   }
                 }

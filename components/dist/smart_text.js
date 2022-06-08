@@ -10,14 +10,12 @@ var SmartText = function (_a) {
     var _d = react_1.useState(0), conversionmodalYPosition = _d[0], setConversionModalYPosition = _d[1];
     var _e = react_1.useState(0), conversionmodalAmount = _e[0], setConversionModalAmount = _e[1];
     var _f = react_1.useState("cups"), conversionmodalUnit = _f[0], setConversionModalUnit = _f[1];
+    var onScroll = function (e) {
+        setConversionModalIsOpen(false);
+    };
     react_1.useEffect(function () {
-        if (conversionmodalIsOpen) {
-            document.body.style.overflow = 'hidden';
-        }
-        if (!conversionmodalIsOpen) {
-            document.body.style.overflow = 'auto';
-        }
-    }, [conversionmodalIsOpen]);
+        window.addEventListener('scroll', onScroll);
+    }, []);
     return (react_1["default"].createElement("text", { onClick: onClick },
         react_1["default"].createElement(react_modal_1["default"], { className: recipeview_module_css_1["default"].shareModal, isOpen: conversionmodalIsOpen, onRequestClose: function () { return setConversionModalIsOpen(false); }, preventScroll: true, style: {
                 overlay: {
@@ -86,6 +84,19 @@ var SmartText = function (_a) {
                                     var ounces = Number(cups) * 8;
                                     var tablespoons = Number(ounces) * 2;
                                     var milileters = Number(cups) * 250;
+                                    console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
+                                    setConversionModalAmount(Number(cups));
+                                    if (unit_1 == "cups") {
+                                        setConversionModalUnit("Cups");
+                                    }
+                                    if (unit_1 == "cup") {
+                                        setConversionModalUnit("Cup");
+                                    }
+                                    setConversionModalXPosition(context.clientX - 8);
+                                    setConversionModalYPosition(context.clientY - 154);
+                                    console.log(context.clientX);
+                                    setConversionModalIsOpen(true);
+                                    console.log(conversionmodalIsOpen);
                                     console.log(cups + " " + unit_1 + " is equal to " + ounces + " ounces, " + tablespoons + " tablespoons, and " + milileters + " Milileters");
                                 }
                                 else {
