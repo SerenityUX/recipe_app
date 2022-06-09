@@ -419,11 +419,11 @@ text-decoration: underline;
 .clickable {
     text-decoration: underline;
     text-decoration-style: dotted;
-    text-decoration-color: #D092F6;
+    text-decoration-color: #c4c4c4;
     text-underline-offset: 2px;
-    color: #7c38a6;
+    color: #484848;
     padding: 0px;
-    background-color: #fbf8fe;
+    background-color: #f9f9f9;
     border-radius: 4px;
 }
 
@@ -432,8 +432,10 @@ text-decoration: underline;
 }
 .clickablecontainer:hover .clickable {
     cursor: pointer;
-    color: #622786;
-    text-decoration-color: #75369B; 
+    color: #2874E8;
+    text-decoration-color: #155eca; 
+    background-color: #f6f9ff;
+
 }
 
 .conversionModalContent {
