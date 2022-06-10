@@ -681,7 +681,7 @@ export default function Recipe(props) {
                         });
                       }}
                     >
-                      {item}
+                      <SmartText value={item}></SmartText>
                     </span>
                   </li>
                 );
