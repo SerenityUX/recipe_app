@@ -96,7 +96,7 @@ export default function Group(props) {
   return (
     <div>
           <div className={styles.top_bar}>
-          <a href=" / ">
+          <a href=" /cook_groups">
           <Image src={backButton} alt="Back Button" width={24} height={24} />
           </a>
           <p>{props.selected_group.group_name}</p>

@@ -151,6 +151,7 @@
     width: 100%;
     margin-left: 0px;
     -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
 
 .divider {

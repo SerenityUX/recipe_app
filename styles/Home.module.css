@@ -126,7 +126,7 @@
   display: block;
   margin-top: 0px;
   margin-bottom: 0px;
-
+  min-width: 268px;
 }
 .modalTopButton {
   z-index: 10;

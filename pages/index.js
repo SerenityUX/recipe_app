@@ -466,6 +466,7 @@ export default function Home(props) {
               setModalIsOpen(false);
               read_message();
             }}
+
             preventScroll={true}
             style={{
               overlay: {
@@ -514,6 +515,12 @@ export default function Home(props) {
                 {props.unread_messages[0].new_sent_by[0].name} Sent You a Gift
               </p>
               <Minirecipepreview
+                token={
+                  props.token
+                }
+                message={
+                  props.unread_messages[0].id
+                }
                 author={
                   props.unread_messages[0].recipes_details.recipe_author[0].name
                 }
