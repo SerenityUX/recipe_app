@@ -746,7 +746,7 @@ export default function Recipe(props) {
                 WebkitOverflowScrolling: "touch",
                 outline: "none",
                 padding: "16px 16px 16px 16px",
-                height: "fit-content",
+                height: "365px",
                 "z-index": "150",
                 "width": "300px"
               },
@@ -773,13 +773,13 @@ export default function Recipe(props) {
             </div>
 
               <div>
-                <p>{props.user.name} created this scannable recipe code for you</p>
+                {/* <p>{props.user.name} created this scannable recipe code for you</p> */}
                 <div className={styles.qrCode}>
                 <QRCode className={styles.qrCodeActual} value={shareCode} logoImage={mylogo.src}  logoOpacity={1} size={249} bgColor={"#f1f3f4"} enableCORS={true} removeQrCodeBehindLogo={true} eyeRadius={200} qrStyle={"dots"} fgColor={"#2874E8"} onClick={() => {
                   console.log(shareCode)
                 }}/>
                 </div>
-                <p>Use the scan feature linked on the home page</p>              </div>
+                <p className={styles.subtext}>Scan with Meal Pack Scanner</p>              </div>
             </div>
           </Modal>
 

@@ -479,3 +479,13 @@ text-decoration: underline;
 }
 
 
+.subtext {
+    font-size: 14px;
+    width: 268px;
+    margin-left: 0px;
+    text-align: center;
+    margin-left: 0px;
+    margin-top: 4px;
+    margin-bottom: 0px;   
+    color: #2874E8 
+}
