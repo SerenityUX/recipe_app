@@ -23,6 +23,19 @@ import closeButton from "../assets/closeicon.svg";
 
 
 
+const read_message = async (token, message_id) => {
+  fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/JSON",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      gift_ledger_id: message_id,
+    }),
+  }).then((response) => console.log(response));
+};
+
 const animationvariants = {
   hidden: {
     opacity: 0.01,
@@ -217,6 +230,8 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+  const router = useRouter();
+
   const getLocation = () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
@@ -498,7 +513,11 @@ export default function Home(props) {
               },
             }}
           >
-            <div className={styles.modalTop}>
+            <div className={styles.modalTop}
+            onClick={() => {
+              read_message(props.token, props.unread_messages[0].id);
+              router.push('/recipe_page/' + props.unread_messages[0].recipes_id);
+            }}>
               {/*         <a
             className={styles.modalTopButton}
             onClick={() => setModalIsOpen(false)}
@@ -515,6 +534,7 @@ export default function Home(props) {
                 {props.unread_messages[0].new_sent_by[0].name} Sent You a Gift
               </p>
               <Minirecipepreview
+                  
                 token={
                   props.token
                 }

@@ -29,17 +29,13 @@ const read_message = async (token, message_id) => {
 
 //Use props as a parameter 
 export default function minirecipepreview (props) {
-    const router = useRouter();
 
     return (
         //Copying styles from the styles we have to find
         //Take div component styles
         //Called styles bc that's what we imported 
     <div className={styles.minirecipepreview}
-    onClick={() => {
-        read_message(props.token, props.message);
-        router.push('/recipe_page/' + props.id);
-      }}>
+    >
                 <div className={styles.minidivider}></div>
 
         <a className={styles.link}>
