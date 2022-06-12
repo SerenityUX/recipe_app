@@ -740,7 +740,6 @@ export default function Recipe(props) {
                 bottom: "40px",
                 border: "none",
                 background: "#F1F3F4",
-                "max-width": "75vw",
                 "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
                 overflow: "none",
                 WebkitOverflowScrolling: "touch",
@@ -748,7 +747,7 @@ export default function Recipe(props) {
                 padding: "16px 16px 16px 16px",
                 height: "365px",
                 "z-index": "150",
-                "width": "300px"
+                "width": "290px"
               },
             }}
           >
@@ -775,7 +774,7 @@ export default function Recipe(props) {
               <div>
                 {/* <p>{props.user.name} created this scannable recipe code for you</p> */}
                 <div className={styles.qrCode}>
-                <QRCode className={styles.qrCodeActual} value={shareCode} logoImage={mylogo.src}  logoOpacity={1} size={249} bgColor={"#f1f3f4"} enableCORS={true} removeQrCodeBehindLogo={true} eyeRadius={200} qrStyle={"dots"} fgColor={"#2874E8"} onClick={() => {
+                <QRCode className={styles.qrCodeActual} value={shareCode} logoImage={mylogo.src}  logoOpacity={1} size={249} bgColor={"#f1f3f4"} quietZone={0} enableCORS={true} removeQrCodeBehindLogo={true} eyeRadius={200} qrStyle={"dots"} fgColor={"#2874E8"} onClick={() => {
                   console.log(shareCode)
                 }}/>
                 </div>

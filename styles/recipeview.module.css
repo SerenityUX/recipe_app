@@ -477,7 +477,12 @@ text-decoration: underline;
     margin-right: 16px;
     color: #2874E8
 }
-
+.qrCode {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .subtext {
     font-size: 14px;
@@ -485,7 +490,6 @@ text-decoration: underline;
     margin-left: 0px;
     text-align: center;
     margin-left: 0px;
-    margin-top: 4px;
     margin-bottom: 0px;   
     color: #2874E8 
 }
