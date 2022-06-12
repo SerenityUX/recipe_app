@@ -12,12 +12,17 @@ import GiftButton from "../../assets/gift.svg";
 import closeButton from "../../assets/closeicon.svg";
 import backButton from "../../assets/back.svg";
 import nearby from "../../assets/nearby.svg";
+import mylogo from "../../assets/logo.svg";
+
+import QR from "../../assets/QR.svg";
+import { QRCode } from 'react-qrcode-logo';
+
 import email_icon from "../../assets/email.svg";
 import { Howl, Howler } from "howler";
 import { motion } from "framer-motion";
 
 const draw = {
-  hidden: { pathLength: 0, opacity: 0.01, r: 30, stroke: "#ffffff", },
+  hidden: { pathLength: 0, opacity: 0.01, r: 30, stroke: "#ffffff" },
   visible: (i) => {
     const delay = 0.01 + i * 0.5;
     return {
@@ -26,8 +31,15 @@ const draw = {
       stroke: "#43AA8B",
       r: 35.5,
       transition: {
-        pathLength: { delay: 0, type: "tween", duration: 1.25, damping: 10, mass: 0.75, stiffness: 100 },
-        stroke: { delay: 1.5, type: "spring", duration: 0.5},
+        pathLength: {
+          delay: 0,
+          type: "tween",
+          duration: 1.25,
+          damping: 10,
+          mass: 0.75,
+          stiffness: 100,
+        },
+        stroke: { delay: 1.5, type: "spring", duration: 0.5 },
         opacity: { delay: 0, duration: 0.5 },
         r: { delay: 1.5, duration: 0.5 },
       },
@@ -42,6 +54,13 @@ export const ShareState = {
   Failed: "Failed",
 };
 
+export const ClaimState = {
+  Default: "Add to Meal Pack",
+  Gifting: "Adding Recipe",
+  Gifted: "Recipe Added to Meal Pack",
+  Failed: "Recipe Transfer Failed",
+};
+
 export async function getServerSideProps(context) {
   const token = context.req?.cookies?.token;
 
@@ -52,7 +71,6 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     };
-
   const user = await getSelf(token);
 
   const { id } = context.params;
@@ -81,14 +99,29 @@ export async function getServerSideProps(context) {
 
   const user_list = await user_response.json();
 
-  const response = await fetch(
+  const first_response = await fetch(
     "https://dev.createforever.media/api:lSOVAmsS/recipes/" + id,
     {
       headers: { Authorization: `Bearer ${token}` },
     }
   );
-  const selected_recipe = await response.json();
-  //console.log(selected_recipe)
+
+  const second_response = await fetch(
+    "https://dev.createforever.media/api:lSOVAmsS/temprecipes/" + id,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  
+  if(first_response.status == 403) {
+    var status = "temporary"
+    var selected_recipe = await second_response.json()
+  } else {
+    var selected_recipe = await first_response.json()
+    var status = "nottemporary"
+  }
+
+
 
   return {
     props: {
@@ -99,6 +132,7 @@ export async function getServerSideProps(context) {
       user_relationships,
       token,
       nearby_users,
+      status
     }, // will be passed to the page component as props
   };
 }
@@ -138,6 +172,28 @@ export default function Recipe(props) {
     }
   }, []);
 
+
+  const upload = async (result) => {
+
+
+    const response = await fetch(
+      "https://dev.createforever.media/api:lSOVAmsS/share_with_id",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          users_id: props.user.id,
+          recipes_id: result,
+        }),
+      }
+    ).then((res) => res.json());
+
+    router.push("/recipe_page/" + response.id).then(() => {
+      alert(response.recipe_name + " added to Meal Pack")
+    }
+    )    
+  }
+
   const upload_change = async () => {
     fetch("https://dev.createforever.media/api:lSOVAmsS/recipes/" + recipe_id, {
       method: "POST",
@@ -164,7 +220,7 @@ export default function Recipe(props) {
     console.log(props.selected_recipe.shared_with);
     console.log(ingredients.map((ingredient) => ingredient));
     console.log(directions.map((direction) => direction));
-    router.push("/");
+    router.back();
   };
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
@@ -179,9 +235,12 @@ export default function Recipe(props) {
     props.selected_recipe.ingredients
   );
 
-  const recipe_id = props.id;
+  const recipe_id = props.selected_recipe.id;
   const [isSharing, setIsSharing] = useState(ShareState.Default);
+  const [isClaiming, setIsClaiming] = useState(ClaimState.Default);
   const [email, setEmail] = useState("");
+  const [shareCode, setShareCode] = useState("");
+    //Math.random().toString(36).substring(2,20);
 
   const GiftBody = {
     email: email,
@@ -234,12 +293,13 @@ export default function Recipe(props) {
     );
 
     if (response.status == 200) {
-      console.log("worked")
+      console.log("worked");
     } else {
-      console.log("failed")
+      console.log("failed");
     }
   };
   //The default value is false
+  const [QRmodalIsOpen, setQRModalIsOpen] = useState(false);
   const [emailmodalIsOpen, setEmailModalIsOpen] = useState(false);
   const [selectionmodalIsOpen, setSelectionModalIsOpen] = useState(false);
   const [nearbymodalIsOpen, setNearbyModalIsOpen] = useState(false);
@@ -256,7 +316,7 @@ export default function Recipe(props) {
   //Rendering a component to the page
   return (
     <div>
-      {props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 ? (
+      {props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 || props.status == "temporary" ? (
         <div>
           <div className={styles.top_bar}>
             {props.user.id == props.selected_recipe.recipe_author ? (
@@ -270,7 +330,7 @@ export default function Recipe(props) {
                 />
               </a>
             ) : (
-              <a href=" / " className={styles.backbutton}>
+              <a onClick={() => router.back()} className={styles.backbutton}>
                 <Image
                   src={backButton}
                   width={24}
@@ -288,7 +348,7 @@ export default function Recipe(props) {
         : null            
         }
  */}
-
+          {props.status !== "temporary" ? (
             <a
               className={styles.giftIconButton}
               onClick={() => {
@@ -296,7 +356,7 @@ export default function Recipe(props) {
                 setEmailModalIsOpen(false);
                 setNearbyModalIsOpen(false);
               }}
-            >
+            > 
               <Image
                 width={32}
                 height={32}
@@ -304,9 +364,19 @@ export default function Recipe(props) {
                 src={GiftButton}
                 alt="Gift"
               />
-            </a>
+            </a> ) : 
+                        <a
+                        className={styles.redeemText}
+                        onClick={() => {
+                          upload(props.selected_recipe.id)
+                        }}
+                      > 
+                        Redeem
+                      </a>
+            }
+            
           </div>
-
+          
           <Modal
             className={styles.shareModal}
             isOpen={selectionmodalIsOpen}
@@ -359,6 +429,7 @@ export default function Recipe(props) {
                   alt="Gift Email"
                 />
               </div>
+
               <div className={styles.smalldivider}></div>
               <div
                 className={styles.modalOption}
@@ -376,7 +447,39 @@ export default function Recipe(props) {
                   alt="Gift Nearby"
                 />
               </div>
+              <div className={styles.smalldivider}></div>
+
+              <div
+                className={styles.modalOption}
+                onClick={() => {
+                  const response = fetch(
+                    "https://dev.createforever.media/api:lSOVAmsS/share_codes",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${props.token}`,
+                      },
+                      body: JSON.stringify({
+                        share_code: Math.random().toString(36).substring(2,20) + Math.random().toString(36).substring(2,20) + Math.random().toString(36).substring(2,20) + Math.random().toString(36).substring(2,20) + Math.random().toString(36).substring(2,20) + Math.random().toString(36).substring(2,20),
+                        recipes_id: recipe_id,
+                      }),
+                    }
+                  ).then((res) => res.json()).then((jsoned) => setShareCode(jsoned.share_code)).then((jsonedo) => setQRModalIsOpen(true));
+                  setSelectionModalIsOpen(false)
+                }}
+              >
+                <p className={styles.modalTopText}> Gift by QR Code</p>
+                <Image
+                  width={24}
+                  height={24}
+                  className={styles.giftsubIcon}
+                  src={QR}
+                  alt="Gift Email"
+                />
+              </div>
             </div>
+            
           </Modal>
 
           <Modal
@@ -433,12 +536,10 @@ export default function Recipe(props) {
               <input
                 value={email}
                 autoComplete="off"
-                onChange={(event) =>
-                  {
-                  handleChanges(event.target.value, props.user_relationships)
+                onChange={(event) => {
+                  handleChanges(event.target.value, props.user_relationships);
                   setIsSharing(ShareState.Default);
-                  }
-                }
+                }}
                 type="email"
                 id="email"
                 onBlur={() => {
@@ -615,6 +716,73 @@ export default function Recipe(props) {
             )}
           </Modal>
 
+
+          <Modal
+            className={styles.shareModal}
+            isOpen={QRmodalIsOpen}
+            onRequestClose={() => setQRModalIsOpen(false)}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.0)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "86px",
+                right: "16px",
+                left: "calc(25vw-16px)",
+                bottom: "40px",
+                border: "none",
+                background: "#F1F3F4",
+                "max-width": "75vw",
+                "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px 16px 16px 16px",
+                height: "fit-content",
+                "z-index": "150",
+                "width": "300px"
+              },
+            }}
+          >
+            <div>
+            <div className={styles.modalTop}>
+              <p className={styles.modalTopText}>Scannable Recipe</p>
+              <a
+                className={styles.modalTopButton}
+                onClick={() => {
+                  setQRModalIsOpen(false);
+                  console.log(props.nearby_users);
+                }}
+              >
+                <Image
+                  width={24}
+                  height={24}
+                  className={styles.giftIcon}
+                  src={closeButton}
+                  alt="Close Modal"
+                />
+              </a>
+            </div>
+
+              <div>
+                <p>{props.user.name} created this scannable recipe code for you</p>
+                <div className={styles.qrCode}>
+                <QRCode className={styles.qrCodeActual} value={shareCode} logoImage={mylogo.src}  logoOpacity={1} size={249} bgColor={"#f1f3f4"} enableCORS={true} removeQrCodeBehindLogo={true} eyeRadius={200} qrStyle={"dots"} fgColor={"#2874E8"} onClick={() => {
+                  console.log(shareCode)
+                }}/>
+                </div>
+                <p>Use the scan feature linked on the home page</p>              </div>
+            </div>
+          </Modal>
+
           <div
             src={props.selected_recipe.recipe_thumbnail?.url}
             className={styles.thumbnail}
@@ -722,8 +890,7 @@ export default function Recipe(props) {
               {props.selected_recipe.directions.map((item, index) => {
                 return (
                   <li key={index} className={styles.recipe_directions}>
-                    <SmartText value={item}>
-                    </SmartText>
+                    <SmartText value={item}></SmartText>
                   </li>
                 );
               })}

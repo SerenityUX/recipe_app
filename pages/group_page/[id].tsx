@@ -12,7 +12,7 @@ import styles from "../../styles/cook_group.module.css";
 import backButton from "../../assets/back.svg"
 import expand from "../../assets/expand.svg"
 import collapse from "../../assets/contract.svg"
-
+import Recipepreview from "../../components/recipepreview";
 import JoinButton from '../../components/join_group'
 
 import Marquee from "react-fast-marquee";
@@ -59,7 +59,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       selected_group,
-      id, token,
+      id, token, user
     }, // will be passed to the page component as props
   };
 }
@@ -70,6 +70,7 @@ export async function getServerSideProps(context) {
 export default function Group(props) {
 
 
+   
    const [benefitsopen, setBenefitsOpen] = useState([]);
   console.log(props.selected_group.group_leader_info[0].profile_picture?.url);
   const router = useRouter();
@@ -94,6 +95,8 @@ export default function Group(props) {
          )}
       
   return (
+   <div>
+   {!props.selected_group.group_members.includes(props.user.id ) ? (
     <div>
           <div className={styles.top_bar}>
           <a href=" /cook_groups">
@@ -865,12 +868,18 @@ export default function Group(props) {
 
 
       <p>{props.selected_group.group_name}</p>
+
       <Player
         className={styles.player_video}
         playsInline
         poster={props.selected_group.thumbnail?.url}
         src={props.selected_group.group_video?.url}
       />
+{/* 
+      {props.selected_group.includes(props.user.id ) ? (
+      <div>ok</div>
+      ) : null
+      } */}
       <p className={styles.groupname}>{props.selected_group.group_name}</p>
 
       <div className={styles.author}>
@@ -926,6 +935,38 @@ export default function Group(props) {
          console.log(props.token)
          join_group(props.id, props.token)
          }} value={isJoinState}></JoinButton>
+    </div>) : (
+    <div>
+         <div className={styles.top_bar_holder}>
+         <div className={styles.top_bar}>
+          <a href=" /cook_groups">
+          <Image src={backButton} alt="Back Button" width={24} height={24} />
+          </a>
+          <p>{props.selected_group.group_name}</p>
+          </div>
+          </div>
+
+          <div className={styles.member_content}>
+          <p className={styles.groupname}>{props.selected_group.group_name}</p>
+          <p className={styles.description}>{props.selected_group.description}</p>
+          <div>
+          {props.selected_group.shared_recipes.map((recipe, indexposition) => {
+            return (
+               <Recipepreview
+               author={recipe.content.additional_user_data[0].name}
+               avatar={recipe.content.additional_user_data[0].profile_picture.url}
+               title={recipe.content.recipe_name}
+               key={recipe.content.id}
+               id={recipe.content.id}
+               thumbnail={recipe.content.recipe_thumbnail.url}
+             ></Recipepreview>
+            )            
+          })}
+          </div>
+          </div>
+
+    </div>
+    ) }
     </div>
   );
 }

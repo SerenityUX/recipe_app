@@ -66,7 +66,7 @@ const QRScan = (props) => {
     ).then((res) => res.json());
 
     router.push("/recipe_page/" + response.id).then(() => {
-      alert(response.recipe_name + " added to Meal Pack")
+        alert(response.recipe_name + " added to Meal Pack");
     }
     )    
   }

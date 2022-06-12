@@ -236,3 +236,11 @@ color: #181818;
     margin-top: 0px;
     margin-bottom: 32px  
 }
+
+.top_bar_holder {
+  margin-top: 16px;
+}
+
+.member_content {
+  padding-top: 53px;
+}
