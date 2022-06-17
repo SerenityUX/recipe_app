@@ -168,3 +168,18 @@
     display: flex;
     align-items: center;
 }
+
+.terms {
+color: #2874E8;
+text-decoration: underline;
+}
+
+.bottomtext {
+    color: #484848;
+}
+.bottomtextholder {
+    font-size: 12px;
+    margin-top: -16px;
+    margin-left: 16px;
+    margin-right: 16px;
+}

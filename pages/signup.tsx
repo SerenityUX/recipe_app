@@ -151,11 +151,16 @@ const Signup = () => {
           id="password"
           name="password"
         ></input>
+        
+
                 <SignupButton value={isUploading} 
             onClick={() => {
               attemptSignup();
             }}
         />
+        <div className={styles.bottomtextholder}>
+        <text className={styles.bottomtext}>By clicking Signup you agree to our <a className={styles.terms} href="https://mealpack-terms.superhi.com">Terms And Conditions</a>.</text>
+        </div>
       </div>
     </div>
   );
