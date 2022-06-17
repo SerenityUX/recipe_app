@@ -145,7 +145,7 @@ var Signup = function () {
                 } }),
             react_1["default"].createElement("div", { className: login_signup_module_css_1["default"].bottomtextholder },
                 react_1["default"].createElement("text", { className: login_signup_module_css_1["default"].bottomtext },
-                    "By clicking Signup you agree to our ",
+                    "By clicking Sign up you agree to our ",
                     react_1["default"].createElement("a", { className: login_signup_module_css_1["default"].terms, href: "https://mealpack-terms.superhi.com" }, "Terms And Conditions"),
                     ".")))));
 };
