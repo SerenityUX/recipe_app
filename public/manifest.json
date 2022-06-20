@@ -1,6 +1,7 @@
 {
  "short_name": "Meal Pack",
  "name": "Meal Pack",
+ "description": "Meal Pack is a platform which allows home & professional cooks to create, store and share recipes.",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -43,6 +44,10 @@
     "sizes": "512x512",
     "type": "image\/png",
     "density": "8.0"
+  },
+  {
+    "src": "meal_pack_logo.ico",
+    "sizes": "any"
   }
  ],
  "start_url": "/",
