@@ -1,6 +1,4 @@
 {
- "short_name": "Meal Pack",
- "name": "Meal Pack",
  "description": "Meal Pack is a platform which allows home & professional cooks to create, store and share recipes.",
  "icons": [
   {
@@ -50,10 +48,13 @@
     "sizes": "any"
   }
  ],
- "start_url": "/",
- "background_color": "#fff",
- "theme_color": "#fff",
+ "background_color": "#ffffff",
+ "dir": "ltr",
  "display": "standalone",
- "orientation": "portrait-primary",
- "dir": "ltr"
+ "name": "Meal Pack",
+ "orientation": "any",
+ "scope": "/",
+ "short_name": "Meal Pack",
+ "start_url": "/",
+ "theme_color": "#ffffff"
 }
