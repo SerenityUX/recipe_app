@@ -1,5 +1,20 @@
 {
  "description": "Meal Pack is a platform which allows home & professional cooks to create, store and share recipes.",
+ 
+ "screenshots" : [
+  {
+    "src": "screenshot.png",
+    "sizes": "497x905",
+    "type": "image/png",
+    "platform": "narrow",
+    "label": "Sample screenshot"
+  }],
+  "shortcuts" : [
+    {
+      "name": "Home",
+      "url": "/",
+      "description": "Home to all of your recipes"
+    }],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -42,10 +57,6 @@
     "sizes": "512x512",
     "type": "image\/png",
     "density": "8.0"
-  },
-  {
-    "src": "meal_pack_logo.ico",
-    "sizes": "any"
   }
  ],
  "background_color": "#ffffff",
