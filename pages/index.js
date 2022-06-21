@@ -333,8 +333,12 @@ export default function Home(props) {
     }
 };
   const [mode, setMode] = useState("");
+  const [browser, setBrowser] = useState(false);
+
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
+      
+     setBrowser(true)
       setdefferedPrompt(e)  
     });
 
@@ -496,7 +500,8 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-      {mode === "PWA" ? null : (
+      {mode === "PWA" || browser == false ? null : (
+        
         <div onClick={() => {
           install()
         }} className={styles.banner}>Install Meal Pack App</div>
