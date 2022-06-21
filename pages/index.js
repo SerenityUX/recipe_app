@@ -328,6 +328,7 @@ export default function Home(props) {
 
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
+          setMode("PWA")
             setdefferedPrompt(null)
         }
     }
