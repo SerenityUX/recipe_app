@@ -499,7 +499,7 @@ export default function Home(props) {
       {mode === "PWA" ? null : (
         <div onClick={() => {
           install()
-        }} className={styles.banner}><p className={styles.bannertext}>Install Meal Pack App</p></div>
+        }} className={styles.banner}>Install Meal Pack App</div>
       ) }
         {props.unread_messages.length === 0 ? null : (
           <Modal
