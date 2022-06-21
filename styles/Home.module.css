@@ -121,6 +121,28 @@
   color: #ffffff;
 }
 
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2874E8;
+  color: #fff;
+  height: 80px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+  position: fixed;
+  width: calc(100% - 32px);
+  bottom: 16px;
+  border-radius: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 100;
+}
+.banner p {
+  font-size: 18px;
+}
 .modalTopText {
   font-size: 24px;
   display: block;

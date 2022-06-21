@@ -232,6 +232,8 @@ export async function getStaticProps({ params }) {
 export default function Home(props) {
   const router = useRouter();
 
+
+
   const getLocation = () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
@@ -319,9 +321,30 @@ export default function Home(props) {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTag, setSearchTag] = useState("Sample");
+  const [deferredPrompt, setdefferedPrompt] = useState(null);
+  const install = async () => {
+    if (deferredPrompt !== null) {
+      deferredPrompt.prompt()
 
-
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            setdefferedPrompt(null)
+        }
+    }
+};
+  const [mode, setMode] = useState("");
   useEffect(() => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      setdefferedPrompt(e)  
+    });
+
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+       setMode("PWA")
+    } else {
+       setMode("Browser")
+    }
+      
     getLocation()
   }, []);
 
@@ -473,6 +496,11 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
+      {mode === "PWA" ? null : (
+        <div onClick={() => {
+          install()
+        }} className={styles.banner}><p className={styles.bannertext}>Install Meal Pack App</p></div>
+      ) }
         {props.unread_messages.length === 0 ? null : (
           <Modal
             className={styles.Modal}
