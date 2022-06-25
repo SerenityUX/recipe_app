@@ -569,7 +569,9 @@ export default function Home(props) {
           >
             <div>
             <div className={styles.iOSTopBar}>
-              <Image className={styles.iOSTopBarTag} width={24} height={24} src={closeButton} alt="Close Modal" />
+              <Image onClick={() => { 
+                setMode("DeniediOS")
+              }} className={styles.iOSTopBarTag} width={24} height={24} src={closeButton} alt="Close Modal" />
               <p className={styles.iOSTopBarTag}>Install Meal Pack</p>
               <Image  className={styles.iOSTopBarTag} width={24} height={24} src={white}  alt="Close Modal" />
               
