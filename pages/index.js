@@ -578,19 +578,19 @@ export default function Home(props) {
             <Image  className={styles.BannerImage} src={appBanner}  alt="Add to Homescreen Banner" />
             </div>
             <h4 className={styles.ThreeSteps}>Install in Four Easy Steps</h4>
-            <p className={styles.ThreeStepsDescription}>Meal Pack is a progressive web app, so the installation may be a little different from what you're used to. If you follow the steps below, you'll have no trouble installing Meal Pack in just a few seconds</p>
+            <p className={styles.ThreeStepsDescription}>Meal Pack is a progressive web app, so the installation may be a little different from what you are used to. If you follow the steps below, you will have no trouble installing Meal Pack in just a few seconds</p>
             <div>
               <ol>
                 <li className={styles.ThreeStepsDescriptionStep}><text>Tap the </text><Image className={styles.ThreeStepsDescriptionStepIcon} height={21} width={21} src={Share}></Image> <text> button</text></li>
                 <li className={styles.ThreeStepsDescriptionStep}><text>Swipe Up</text></li>
                 <li className={styles.ThreeStepsDescriptionStep}>
-                  <div classname={styles.holder}>
-                    <text>Tap "Add to Home Screen"</text>
+                  <div className={styles.holder}>
+                    <text>Tap <u>Add to Home Screen</u></text>
                   </div>
                 </li>
                 <li className={styles.ThreeStepsDescriptionStep}>
-                  <div classname={styles.holder}>
-                    <text>At the top right, tap "Add"</text>
+                  <div className={styles.holder}>
+                    <text>At the top right, tap <u>Add</u></text>
                   </div>
                 </li>
               </ol>
