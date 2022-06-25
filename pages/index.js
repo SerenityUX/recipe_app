@@ -21,6 +21,11 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Modal from "react-modal";
 import closeButton from "../assets/closeicon.svg";
+import appBanner from "../assets/home.svg";
+import AddtoHome from "../assets/AddtoHome.svg";
+import Share from "../assets/share.svg";
+
+import white from "../assets/white.svg";
 
 
 
@@ -341,6 +346,7 @@ export default function Home(props) {
 
     hotjar.initialize(3037585, 6)
 
+
     window.addEventListener('beforeinstallprompt', (e) => {
       
      setBrowser(true)
@@ -351,8 +357,34 @@ export default function Home(props) {
     if (window.matchMedia('(display-mode: standalone)').matches) {
        setMode("PWA")
     } else {
-       setMode("Browser")
+
+      var nav = window.navigator;
+      var ua = nav.userAgent;
+      function isiOsSafari (a) {
+        return ("standalone" in nav) // There's a thing called standalone in nav
+         && !nav.standalone // It is not running in standalone mode
+         && ua.indexOf(a)!=-1 // iPhone is in the UA string (could be Opera)
+         && ua.indexOf('Mac OS')!=-1 // There's Mac in the UA string (not Opera)
+         && ua.indexOf('Safari')!=-1 
+         /* if all the above are true this probably means this is 
+         the Safari browser, 
+         not a webview in an app, 
+         not a page in standalone mode */
+      }
+
+      if(isiOsSafari('iPhone')){
+        setMode("iOS")
+      }
+      // Check if Mobile Safari on iPod
+      else if(isiOsSafari('iPad')){
+        setMode("iOS")
+      }
+      else {
+        setMode("Browser")
+      }
     }
+
+
       
     getLocation()
   }, []);
@@ -498,6 +530,70 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
+      <Modal
+            className={styles.Modal}
+            isOpen={mode=="iOS"}
+            onRequestClose={() => {
+              setMode("iOSDenied");
+            }}
+
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
+                "backdrop-filter": "grayscale(30%) brightness(112.5%)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                border: "none",
+                background: "#FFFFFF",
+                width: "100vw",
+                height: "100vh",
+                "align-items": "center",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px",
+                "z-index": "150",
+              },
+            }}
+          >
+            <div>
+            <div className={styles.iOSTopBar}>
+              <Image className={styles.iOSTopBarTag} width={24} height={24} src={closeButton} alt="Close Modal" />
+              <p className={styles.iOSTopBarTag}>Install Meal Pack</p>
+              <Image  className={styles.iOSTopBarTag} width={24} height={24} src={white}  alt="Close Modal" />
+              
+            </div>
+            <div className={styles.ImageHolder}>
+            <Image  className={styles.BannerImage} src={appBanner}  alt="Add to Homescreen Banner" />
+            </div>
+            <h4 className={styles.ThreeSteps}>Install in Three Easy Steps</h4>
+            <p className={styles.ThreeStepsDescription}>Meal Pack is a progressive web app, so the installation may be a little different from what you're used to. If you follow the steps below, you'll have no trouble installing Meal Pack in just a few seconds</p>
+            <div>
+              <ol>
+                <li className={styles.ThreeStepsDescriptionStep}><text>Tap the </text><Image className={styles.ThreeStepsDescriptionStepIcon} height={21} width={21} src={Share}></Image> <text> button</text></li>
+                <li className={styles.ThreeStepsDescriptionStep}><text>Swipe Up</text></li>
+                <li className={styles.ThreeStepsDescriptionStep}>
+                  <div classname={styles.holder}>
+                    <text>Tap "Add to Home Screen</text> <Image className={styles.ThreeStepsDescriptionStepIcon} height={21} width={21} src={AddtoHome}></Image> <text>"</text>
+                  </div>
+                </li>
+              </ol>
+
+            </div>
+            </div>
+
+          </Modal>
       {mode === "PWA" || browser == false ? null : (
         
         <div onClick={() => {

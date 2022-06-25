@@ -137,6 +137,8 @@
   bottom: 16px;
   border-radius: 0px;
   z-index: 100;
+  cursor: copy;
+
 }
 
 .modalTopText {
@@ -145,8 +147,11 @@
   margin-top: 0px;
   margin-bottom: 0px;
   min-width: 268px;
+  cursor: copy;
+
 }
 .modalTopButton {
+  cursor: copy;
   z-index: 10;
   display: block;
   padding-top: 0px;
@@ -156,7 +161,80 @@
   border: 0px;
   height: 24px;
   width: 24px;
-  cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;  
+}
+
+.iOSTopBar {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  padding-top: 0px;
+
+  margin-top: 0px;
+  align-items: middle;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #F1F3F4;
+  padding-top: 24px;
+}
+
+.BannerImage {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.ImageHolder {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.ThreeSteps {
+font-style: normal;
+font-weight: 400;
+font-size: 25px;
+line-height: 30px;
+/* identical to box height */
+
+margin-top: 0px;
+margin-bottom: 4px;
+/* Important */
+
+color: #181818;
+
+}
+
+.ThreeStepsDescription {
+  font-style: normal;
+  margin-top: 0px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #484848;
+}
+
+.ThreeStepsDescriptionStep {
+  font-style: normal;
+  margin-top: 0px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #181818;
+  margin-left: -16px;
+  margin-bottom: 8px;
+  
+}
+.ThreeStepsDescriptionStepIcon {
+  height: 21px;
+  width: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.holder {
+  display: flex;
+  height: 21px;
 }
