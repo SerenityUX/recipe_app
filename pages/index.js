@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
 import Minirecipepreview from "../components/minirecipepreview";
+import { hotjar } from 'react-hotjar'
 
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
@@ -337,6 +338,9 @@ export default function Home(props) {
   const [browser, setBrowser] = useState(false);
 
   useEffect(() => {
+
+    hotjar.initialize(3037585, 6)
+
     window.addEventListener('beforeinstallprompt', (e) => {
       
      setBrowser(true)
@@ -356,16 +360,9 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
-        <script
-          defer
-          data-domain="mealpack.app"
-          src="https://plausible.io/js/plausible.js"
-        ></script>
 
-        <script
-          src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
-          async=""
-        ></script>
+
+
         <title>Meal Pack</title>
 
         <meta
