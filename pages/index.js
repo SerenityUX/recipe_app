@@ -545,8 +545,8 @@ export default function Home(props) {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.3)",
-                "backdrop-filter": "grayscale(30%) brightness(112.5%)",
+                backgroundColor: "rgba(0, 0, 0, 1)",
+                "backdrop-filter": "grayscale(100%) brightness(112.5%)",
               },
               content: {
                 "border-radius": "12px",
@@ -563,7 +563,7 @@ export default function Home(props) {
                 WebkitOverflowScrolling: "touch",
                 outline: "none",
                 padding: "16px",
-                "z-index": "150",
+                "z-index": "250",
               },
             }}
           >
@@ -580,7 +580,7 @@ export default function Home(props) {
             <Image  className={styles.BannerImage} src={appBanner}  alt="Add to Homescreen Banner" />
             </div>
             <h4 className={styles.ThreeSteps}>Install in Four Easy Steps</h4>
-            <p className={styles.ThreeStepsDescription}>Meal Pack is a progressive web app, so the installation may be a little different from what you are used to. If you follow the steps below, you will have no trouble installing Meal Pack in just a few seconds</p>
+            <p className={styles.ThreeStepsDescription}>Follow the steps below to install Meal Pack in just a few seconds</p>
             <div>
               <ol>
                 <li className={styles.ThreeStepsDescriptionStep}><text>Tap the </text><Image className={styles.ThreeStepsDescriptionStepIcon} height={21} width={21} src={Share}></Image> <text> button</text></li>
