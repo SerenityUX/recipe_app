@@ -21,7 +21,7 @@ import Script from "next/script";
 import { useEffect } from "react";
 import Modal from "react-modal";
 import closeButton from "../assets/closeicon.svg";
-import appBanner from "../assets/home.svg";
+import appBanner from "../assets/tutorial.gif";
 import AddtoHome from "../assets/AddtoHome.svg";
 import Share from "../assets/share.svg";
 
