@@ -4,6 +4,7 @@ import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
 import Minirecipepreview from "../components/minirecipepreview";
 import { hotjar } from 'react-hotjar'
+import SwipeToDelete from 'react-swipe-to-delete-ios'
 
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
@@ -667,6 +668,7 @@ export default function Home(props) {
               <p className={styles.modalTopText}>
                 {props.unread_messages[0].new_sent_by[0].name} Sent You a Gift
               </p>
+
               <Minirecipepreview
                   
                 token={
@@ -814,7 +816,41 @@ export default function Home(props) {
                   (user) => user.id == item.recipe_author
                 );
                 return (
+                  <SwipeToDelete
+                  onDelete={console.log("deleted")} // required
+                  // optional
+                  height={126} // default
+
+                  transitionDuration={250} // default
+                  deleteWidth={75} // default
+                  deleteColor="rgba(252, 58, 48, 1.00)" // default
+                  deleteText="Delete" // default
+                  disabled={false} // default
+                  id="swiper-1" // not default
+
+                  onDeleteConfirm={(onSuccess, onCancel) => {
+                    if (window.confirm("Do you really want to delete this item?")) {
+                      
+                      fetch("https://dev.createforever.media/api:lSOVAmsS/deleterecipe", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/JSON",
+                          Authorization: `Bearer ${props.token}`,
+                        },
+                        body: JSON.stringify({
+                          recipes_id: item.id,
+                        }),
+                      }).then((response) => window.location.reload());
+                    
+                    } else {
+                      console.log("kept")
+                    }
+                  }}
+                  >
+                  <div                   className={styles.backgroundcoloradder}
+>
                   <motion.div
+                  className={styles.backgroundcoloradder}
                     key={item.id}
                     initial="hidden"
                     animate="visible"
@@ -834,6 +870,8 @@ export default function Home(props) {
                       directions={item.directions}
                     ></Recipepreview>
                   </motion.div>
+                  </div>  
+                  </SwipeToDelete>
                 );
               })}
         </div>
