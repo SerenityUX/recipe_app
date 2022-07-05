@@ -817,6 +817,7 @@ export default function Home(props) {
                 );
                 return (
                   <SwipeToDelete
+                  key={item.id}
                   onDelete={console.log("deleted")} // required
                   // optional
                   height={126} // default
