@@ -830,7 +830,7 @@ export default function Home(props) {
                   id="swiper-1" // not default
 
                   onDeleteConfirm={(onSuccess, onCancel) => {
-                    if (window.confirm("Do you really want to delete this item?")) {
+                    if (window.confirm("Do you really want to delete this recipe?")) {
                       
                       fetch("https://dev.createforever.media/api:lSOVAmsS/deleterecipe", {
                         method: "POST",
