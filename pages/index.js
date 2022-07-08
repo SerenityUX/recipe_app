@@ -71,7 +71,6 @@ export const CheckState = {
 
 //const cookies = context.req.cookies.User_ID
 /*       export async function getStaticProps() {
-
   const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
@@ -127,14 +126,12 @@ export async function getServerSideProps(context) {
 }
 /* 
 export async function getStaticPaths(index) {
-
   const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
   const  props.recipes_list = await response.json()
   // Get the paths we want to pre-render based on posts
   const paths =  props.recipes_list.map((recipes) => ({
     params: { id:  props.recipes_list.id },
   }))
-
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
@@ -160,7 +157,6 @@ export async function getStaticPaths(index) {
     const  props.recipes_list = response.data
     //console.log(selected_recipe)
     
-
   
     return {
       props: { props.recipes_list, user_list}, // will be passed to the page component as props
@@ -175,7 +171,6 @@ export async function getStaticPaths(index) {
 /* export async function getStaticProps() {
   const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
   const  props.recipes_list = await res.json()
-
   return {
     props: {
        props.recipes_list,
@@ -198,9 +193,6 @@ export async function getStaticPaths(index) {
   const paths =  props.recipes_list.map((recipe) => ({
     params: {  props.recipes_list.params: context.params },
   }))
-
-
-
   // We'll pre-render only these paths at build time.
   // { fallback: blocking } will server-render pages
   // on-demand if the path doesn't exist.
@@ -210,7 +202,6 @@ export async function getStaticPaths(index) {
 /* export async function getStaticPaths(recipes) {
   return {
     // Only `/posts/1` and `/posts/2` are generated at build time
-
     paths: [], 
     fallback: false
   }
@@ -223,7 +214,6 @@ export async function getStaticProps({ params }) {
   console.log(params)
   const res = await fetch(`https://dev.createforever.media/api:lSOVAmsS/recipes/` + params.id)
   const recipe = await res.json() 
-
   const user_reponse = await fetch("https://dev.createforever.media/api:lSOVAmsS/users")
   const user_list = await user_response.json()
   // Pass post data to the page via props
@@ -285,7 +275,6 @@ export default function Home(props) {
         notifyButton: {
           enable: true,
         },
-
         allowLocalhostAsSecureOrigin: true,
       });
     });
