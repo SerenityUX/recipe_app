@@ -243,3 +243,10 @@ color: #181818;
 .backgroundcoloradder {
   background-color: #fff;
 }
+
+.massivecontainer {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+
+  border-bottom: 1px solid #F1F3F4;
+}

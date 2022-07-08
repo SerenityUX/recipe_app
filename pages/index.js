@@ -805,11 +805,12 @@ export default function Home(props) {
                   (user) => user.id == item.recipe_author
                 );
                 return (
+                  <div className={styles.massivecontainer}>
                   <SwipeToDelete
                   key={item.id}
                   onDelete={console.log("deleted")} // required
                   // optional
-                  height={126} // default
+                  height={114} // default
 
                   transitionDuration={250} // default
                   deleteWidth={75} // default
@@ -862,6 +863,7 @@ export default function Home(props) {
                   </motion.div>
                   </div>  
                   </SwipeToDelete>
+                  </div>
                 );
               })}
         </div>
