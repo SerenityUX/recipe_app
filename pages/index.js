@@ -805,7 +805,7 @@ export default function Home(props) {
                   (user) => user.id == item.recipe_author
                 );
                 return (
-                  <div className={styles.massivecontainer}>
+                  <div key={item.id} className={styles.massivecontainer}>
                   <SwipeToDelete
                   key={item.id}
                   onDelete={console.log("deleted")} // required
