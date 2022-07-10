@@ -13,7 +13,8 @@ import closeButton from "../../assets/closeicon.svg";
 import backButton from "../../assets/back.svg";
 import nearby from "../../assets/nearby.svg";
 import mylogo from "../../assets/logo.svg";
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import QR from "../../assets/QR.svg";
 import { QRCode } from 'react-qrcode-logo';
 
@@ -167,7 +168,7 @@ export default function Recipe(props) {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.selected_recipe.shared_with.indexOf(props.user.id) == -1) {
+    if (props.selected_recipe.code == "ERROR_CODE_ACCESS_DENIED") {
       console.log("no permission");
     }
   }, []);
@@ -206,7 +207,6 @@ export default function Recipe(props) {
         recipe_thumbnail: props.selected_recipe.recipe_thumbnail,
         recipe_author: props.selected_recipe.recipe_author,
         recipe_description: mydescriptionname.current.innerText,
-        shared_with: props.selected_recipe.shared_with,
         ingredients: ingredients.map((ingredient) => ingredient),
         directions: directions.map((direction) => direction),
         tags: props.tags,
@@ -217,8 +217,7 @@ export default function Recipe(props) {
     console.log(props.selected_recipe.recipe_thumbnail?.url);
     console.log(props.selected_recipe.recipe_author);
     console.log(mydescriptionname.current.innerText);
-    console.log(props.selected_recipe.shared_with);
-    console.log(ingredients.map((ingredient) => ingredient));
+    console.log(ingredients?.map((ingredient) => ingredient));
     console.log(directions.map((direction) => direction));
     router.back();
   };
@@ -316,7 +315,7 @@ export default function Recipe(props) {
   //Rendering a component to the page
   return (
     <div>
-      {props.selected_recipe.shared_with.indexOf(props.user.id) !== -1 || props.status == "temporary" ? (
+      {props.selected_recipe.message !== "Missing var entry: recipes" || props.status == "temporary" ? (
         <div>
           <div className={styles.top_bar}>
             {props.user.id == props.selected_recipe.recipe_author ? (
@@ -783,11 +782,10 @@ export default function Recipe(props) {
           </Modal>
 
           <div
-            src={props.selected_recipe.recipe_thumbnail?.url}
             className={styles.thumbnail}
             alt=""
           >
-            <img
+           <img
               className={styles.thumbnailcontent}
               src={props.selected_recipe.recipe_thumbnail?.url}
             ></img>
@@ -802,23 +800,23 @@ export default function Recipe(props) {
                 setTitle(e.target.innerText);
               }}
             >
-              {props.selected_recipe.recipe_name}
+              {props?.selected_recipe?.recipe_name || <Skeleton />}
             </h1>
           ) : (
             <h1 ref={myrecipename} className={styles.title}>
-              {props.selected_recipe.recipe_name}
+              {props?.selected_recipe?.recipe_name}
             </h1>
           )}
           <div className={styles.author}>
             <img
               className={styles.authorimg}
-              src={identify_author.profile_picture?.url}
+              src={identify_author?.profile_picture?.url}
               alt=""
             />
 
-            <p>{identify_author.name}</p>
+            <p>{identify_author?.name}</p>
           </div>
-          {props.user.id == props.selected_recipe.recipe_author ? (
+          {props.user.id == props?.selected_recipe?.recipe_author ? (
             <p
               contentEditable
               className={styles.description}
@@ -833,7 +831,7 @@ export default function Recipe(props) {
           )}
           <h2 className={styles.section_title}>Ingredients</h2>
           {props.user.id == props.selected_recipe.recipe_author
-            ? props.selected_recipe.ingredients.map((item, index) => {
+            ? props.selected_recipe?.ingredients.map((item, index) => {
                 return (
                   <li key={index} className={styles.recipe_ingredients}>
                     <span
@@ -853,7 +851,7 @@ export default function Recipe(props) {
                   </li>
                 );
               })
-            : props.selected_recipe.ingredients.map((item, index) => {
+            : props.selected_recipe?.ingredients.map((item, index) => {
                 return (
                   <li key={index} className={styles.recipe_ingredients}>
                     <SmartText value={item}></SmartText>
@@ -897,7 +895,7 @@ export default function Recipe(props) {
           )}
         </div>
       ) : (
-        <p>Invalid Permission</p>
+        <p onClick={console.log(props.selected_recipe.message)}>Invalid Permission</p>
       )}
     </div>
   );

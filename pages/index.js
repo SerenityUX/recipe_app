@@ -5,7 +5,8 @@ import Recipepreview from "../components/recipepreview";
 import Minirecipepreview from "../components/minirecipepreview";
 import { hotjar } from 'react-hotjar'
 import SwipeToDelete from 'react-swipe-to-delete-ios'
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
