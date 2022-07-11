@@ -5,42 +5,41 @@ import React, { useState, useEffect, useRef } from "react";
 import { produce } from "immer";
 import axios from "axios";
 import { rootCertificates } from "tls";
-import SubmitButton from '../../components/submit_button'
-import Cookies from 'universal-cookie';
+import SubmitButton from "../../components/submit_button";
+import Cookies from "universal-cookie";
 import getSelf from "../../lib/getSelf";
-import CameraButton from "../../assets/Frame48.svg"
-import backButton from "../../assets/back.svg"
-import Image from 'next/image'
+import CameraButton from "../../assets/Frame48.svg";
+import backButton from "../../assets/back.svg";
+import Image from "next/image";
 export async function getServerSideProps(context) {
   try {
-    const token = context.req?.cookies?.token
-    if (!token) return {
-      redirection: {
-        destination: '/login',
-        permanent: false,
-      }
-    }
-    const user = await getSelf( token )
-    return { props: { 
-      user
-    } };
+    const token = context.req?.cookies?.token;
+    if (!token)
+      return {
+        redirection: {
+          destination: "/login",
+          permanent: false,
+        },
+      };
+    const user = await getSelf(token);
+    return {
+      props: {
+        user,
+      },
+    };
   } catch (error) {
     console.log(error);
     return {
       props: {},
-    }
+    };
   }
 }
-
-
-
-
 
 export enum UploadState {
   Default = "Default",
   Uploading = "Uploading",
   Uploaded = "Uploaded",
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 const categories = [
@@ -69,7 +68,6 @@ interface Direction {
   direction: string;
 }
 
-
 /* const token = context.req?.cookies?.token;
 if (!token) return { 
 redirect: {
@@ -80,9 +78,7 @@ permanent: false,
 const user = getSelf( token )
 user_id = user.id
  */
-const Form = ({user}) => {
-
-
+const Form = ({ user }) => {
   let btnRef = useRef(null);
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
@@ -101,8 +97,6 @@ const Form = ({user}) => {
   ]);
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
-
-  
 
   useEffect(() => {
     // console.log(images);
@@ -137,17 +131,19 @@ const Form = ({user}) => {
   };
 
   const upload = async () => {
-    
-    console.log(UploadState)
-    if (isUploading == UploadState.Default || isUploading == UploadState.Failed) {
-    setIsUploading( UploadState.Uploading )
-      
-    //setValues({...values, recipe_name})
-    //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
-    // console.log(images);
-    const reader = new FileReader();
+    console.log(UploadState);
+    if (
+      isUploading == UploadState.Default ||
+      isUploading == UploadState.Failed
+    ) {
+      setIsUploading(UploadState.Uploading);
 
-/*     const data = {
+      //setValues({...values, recipe_name})
+      //Object.defineProperty(images[0], 'path', {value:URL.createObjectURL(images[0]), writable: true});
+      // console.log(images);
+      const reader = new FileReader();
+
+      /*     const data = {
       recipe_name: myrecipename.current.innerText,
       recipe_thumbnail: imageURLs[0],
       recipe_author: values.recipe_author,
@@ -157,63 +153,65 @@ const Form = ({user}) => {
       directions: directions.map((direction) => direction.direction),
       tags: tags.map((tag) => tag.tag),
     }; */
-    //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
-    //console.log(myrecipename.current.innerText);
-    //console.log(mydescriptionname.current.innerText);
-    //console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
-    
-    let formData = new FormData();
-    formData.append("image_url", images[0]);
-    
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
-    axios
-      .post(
-        "https://dev.createforever.media/api:lSOVAmsS/upload/image?tpl=original",
-        formData,
-        config
-      )
-      .then((response) => {
-        console.log("IT WORKED")
-        console.log(response.data.image);
-        fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
-          method: "POST",
-          headers: { "Content-Type": "application/JSON" },
-          body: JSON.stringify({
-            recipe_name: myrecipename.current.innerText,
-            recipe_thumbnail: response.data.image,
-            recipe_author: values.recipe_author,
-            recipe_description: mydescriptionname.current.innerText,
-            shared_with: values.shared_with,
-            ingredients: ingredients.map((ingredient) => ingredient.ingredient),
-            directions: directions.map((direction) => direction.direction),
-            tags: tags.map((tag) => tag.tag),
-          }),
-        }).then((response) => {
-          console.log(response.status);
-          if(response.status === 200) {
-            setIsUploading( UploadState.Uploaded )  
-          } else {
-            setIsUploading( UploadState.Failed)
-            alert("Upload Failed, ensure that you have included a thumbnail, recipe name, description, set of ingredients, and a set of directions.")
-          }
-          //let button_text = "Submitted"
+      //console.log([{...images[0],path: URL.createObjectURL(images[0])}])
+      //console.log(myrecipename.current.innerText);
+      //console.log(mydescriptionname.current.innerText);
+      //console.log({ ...images[0], path: URL.createObjectURL(images[0]) });
+
+      let formData = new FormData();
+      formData.append("image_url", images[0]);
+
+      const config = {
+        headers: { "content-type": "multipart/form-data" },
+      };
+      axios
+        .post(
+          "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/upload/image?tpl=original",
+          formData,
+          config
+        )
+        .then((response) => {
+          console.log("IT WORKED");
+          console.log(response.data.image);
+          fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes", {
+            method: "POST",
+            headers: { "Content-Type": "application/JSON" },
+            body: JSON.stringify({
+              recipe_name: myrecipename.current.innerText,
+              recipe_thumbnail: response.data.image,
+              recipe_author: values.recipe_author,
+              recipe_description: mydescriptionname.current.innerText,
+              shared_with: values.shared_with,
+              ingredients: ingredients.map(
+                (ingredient) => ingredient.ingredient
+              ),
+              directions: directions.map((direction) => direction.direction),
+              tags: tags.map((tag) => tag.tag),
+            }),
+          }).then((response) => {
+            console.log(response.status);
+            if (response.status === 200) {
+              setIsUploading(UploadState.Uploaded);
+            } else {
+              setIsUploading(UploadState.Failed);
+              alert(
+                "Upload Failed, ensure that you have included a thumbnail, recipe name, description, set of ingredients, and a set of directions."
+              );
+            }
+            //let button_text = "Submitted"
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          setIsUploading(UploadState.Failed);
+          //let button_text = "Failed"
         });
-      })
-      .catch((error) => {
-        console.log(error);
-        setIsUploading( UploadState.Failed )
-        //let button_text = "Failed"
-      });
 
-  
-
-/*    
+      /*    
 
 
     console.log(images[0]);
-    fetch("https://dev.createforever.media/api:lSOVAmsS/upload/image", {
+    fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/upload/image", {
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",
@@ -224,7 +222,7 @@ const Form = ({user}) => {
       }),
     }).then((output) => {
       console.log(output);
-      fetch("https://dev.createforever.media/api:lSOVAmsS/recipes", {
+      fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes", {
         method: "POST",
         headers: { "Content-Type": "application/JSON" },
         body: JSON.stringify({
@@ -241,9 +239,9 @@ const Form = ({user}) => {
         console.log(response);
       });
     });*/
-  }
+    }
   };
- 
+
   const uploadImageToClient = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImages((imageList) => [...imageList, event.target.files[0]]);
@@ -254,7 +252,9 @@ const Form = ({user}) => {
     }
   };
 
-  const [isUploading, setIsUploading] = useState<UploadState>(UploadState.Default)
+  const [isUploading, setIsUploading] = useState<UploadState>(
+    UploadState.Default
+  );
   const [disable, setDisable] = React.useState(false);
 
   return (
@@ -265,22 +265,18 @@ const Form = ({user}) => {
         </a>
         <p>Create a recipe</p>
       </div>
-      <div
-        className={styles.form}
-      >
+      <div className={styles.form}>
         <label className={styles.thumbnail}>
           <div className={styles.upload_container}>
             <img src={imageURLs[0]} className={styles.thumbnail_preview} />
             <div>
-            <Image src={CameraButton} width={32} height={32}></Image>
-            </div>
-            {" "}
+              <Image src={CameraButton} width={32} height={32}></Image>
+            </div>{" "}
             <p>Upload Image</p>
           </div>
           <input
             type="file"
             accept="image/*"
-            
             className={styles.upload_image}
             onChange={handleThumbnailChange}
           ></input>
@@ -302,7 +298,8 @@ const Form = ({user}) => {
               {tags.map((p) => {
                 return (
                   <li className={styles.entire_input} key={p.id}>
-                    <input autoFocus
+                    <input
+                      autoFocus
                       className={styles.input_file_list}
                       value={p.tag}
                       placeholder="Enter a tag"
@@ -367,7 +364,8 @@ const Form = ({user}) => {
               {ingredients.map((i) => {
                 return (
                   <li className={styles.entire_input} key={i.id}>
-                    <input autoFocus
+                    <input
+                      autoFocus
                       className={styles.input_file_list}
                       value={i.ingredient}
                       placeholder="Enter an ingredient"
@@ -500,7 +498,8 @@ const Form = ({user}) => {
               {directions.map((d) => {
                 return (
                   <li className={styles.entire_input} key={d.id}>
-                    <input autoFocus
+                    <input
+                      autoFocus
                       className={styles.input_file_list}
                       value={d.direction}
                       placeholder="Enter a direction"
@@ -625,8 +624,8 @@ const Form = ({user}) => {
         </div>
         
  */}{" "}
- 
-          <SubmitButton value={isUploading} 
+          <SubmitButton
+            value={isUploading}
             onClick={() => {
               upload();
             }}

@@ -1,5 +1,5 @@
 const getAllUsers = () => {
-	return fetch("https://dev.createforever.media/api:lSOVAmsS/users")
+	return fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/users")
 		.then( res => res.json() )
 }
 

@@ -3,10 +3,10 @@ import styles from "../styles/Home.module.css";
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
 import Minirecipepreview from "../components/minirecipepreview";
-import { hotjar } from 'react-hotjar'
-import SwipeToDelete from 'react-swipe-to-delete-ios'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { hotjar } from "react-hotjar";
+import SwipeToDelete from "react-swipe-to-delete-ios";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
@@ -29,10 +29,8 @@ import Share from "../assets/share.svg";
 
 import white from "../assets/white.svg";
 
-
-
 const read_message = async (token, message_id) => {
-  fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
+  fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/read", {
     method: "POST",
     headers: {
       "Content-Type": "application/JSON",
@@ -72,10 +70,10 @@ export const CheckState = {
 
 //const cookies = context.req.cookies.User_ID
 /*       export async function getStaticProps() {
-  const user_response = await fetch('https://dev.createforever.media/api:lSOVAmsS/users')
+  const user_response = await fetch('https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/users')
   const user_list = await user_response.json()
  
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes")
+  const response = await fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes")
   const  recipes_list = await response.json()
   return {
     props: {
@@ -103,12 +101,12 @@ export async function getServerSideProps(context) {
     const user_list = await getAllUsers();
 
     const recipes_list = await fetch(
-      "https://dev.createforever.media/api:lSOVAmsS/recipe_list?users_id=" +
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipe_list?users_id=" +
         user?.id
     ).then((res) => res.json());
 
     const unread_messages = await fetch(
-      "https://dev.createforever.media/api:lSOVAmsS/get_unread_messages",
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/get_unread_messages",
       {
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +125,7 @@ export async function getServerSideProps(context) {
 }
 /* 
 export async function getStaticPaths(index) {
-  const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/recipes?buildCache=false")
+  const response = await fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes?buildCache=false")
   const  props.recipes_list = await response.json()
   // Get the paths we want to pre-render based on posts
   const paths =  props.recipes_list.map((recipes) => ({
@@ -140,10 +138,10 @@ export async function getStaticPaths(index) {
 }  */
 
 /* Home.getInitialProps = async (ctx) => {
-  const url = 'https://dev.createforever.media/api:lSOVAmsS/recipes';
+  const url = 'https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes';
   const res = await axios.get(url);
   const { data } = res;
-  const url2 = 'https://dev.createforever.media/api:lSOVAmsS/users';
+  const url2 = 'https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/users';
   const res2 = await axios.get(url2);
   const { data2 } = res2;
   return { props: {user_list: data2,  props.recipes_list: data} } // this returns data as posts in the props to the component
@@ -151,10 +149,10 @@ export async function getStaticPaths(index) {
  */
 /*  export async function getInitialProps (props) {
   {
-    const user_response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/users')
+    const user_response = await axios.get('https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/users')
     const user_list = response.data
     
-    const response = await axios.get('https://dev.createforever.media/api:lSOVAmsS/recipes')
+    const response = await axios.get('https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes')
     const  props.recipes_list = response.data
     //console.log(selected_recipe)
     
@@ -170,7 +168,7 @@ export async function getStaticPaths(index) {
 // It may be called again, on a serverless function, if
 // revalidation is enabled and a new request comes in
 /* export async function getStaticProps() {
-  const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
+  const res = await fetch('https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes')
   const  props.recipes_list = await res.json()
   return {
     props: {
@@ -187,7 +185,7 @@ export async function getStaticPaths(index) {
 // It may be called again, on a serverless function, if
 // the path has not been generated.
 /*  export async function getStaticPaths(context) {
-  const res = await fetch('https://dev.createforever.media/api:lSOVAmsS/recipes')
+  const res = await fetch('https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes')
   const  props.recipes_list = await res.json()
   const { slug } = context;
   // Get the paths we want to pre-render based on posts
@@ -213,9 +211,9 @@ export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   console.log(params)
-  const res = await fetch(`https://dev.createforever.media/api:lSOVAmsS/recipes/` + params.id)
+  const res = await fetch(`https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes/` + params.id)
   const recipe = await res.json() 
-  const user_reponse = await fetch("https://dev.createforever.media/api:lSOVAmsS/users")
+  const user_reponse = await fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/users")
   const user_list = await user_response.json()
   // Pass post data to the page via props
   return {
@@ -230,8 +228,6 @@ export async function getStaticProps({ params }) {
 export default function Home(props) {
   const router = useRouter();
 
-
-
   const getLocation = () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
@@ -243,7 +239,7 @@ export default function Home(props) {
           setLat(position.coords.latitude);
           setLng(position.coords.longitude);
           fetch(
-            "https://dev.createforever.media/api:lSOVAmsS/store_recent_location",
+            "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/store_recent_location",
             {
               method: "POST",
               headers: {
@@ -252,8 +248,8 @@ export default function Home(props) {
               },
               body: JSON.stringify({
                 recent_location: {
-                    lng: position.coords.longitude,
-                    lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                  lat: position.coords.latitude,
                 },
               }),
             }
@@ -290,7 +286,7 @@ export default function Home(props) {
   const [status, setStatus] = useState(null);
 
   const read_message = async () => {
-    fetch("https://dev.createforever.media/api:lSOVAmsS/read", {
+    fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/read", {
       method: "POST",
       headers: {
         "Content-Type": "application/JSON",
@@ -321,71 +317,62 @@ export default function Home(props) {
   const [deferredPrompt, setdefferedPrompt] = useState(null);
   const install = async () => {
     if (deferredPrompt !== null) {
-      deferredPrompt.prompt()
+      deferredPrompt.prompt();
 
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          setMode("PWA")
-            setdefferedPrompt(null)
-        }
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        setMode("PWA");
+        setdefferedPrompt(null);
+      }
     }
-};
+  };
   const [mode, setMode] = useState("");
   const [browser, setBrowser] = useState(false);
 
   useEffect(() => {
+    hotjar.initialize(3037585, 6);
 
-    hotjar.initialize(3037585, 6)
-
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      
-     setBrowser(true)
-      setdefferedPrompt(e)  
+    window.addEventListener("beforeinstallprompt", (e) => {
+      setBrowser(true);
+      setdefferedPrompt(e);
     });
 
-
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-       setMode("PWA")
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      setMode("PWA");
     } else {
-
       var nav = window.navigator;
       var ua = nav.userAgent;
-      function isiOsSafari (a) {
-        return ("standalone" in nav) // There's a thing called standalone in nav
-         && !nav.standalone // It is not running in standalone mode
-         && ua.indexOf(a)!=-1 // iPhone is in the UA string (could be Opera)
-         && ua.indexOf('Mac OS')!=-1 // There's Mac in the UA string (not Opera)
-         && ua.indexOf('Safari')!=-1 
-         /* if all the above are true this probably means this is 
+      function isiOsSafari(a) {
+        return (
+          "standalone" in nav && // There's a thing called standalone in nav
+          !nav.standalone && // It is not running in standalone mode
+          ua.indexOf(a) != -1 && // iPhone is in the UA string (could be Opera)
+          ua.indexOf("Mac OS") != -1 && // There's Mac in the UA string (not Opera)
+          ua.indexOf("Safari") != -1
+        );
+        /* if all the above are true this probably means this is 
          the Safari browser, 
          not a webview in an app, 
          not a page in standalone mode */
       }
 
-      if(isiOsSafari('iPhone')){
-        setMode("iOS")
+      if (isiOsSafari("iPhone")) {
+        setMode("iOS");
       }
       // Check if Mobile Safari on iPod
-      else if(isiOsSafari('iPad')){
-        setMode("iOS")
-      }
-      else {
-        setMode("Browser")
+      else if (isiOsSafari("iPad")) {
+        setMode("iOS");
+      } else {
+        setMode("Browser");
       }
     }
 
-
-      
-    getLocation()
+    getLocation();
   }, []);
 
   return (
     <div className={styles.container}>
       <Head>
-
-
-
         <title>Meal Pack</title>
 
         <meta
@@ -521,83 +508,117 @@ export default function Home(props) {
       </Head>
 
       <main className={styles.main}>
-      <Modal
-            className={styles.Modal}
-            isOpen={mode=="iOS"}
-            onRequestClose={() => {
-              setMode("iOSDenied");
-            }}
-
-            preventScroll={true}
-            style={{
-              overlay: {
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 1)",
-                "backdrop-filter": "grayscale(100%) brightness(112.5%)",
-              },
-              content: {
-                "border-radius": "12px",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                border: "none",
-                background: "#FFFFFF",
-                width: "100vw",
-                height: "100vh",
-                "align-items": "center",
-                overflow: "none",
-                WebkitOverflowScrolling: "touch",
-                outline: "none",
-                padding: "16px",
-                "z-index": "250",
-              },
-            }}
-          >
-            <div>
+        <Modal
+          className={styles.Modal}
+          isOpen={mode == "iOS"}
+          onRequestClose={() => {
+            setMode("iOSDenied");
+          }}
+          preventScroll={true}
+          style={{
+            overlay: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 1)",
+              "backdrop-filter": "grayscale(100%) brightness(112.5%)",
+            },
+            content: {
+              "border-radius": "12px",
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              border: "none",
+              background: "#FFFFFF",
+              width: "100vw",
+              height: "100vh",
+              "align-items": "center",
+              overflow: "none",
+              WebkitOverflowScrolling: "touch",
+              outline: "none",
+              padding: "16px",
+              "z-index": "250",
+            },
+          }}
+        >
+          <div>
             <div className={styles.iOSTopBar}>
-              <Image onClick={() => { 
-                setMode("DeniediOS")
-              }} className={styles.iOSTopBarTag} width={24} height={24} src={closeButton} alt="Close Modal" />
+              <Image
+                onClick={() => {
+                  setMode("DeniediOS");
+                }}
+                className={styles.iOSTopBarTag}
+                width={24}
+                height={24}
+                src={closeButton}
+                alt="Close Modal"
+              />
               <p className={styles.iOSTopBarTag}>Install Meal Pack</p>
-              <Image  className={styles.iOSTopBarTag} width={24} height={24} src={white}  alt="Close Modal" />
-              
+              <Image
+                className={styles.iOSTopBarTag}
+                width={24}
+                height={24}
+                src={white}
+                alt="Close Modal"
+              />
             </div>
             <div className={styles.ImageHolder}>
-            <Image  className={styles.BannerImage} src={appBanner}  alt="Add to Homescreen Banner" />
+              <Image
+                className={styles.BannerImage}
+                src={appBanner}
+                alt="Add to Homescreen Banner"
+              />
             </div>
             <h4 className={styles.ThreeSteps}>Install in Four Easy Steps</h4>
-            <p className={styles.ThreeStepsDescription}>Follow the steps below to install Meal Pack in just a few seconds</p>
+            <p className={styles.ThreeStepsDescription}>
+              Follow the steps below to install Meal Pack in just a few seconds
+            </p>
             <div>
               <ol>
-                <li className={styles.ThreeStepsDescriptionStep}><text>Tap the </text><Image className={styles.ThreeStepsDescriptionStepIcon} height={21} width={21} src={Share}></Image> <text> button</text></li>
-                <li className={styles.ThreeStepsDescriptionStep}><text>Swipe Up</text></li>
+                <li className={styles.ThreeStepsDescriptionStep}>
+                  <text>Tap the </text>
+                  <Image
+                    className={styles.ThreeStepsDescriptionStepIcon}
+                    height={21}
+                    width={21}
+                    src={Share}
+                  ></Image>{" "}
+                  <text> button</text>
+                </li>
+                <li className={styles.ThreeStepsDescriptionStep}>
+                  <text>Swipe Up</text>
+                </li>
                 <li className={styles.ThreeStepsDescriptionStep}>
                   <div className={styles.holder}>
-                    <text>Tap <u>Add to Home Screen</u></text>
+                    <text>
+                      Tap <u>Add to Home Screen</u>
+                    </text>
                   </div>
                 </li>
                 <li className={styles.ThreeStepsDescriptionStep}>
                   <div className={styles.holder}>
-                    <text>At the top right, tap <u>Add</u></text>
+                    <text>
+                      At the top right, tap <u>Add</u>
+                    </text>
                   </div>
                 </li>
               </ol>
-
             </div>
-            </div>
-
-          </Modal>
-      {mode === "PWA" || browser == false ? null : (
-        
-        <div onClick={() => {
-          install()
-        }} className={styles.banner}>Install Meal Pack App</div>
-      ) }
+          </div>
+        </Modal>
+        {mode === "PWA" || browser == false ? null : (
+          <div
+            onClick={() => {
+              install();
+            }}
+            className={styles.banner}
+          >
+            Install Meal Pack App
+          </div>
+        )}
         {props.unread_messages.length === 0 ? null : (
           <Modal
             className={styles.Modal}
@@ -606,7 +627,6 @@ export default function Home(props) {
               setModalIsOpen(false);
               read_message();
             }}
-
             preventScroll={true}
             style={{
               overlay: {
@@ -638,11 +658,15 @@ export default function Home(props) {
               },
             }}
           >
-            <div className={styles.modalTop}
-            onClick={() => {
-              read_message(props.token, props.unread_messages[0].id);
-              router.push('/recipe_page/' + props.unread_messages[0].recipes_id);
-            }}>
+            <div
+              className={styles.modalTop}
+              onClick={() => {
+                read_message(props.token, props.unread_messages[0].id);
+                router.push(
+                  "/recipe_page/" + props.unread_messages[0].recipes_id
+                );
+              }}
+            >
               {/*         <a
             className={styles.modalTopButton}
             onClick={() => setModalIsOpen(false)}
@@ -660,13 +684,8 @@ export default function Home(props) {
               </p>
 
               <Minirecipepreview
-                  
-                token={
-                  props.token
-                }
-                message={
-                  props.unread_messages[0].id
-                }
+                token={props.token}
+                message={props.unread_messages[0].id}
                 author={
                   props.unread_messages[0].recipes_details.recipe_author[0].name
                 }
@@ -807,63 +826,69 @@ export default function Home(props) {
                 );
                 return (
                   <div key={item.id} className={styles.massivecontainer}>
-                  <SwipeToDelete
-                  key={item.id}
-                  onDelete={console.log("deleted")} // required
-                  // optional
-                  height={114} // default
-
-                  transitionDuration={250} // default
-                  deleteWidth={75} // default
-                  deleteColor="rgba(252, 58, 48, 1.00)" // default
-                  deleteText="Delete" // default
-                  disabled={false} // default
-                  id="swiper-1" // not default
-
-                  onDeleteConfirm={(onSuccess, onCancel) => {
-                    if (window.confirm("Do you really want to delete this recipe?")) {
-                      
-                      fetch("https://dev.createforever.media/api:lSOVAmsS/deleterecipe", {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/JSON",
-                          Authorization: `Bearer ${props.token}`,
-                        },
-                        body: JSON.stringify({
-                          recipes_id: item.id,
-                        }),
-                      }).then((response) => window.location.reload());
-                    
-                    } else {
-                      console.log("kept")
-                    }
-                  }}
-                  >
-                  <div                   className={styles.backgroundcoloradder}
->
-                  <motion.div
-                  className={styles.backgroundcoloradder}
-                    key={item.id}
-                    initial="hidden"
-                    animate="visible"
-                    variants={animationvariantssearch}
-                    transition={{ ease: "easeOut", duration: 0.2, delay: 0.25 }}
-                  >
-                    <Recipepreview
-                      author={identify_author.name}
-                      avatar={identify_author.profile_picture.url}
-                      title={item.recipe_name}
+                    <SwipeToDelete
                       key={item.id}
-                      id={item.id}
-                      thumbnail={item.recipe_thumbnail.url}
-                      tags={item.tags}
-                      description={item.recipe_description}
-                      ingredients={item.ingredients}
-                      directions={item.directions}
-                    ></Recipepreview>
-                  </motion.div>
-                  </div>  
-                  </SwipeToDelete>
+                      onDelete={console.log("deleted")} // required
+                      // optional
+                      height={114} // default
+                      transitionDuration={250} // default
+                      deleteWidth={75} // default
+                      deleteColor="rgba(252, 58, 48, 1.00)" // default
+                      deleteText="Delete" // default
+                      disabled={false} // default
+                      id="swiper-1" // not default
+                      onDeleteConfirm={(onSuccess, onCancel) => {
+                        if (
+                          window.confirm(
+                            "Do you really want to delete this recipe?"
+                          )
+                        ) {
+                          fetch(
+                            "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/deleterecipe",
+                            {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/JSON",
+                                Authorization: `Bearer ${props.token}`,
+                              },
+                              body: JSON.stringify({
+                                recipes_id: item.id,
+                              }),
+                            }
+                          ).then((response) => window.location.reload());
+                        } else {
+                          console.log("kept");
+                        }
+                      }}
+                    >
+                      <div className={styles.backgroundcoloradder}>
+                        <motion.div
+                          className={styles.backgroundcoloradder}
+                          key={item.id}
+                          initial="hidden"
+                          animate="visible"
+                          variants={animationvariantssearch}
+                          transition={{
+                            ease: "easeOut",
+                            duration: 0.2,
+                            delay: 0.25,
+                          }}
+                        >
+                          <Recipepreview
+                            author={identify_author.name}
+                            avatar={identify_author.profile_picture.url}
+                            title={item.recipe_name}
+                            key={item.id}
+                            id={item.id}
+                            thumbnail={item.recipe_thumbnail.url}
+                            tags={item.tags}
+                            description={item.recipe_description}
+                            ingredients={item.ingredients}
+                            directions={item.directions}
+                          ></Recipepreview>
+                        </motion.div>
+                      </div>
+                    </SwipeToDelete>
                   </div>
                 );
               })}

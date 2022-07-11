@@ -5,7 +5,7 @@ interface LoginBody {
 
 // Type response
 const requestLogin = async (body: LoginBody) => {
-	const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/auth/login", {
+	const response = await fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/auth/login", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body),

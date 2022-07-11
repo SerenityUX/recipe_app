@@ -8,7 +8,7 @@ interface SignUpBody {
 
 // Type response
 const requestSignUp = async (body: SignUpBody) => {
-	const response = await fetch("https://dev.createforever.media/api:lSOVAmsS/auth/signup", {
+	const response = await fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/auth/signup", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(body),

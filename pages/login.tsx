@@ -12,36 +12,36 @@ export enum UploadState {
   Default = "Default",
   Uploading = "Uploading",
   Uploaded = "Uploaded",
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 const Login = () => {
-  const [isUploading, setIsUploading] = useState<UploadState>(UploadState.Default)
+  const [isUploading, setIsUploading] = useState<UploadState>(
+    UploadState.Default
+  );
 
   const router = useRouter();
   const email = useRef(null);
   const password = useRef(null);
 
-
-
   const attemptLogin = async () => {
     let formData = new FormData();
-    setIsUploading( UploadState.Uploading )
+    setIsUploading(UploadState.Uploading);
     const [token, userError] = (await requestLogin({
       email: email.current.value,
-      password: password.current.value
+      password: password.current.value,
     })) as [any, any];
     if (userError) {
-      setIsUploading( UploadState.Failed )
+      setIsUploading(UploadState.Failed);
     } else {
-      setIsUploading( UploadState.Uploaded )
+      setIsUploading(UploadState.Uploaded);
     }
     if (userError) return alert(userError);
 
     document.cookie = `token=${token}; expires=Wed, 05 Aug 2035 23:00:00 UTC"`; // fix this, this really bad --Yofou
     router.push("/");
   };
-/*     fetch("https://dev.createforever.media/api:lSOVAmsS/auth/login", {
+  /*     fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,7 +60,7 @@ const Login = () => {
       })
       router.push("/")
   }; */
-  
+
   return (
     <div>
       <div className={styles.top_bar}>
@@ -89,10 +89,11 @@ const Login = () => {
           id="password"
           name="password"
         ></input>
-        <LoginButton value={isUploading} 
-            onClick={() => {
-              attemptLogin();
-            }}
+        <LoginButton
+          value={isUploading}
+          onClick={() => {
+            attemptLogin();
+          }}
         />
       </div>
     </div>
@@ -100,4 +101,3 @@ const Login = () => {
 };
 
 export default Login;
-

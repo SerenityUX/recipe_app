@@ -21,7 +21,7 @@ export async function getServerSideProps(context) {
     const user_list = await getAllUsers();
 
     const group_list = await fetch(
-      "https://dev.createforever.media/api:lSOVAmsS/groups"
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/groups"
     ).then((res) => res.json());
 
     return { props: { user_list, token, group_list } }; // this returns data as posts in the props to the component
@@ -45,64 +45,67 @@ const Cook_groups = (props) => {
       </div>
       {props.group_list.map((item, index) => {
         return (
-          <Link key={index} href={`/group_page/${item.id}`} className={styles.link}>
-          <div key={index} className={styles.group_banner}>
-            <img
-              className={styles.banner_group}
-              src={item.group_banner.url}
-              alt={item.group_name}
-            ></img>
-            <div className={styles.group_information}>
-              <p className={styles.group_name}>{item.group_name}</p>
-              <div className={styles.right_info}>
-                <img
-                  className={styles.group_member_leader}
-                  src={item.group_leader_info.profile_picture.url}
-                  alt={item.group_name}
-                ></img>
-                <p className={styles.group_leader_text}>
-                  {item.group_leader_info.name}
-                </p>
-              </div>
-              {item.group_members.length * 32 > 300 ? (
-                <Marquee
-                  gradientWidth={128}
-                  pauseOnHover={false}
-                  className={styles.scrolling_group_members}
-                >
-                  {item.group_members.map((member, indexposition) => {
-                    return (
-                      <img
-                        className={styles.group_member}
-                        key={indexposition}
-                        src={member.user_profile_for_scroll.profile_picture.url}
-                        alt={member.user_profile_for_scroll.name}
-                      ></img>
-                    );
-                  })}
-                </Marquee>
-              ) : (
-
-                <div className={styles.group_list}
-                >
-                  {item.group_members.map((member, indexposition) => {
-                    return (
-                      <img
-                        className={styles.group_member}
-                        key={indexposition}
-                        src={member.user_profile_for_scroll.profile_picture.url}
-                        alt={member.user_profile_for_scroll.name}
-                      ></img>
-                    );
-                  })}
+          <Link
+            key={index}
+            href={`/group_page/${item.id}`}
+            className={styles.link}
+          >
+            <div key={index} className={styles.group_banner}>
+              <img
+                className={styles.banner_group}
+                src={item.group_banner.url}
+                alt={item.group_name}
+              ></img>
+              <div className={styles.group_information}>
+                <p className={styles.group_name}>{item.group_name}</p>
+                <div className={styles.right_info}>
+                  <img
+                    className={styles.group_member_leader}
+                    src={item.group_leader_info.profile_picture.url}
+                    alt={item.group_name}
+                  ></img>
+                  <p className={styles.group_leader_text}>
+                    {item.group_leader_info.name}
+                  </p>
                 </div>
-
-
-
-              )}
+                {item.group_members.length * 32 > 300 ? (
+                  <Marquee
+                    gradientWidth={128}
+                    pauseOnHover={false}
+                    className={styles.scrolling_group_members}
+                  >
+                    {item.group_members.map((member, indexposition) => {
+                      return (
+                        <img
+                          className={styles.group_member}
+                          key={indexposition}
+                          src={
+                            member.user_profile_for_scroll.profile_picture.url
+                          }
+                          alt={member.user_profile_for_scroll.name}
+                        ></img>
+                      );
+                    })}
+                  </Marquee>
+                ) : (
+                  <div className={styles.group_list}>
+                    {item.group_members.map((member, indexposition) => {
+                      return (
+                        <img
+                          className={styles.group_member}
+                          key={indexposition}
+                          src={
+                            member.user_profile_for_scroll.profile_picture.url
+                          }
+                          alt={member.user_profile_for_scroll.name}
+                        ></img>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+              <div className={styles.divider}></div>
             </div>
-            <div className={styles.divider}></div>
-          </div>
           </Link>
         );
       })}

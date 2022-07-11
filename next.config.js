@@ -5,6 +5,6 @@ const nextConfig = {
 module.exports = {
   webpack5: true,
   images: {
-    domains: ['dev.createforever.media'],
+    domains: ['xxm8-77n0-ua23.n7.xano.io'],
   },
 }
