@@ -118,8 +118,9 @@ export async function getServerSideProps(context) {
     return { props: { user_list, recipes_list, unread_messages, token } }; // this returns data as posts in the props to the component
   } catch (error) {
     console.log(error);
+    const error_message = "signin"
     return {
-      props: {},
+      props: { error_message },
     };
   }
 }
@@ -228,6 +229,7 @@ export async function getStaticProps({ params }) {
 export default function Home(props) {
   const router = useRouter();
 
+
   const getLocation = () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
@@ -293,7 +295,7 @@ export default function Home(props) {
         Authorization: `Bearer ${props.token}`,
       },
       body: JSON.stringify({
-        gift_ledger_id: props.unread_messages[0].id,
+        gift_ledger_id: props.unread_messages[0]?.id,
       }),
     }).then((response) => console.log(response));
   };
@@ -330,7 +332,12 @@ export default function Home(props) {
   const [browser, setBrowser] = useState(false);
 
   useEffect(() => {
-    hotjar.initialize(3037585, 6);
+    if(props.error_message == "signin") {
+      router.push(
+        "/login"
+      );
+    }
+
 
     window.addEventListener("beforeinstallprompt", (e) => {
       setBrowser(true);
@@ -661,9 +668,9 @@ export default function Home(props) {
             <div
               className={styles.modalTop}
               onClick={() => {
-                read_message(props.token, props.unread_messages[0].id);
+                read_message(props.token, props.unread_messages[0]?.id);
                 router.push(
-                  "/recipe_page/" + props.unread_messages[0].recipes_id
+                  "/recipe_page/" + props.unread_messages[0]?.recipes_id
                 );
               }}
             >
@@ -680,24 +687,24 @@ export default function Home(props) {
             />
           </a> */}
               <p className={styles.modalTopText}>
-                {props.unread_messages[0].new_sent_by[0].name} Sent You a Gift
+                {props.unread_messages[0]?.new_sent_by[0].name} Sent You a Gift
               </p>
 
               <Minirecipepreview
                 token={props.token}
-                message={props.unread_messages[0].id}
+                message={props.unread_messages[0]?.id}
                 author={
-                  props.unread_messages[0].recipes_details.recipe_author[0].name
+                  props.unread_messages[0]?.recipes_details.recipe_author[0].name
                 }
                 avatar={
-                  props.unread_messages[0].recipes_details.recipe_author[0]
+                  props.unread_messages[0]?.recipes_details.recipe_author[0]
                     .profile_picture.url
                 }
-                title={props.unread_messages[0].recipes_details.recipe_name}
-                key={props.unread_messages[0].recipes_details.id}
-                id={props.unread_messages[0].recipes_details.id}
+                title={props.unread_messages[0]?.recipes_details.recipe_name}
+                key={props.unread_messages[0]?.recipes_details.id}
+                id={props.unread_messages[0]?.recipes_details.id}
                 thumbnail={
-                  props.unread_messages[0].recipes_details.recipe_thumbnail.url
+                  props.unread_messages[0]?.recipes_details.recipe_thumbnail.url
                 }
               ></Minirecipepreview>
             </div>
