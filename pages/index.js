@@ -98,6 +98,13 @@ export async function getServerSideProps(context) {
       };
 
     const user = await getSelf(token);
+    if (user.code == "ERROR_CODE_UNAUTHORIZED")
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
     const user_list = await getAllUsers();
 
     const recipes_list = await fetch(
