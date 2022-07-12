@@ -397,6 +397,14 @@ export default function Home(props) {
   const mydescriptionname = useRef(null);
 
   const [title, setTitle] = useState(null);
+
+  const [currentTitle, setCurrentTitle] = useState(null);
+
+  const [currentDescription, setCurrentDescription] = useState(null);
+
+  const [currentDirections, setCurrentDirections] = useState(null);
+
+  const [currentIngredients, setCurrentIngredients] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
 
   const [tags, setTags] = useState(null);
@@ -778,20 +786,28 @@ export default function Home(props) {
         <div>
           <div className={stylesitem.top_bar}>
             {props.user.id == author ? (
-              <a onClick={upload_change} className={stylesitem.backbutton}>
+              <a onClick={() => {
+                if(currentTitle != title || currentDirections != directions || currentDescription != description || currentIngredients != ingredients) {
+                upload_change().then(window.location.reload())
+                
+                } else {
+                  setRecipeId(0)
+                  window.scrollTo(0,0)
+                }}} className={stylesitem.backbutton}>
                 <Image
                   src={backButton}
                   width={24}
                   height={24}
                   alt=""
                   className={stylesitem.backbutton}
+                  
                 />
               </a>
             ) : (
               <a onClick={() => {
                 setRecipeId(0)
-                console.log("wow")
                 window.scrollTo(0,0)
+                
               }} className={stylesitem.backbutton}>
                 <Image
                   src={backButton}
@@ -1269,7 +1285,7 @@ export default function Home(props) {
           <div className={stylesitem.thumbnail} alt="">
             <img
               className={stylesitem.thumbnailcontent}
-              src={thumbnail}
+              src={thumbnail.url}
             ></img>
           </div>
           {props.user.id == author ? (
@@ -1282,7 +1298,7 @@ export default function Home(props) {
                 setTitle(e.target.innerText);
               }}
             >
-              {title}
+              {currentTitle}
             </h1>
           ) : (
             <h1 ref={myrecipename} className={stylesitem.title}>
@@ -1303,8 +1319,11 @@ export default function Home(props) {
               contentEditable
               className={stylesitem.description}
               ref={mydescriptionname}
+              onKeyUp={(e) => {
+                setDescription(e.target.innerText);
+               }}
             >
-              {description}
+              {currentDescription}
             </p>
           ) : (
             <p className={stylesitem.description} ref={mydescriptionname}>
@@ -1313,7 +1332,7 @@ export default function Home(props) {
           )}
           <h2 className={stylesitem.section_title}>Ingredients</h2>
           {props.user.id == author
-            ? ingredients.map((item, index) => {
+            ? currentIngredients.map((item, index) => {
                 return (
                   <li key={index} className={stylesitem.recipe_ingredients}>
                     <span
@@ -1343,7 +1362,7 @@ export default function Home(props) {
           <h2 className={stylesitem.section_title}>Directions</h2>
           {props.user.id == author ? (
             <ol type="1">
-              {directions.map((item, index) => {
+              {currentDirections.map((item, index) => {
                 return (
                   <li key={index} className={stylesitem.recipe_directions}>
                     <span
@@ -1707,6 +1726,18 @@ export default function Home(props) {
                 );
                 return (
                   <div key={item.id} className={styles.massivecontainer}>
+                                           <motion.div
+                          className={styles.backgroundcoloradder}
+                          key={item.id}
+                          initial="hidden"
+                          animate="visible"
+                          variants={animationvariantssearch}
+                          transition={{
+                            ease: "easeOut",
+                            duration: 0.2,
+                            delay: 0.25,
+                          }}
+                        >
                     <SwipeToDelete
                       key={item.id}
                       // optional
@@ -1715,7 +1746,6 @@ export default function Home(props) {
                       deleteWidth={75} // default
                       deleteColor="rgba(252, 58, 48, 1.00)" // default
                       deleteText="Delete" // default
-                      disabled={false} // default
                       id="swiper-1" // not default
                       onDeleteConfirm={(onSuccess, onCancel) => {
                         if (
@@ -1746,7 +1776,8 @@ export default function Home(props) {
                             setRecipeId(item.id)
                             window.scrollTo(0,0)
                             setTitle(item.recipe_name)
-                            setThumbnail(item.recipe_thumbnail.url)
+                            setCurrentTitle(item.recipe_name)
+                            setThumbnail(item.recipe_thumbnail)
 
                             setTags(item.tags)
                             setAvatarURL(item.author_details.profile_picture.url)
@@ -1755,24 +1786,16 @@ export default function Home(props) {
 
 
                             setDirections(item.directions)
-                            setDescription(item.description)
+                            setCurrentDirections(item.directions)
+                            setDescription(item.recipe_description)
+                            setCurrentDescription(item.recipe_description)
 
+                            setCurrentIngredients(item.ingredients)
                             setIngredients(item.ingredients)
 
                             console.log(recipeId)
                           }}>
-                        <motion.div
-                          className={styles.backgroundcoloradder}
-                          key={item.id}
-                          initial="hidden"
-                          animate="visible"
-                          variants={animationvariantssearch}
-                          transition={{
-                            ease: "easeOut",
-                            duration: 0.2,
-                            delay: 0.25,
-                          }}
-                        >
+
                           <Recipepreview
                           
                             author={identify_author.name}
@@ -1786,9 +1809,10 @@ export default function Home(props) {
                             ingredients={item.ingredients}
                             directions={item.directions}
                           ></Recipepreview>
-                        </motion.div>
+                        
                       </div>
                     </SwipeToDelete>
+                    </motion.div>
                   </div>
                 );
               })}
