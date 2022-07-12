@@ -387,11 +387,12 @@ export default function Home(props) {
           tags: tags,
         }),
       }
-    ).then((response) => console.log(response));
+    ).then((response) => {
+      console.log(response)
+      window.location.reload()
+    });
 
-    setRecipeId(0)
-    console.log("wow")
-    window.scrollTo(0,0)
+
   };
   const myrecipename = useRef(null);
   const mydescriptionname = useRef(null);
@@ -789,7 +790,6 @@ export default function Home(props) {
               <a onClick={() => {
                 if(currentTitle != title || currentDirections != directions || currentDescription != description || currentIngredients != ingredients) {
                 upload_change().then(window.location.reload())
-                
                 } else {
                   setRecipeId(0)
                   window.scrollTo(0,0)
