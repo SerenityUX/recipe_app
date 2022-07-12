@@ -1,15 +1,30 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import stylesitem from "../styles/recipeview.module.css";
+
+import ShareButton from "../components/share_button";
+import SmartText from "../components/smart_text";
+import GiftButton from "../assets/gift.svg";
+import backButton from "../assets/back.svg";
+import nearby from "../assets/nearby.svg";
+import mylogo from "../assets/logo.svg";
+import "react-loading-skeleton/dist/skeleton.css";
+import QR from "../assets/QR.svg";
+import { QRCode } from "react-qrcode-logo";
+
+import email_icon from "../assets/email.svg";
+
+
 import Chip from "../components/chipv2";
 import Recipepreview from "../components/recipepreview";
 import Minirecipepreview from "../components/minirecipepreview";
-import { hotjar } from "react-hotjar";
 import SwipeToDelete from "react-swipe-to-delete-ios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion } from "framer-motion";
 // import  props.recipes_list from '../recipes.json'
 import Cookies from "js-cookie";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useRef } from "react";
@@ -28,6 +43,48 @@ import AddtoHome from "../assets/AddtoHome.svg";
 import Share from "../assets/share.svg";
 
 import white from "../assets/white.svg";
+
+
+const draw = {
+  hidden: { pathLength: 0, opacity: 0.01, r: 30, stroke: "#ffffff" },
+  visible: (i) => {
+    const delay = 0.01 + i * 0.5;
+    return {
+      pathLength: 1,
+      opacity: 1,
+      stroke: "#43AA8B",
+      r: 35.5,
+      transition: {
+        pathLength: {
+          delay: 0,
+          type: "tween",
+          duration: 1.25,
+          damping: 10,
+          mass: 0.75,
+          stiffness: 100,
+        },
+        stroke: { delay: 1.5, type: "spring", duration: 0.5 },
+        opacity: { delay: 0, duration: 0.5 },
+        r: { delay: 1.5, duration: 0.5 },
+      },
+    };
+  },
+};
+
+
+export const ShareState = {
+  Default: "Default",
+  Gifting: "Gifting",
+  Gifted: "Gifted",
+  Failed: "Failed",
+};
+
+export const ClaimState = {
+  Default: "Add to Meal Pack",
+  Gifting: "Adding Recipe",
+  Gifted: "Recipe Added to Meal Pack",
+  Failed: "Recipe Transfer Failed",
+};
 
 const read_message = async (token, message_id) => {
   fetch("https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/read", {
@@ -96,6 +153,27 @@ export async function getServerSideProps(context) {
           permanent: false,
         },
       };
+      
+    const user_relationships_response = await fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/get_user_relations",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  
+    const user_relationships = await user_relationships_response.json();
+  
+    const nearby_users_response = await fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/get_nearby_users",
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  
+    const nearby_users = await nearby_users_response.json();
+  
+
+
 
     const user = await getSelf(token);
     if (user.code == "ERROR_CODE_UNAUTHORIZED")
@@ -122,12 +200,18 @@ export async function getServerSideProps(context) {
       }
     ).then((res) => res.json());
 
-    return { props: { user_list, recipes_list, unread_messages, token } }; // this returns data as posts in the props to the component
+
+    return { props: { user_list, recipes_list, unread_messages, token,      
+      user,
+      user_relationships,
+      nearby_users,
+     } }; // this returns data as posts in the props to the component
   } catch (error) {
     console.log(error);
+    const unread_messages = []
     const error_message = "signin"
     return {
-      props: { error_message },
+      props: { error_message, unread_messages },
     };
   }
 }
@@ -234,8 +318,172 @@ export async function getStaticProps({ params }) {
  */
 
 export default function Home(props) {
+  //Recipe page Information
+  const [suggestions, setSuggestions] = useState([]);
+  const componentRef = useRef(null);
+
+  const [loadingnearby, setLoadingNearby] = useState([]);
+  const SuggestHandler = (text) => {
+    setEmail(text);
+    setSuggestions([]);
+  };
+  const handleChanges = async (email_value, relations) => {
+    const test_attempt = relations.user_relationships.map((item) => item);
+    const relations_setup = relations.user_relationships.map(
+      (item) => item.email
+    );
+
+    const test = relations_setup.filter((item) => {
+      if (
+        item.toLowerCase().trim().includes(email_value.toLowerCase().trim())
+      ) {
+        return item;
+      }
+    });
+
+    setSuggestions(test);
+    setEmail(email_value);
+  };
+  //Input of autocomplete ends
+
   const router = useRouter();
 
+
+
+  const upload = async (result) => {
+    const response = await fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/share_with_id",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          users_id: props.user.id,
+          recipes_id: result,
+        }),
+      }
+    ).then((res) => res.json());
+
+    router.push("/recipe_page/" + response.id).then(() => {
+      alert(response.recipe_name + " added to Meal Pack");
+    });
+  };
+
+  const upload_change = async () => {
+    fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipes/" + recipeId,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${props.token}`,
+        },
+        body: JSON.stringify({
+          recipe_name: title,
+          recipe_thumbnail: thumbnail,
+          recipe_author: author,
+          recipe_description: description,
+          ingredients: ingredients,
+          directions: directions.map((direction) => direction),
+          tags: tags,
+        }),
+      }
+    ).then((response) => console.log(response));
+
+    setRecipeId(0)
+    console.log("wow")
+    window.scrollTo(0,0)
+  };
+  const myrecipename = useRef(null);
+  const mydescriptionname = useRef(null);
+
+  const [title, setTitle] = useState(null);
+  const [thumbnail, setThumbnail] = useState(null);
+
+  const [tags, setTags] = useState(null);
+
+  const [authorName, setAuthorName] = useState(null);
+  const [author, setAuthor] = useState(null);
+
+  const [avatarURL, setAvatarURL] = useState(null);
+
+  const [directions, setDirections] = useState();
+  const [description, setDescription] = useState();
+
+
+  const [ingredients, setIngredients] = useState(
+  );
+
+  const [isSharing, setIsSharing] = useState(ShareState.Default);
+  const [isClaiming, setIsClaiming] = useState(ClaimState.Default);
+  const [email, setEmail] = useState("");
+  const [shareCode, setShareCode] = useState("");
+  //Math.random().toString(36).substring(2,20);
+
+
+
+  const attemptToGift = async () => {
+    setIsSharing(ShareState.Gifting);
+
+    const response = await fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/gift",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${props.token}`,
+        },
+        body: JSON.stringify({
+          email: email,
+          recipes_id: recipeId,
+        }),
+      }
+    );
+
+    console.log(email);
+    console.log(recipeId);
+    console.log(response);
+    if (response.status == 200) {
+      setIsSharing(ShareState.Gifted);
+    } else {
+      setIsSharing(ShareState.Failed);
+    }
+  };
+
+  const attemptToGiftNearby = async (users_email) => {
+    const response = await fetch(
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/gift",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${props.token}`,
+        },
+        body: JSON.stringify({
+          email: users_email,
+          recipes_id: recipeId,
+        }),
+      }
+    );
+
+    if (response.status == 200) {
+      console.log("worked");
+    } else {
+      console.log("failed");
+    }
+  };
+  //The default value is false
+  const [QRmodalIsOpen, setQRModalIsOpen] = useState(false);
+  const [emailmodalIsOpen, setEmailModalIsOpen] = useState(false);
+  const [selectionmodalIsOpen, setSelectionModalIsOpen] = useState(false);
+  const [nearbymodalIsOpen, setNearbyModalIsOpen] = useState(false);
+
+
+
+
+
+
+
+  //Index / Home Information
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -291,6 +539,8 @@ export default function Home(props) {
  */
 
   const [lat, setLat] = useState(null);
+  const [recipeId, setRecipeId] = useState(0);
+
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
 
@@ -520,8 +770,625 @@ export default function Home(props) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
       </Head>
+      {//Recipe Page
+      recipeId !== 0 ? ( 
+      <main ref={componentRef}>
+    <div>
+      {props.token != 0 ? (
+        <div>
+          <div className={stylesitem.top_bar}>
+            {props.user.id == author ? (
+              <a onClick={upload_change} className={stylesitem.backbutton}>
+                <Image
+                  src={backButton}
+                  width={24}
+                  height={24}
+                  alt=""
+                  className={stylesitem.backbutton}
+                />
+              </a>
+            ) : (
+              <a onClick={() => {
+                setRecipeId(0)
+                console.log("wow")
+                window.scrollTo(0,0)
+              }} className={stylesitem.backbutton}>
+                <Image
+                  src={backButton}
+                  width={24}
+                  height={24}
+                  alt=""
+                  className={stylesitem.backbutton}
+                />
+              </a>
+            )}
+            <p>{title}</p>
+            {/*         {(props.user.id == author)? 
+        <a className={stylesitem.giftIconButton} href={`/create_recipe/form`}>
+        <img className={stylesitem.giftIcon} src="https://svgshare.com/i/gJH.svg" />
+        </a>
+        : null            
+        }
+ */}
+            {props.status !== "temporary" ? (
+              <a
+                className={stylesitem.giftIconButton}
+                onClick={() => {
+                  setSelectionModalIsOpen(true);
+                  setEmailModalIsOpen(false);
+                  setNearbyModalIsOpen(false);
+                }}
+              >
+                <Image
+                  width={32}
+                  height={32}
+                  className={stylesitem.giftIcon}
+                  src={GiftButton}
+                  alt="Gift"
+                />
+              </a>
+            ) : (
+              <a
+                className={stylesitem.redeemText}
+                onClick={() => {
+                  upload(recipeId);
+                }}
+              >
+                Redeem
+              </a>
+            )}
+          </div>
 
-      <main className={styles.main}>
+          <Modal
+            className={stylesitem.shareModal}
+            isOpen={selectionmodalIsOpen}
+            onRequestClose={() => setSelectionModalIsOpen(false)}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.0)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "86px",
+                left: "calc(45vw - 16px)",
+                right: "16px",
+                bottom: "40px",
+                border: "none",
+                background: "#F1F3F4",
+                width: "55vw",
+                "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "0px",
+                height: "fit-content",
+                "z-index": "150",
+                cursor: "pointer",
+              },
+            }}
+          >
+            <div className={stylesitem.modalTopSelection}>
+              <div
+                className={stylesitem.modalOption}
+                onClick={() => {
+                  setSelectionModalIsOpen(false);
+                  setEmailModalIsOpen(true);
+                }}
+              >
+                <p className={stylesitem.modalTopText}> Gift by Email</p>
+                <Image
+                  width={24}
+                  height={24}
+                  className={stylesitem.giftsubIcon}
+                  src={email_icon}
+                  alt="Gift Email"
+                />
+              </div>
+
+              <div className={stylesitem.smalldivider}></div>
+              <div
+                className={stylesitem.modalOption}
+                onClick={() => {
+                  setSelectionModalIsOpen(false);
+                  setNearbyModalIsOpen(true);
+                }}
+              >
+                <p className={stylesitem.modalTopText}> Gift Nearby</p>
+                <Image
+                  width={24}
+                  height={24}
+                  className={stylesitem.giftsubIcon}
+                  src={nearby}
+                  alt="Gift Nearby"
+                />
+              </div>
+              <div className={stylesitem.smalldivider}></div>
+
+              <div
+                className={stylesitem.modalOption}
+                onClick={() => {
+                  const response = fetch(
+                    "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/share_codes",
+                    {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${props.token}`,
+                      },
+                      body: JSON.stringify({
+                        share_code:
+                          Math.random().toString(36).substring(2, 20) +
+                          Math.random().toString(36).substring(2, 20) +
+                          Math.random().toString(36).substring(2, 20) +
+                          Math.random().toString(36).substring(2, 20) +
+                          Math.random().toString(36).substring(2, 20) +
+                          Math.random().toString(36).substring(2, 20),
+                        recipes_id: recipe_id,
+                      }),
+                    }
+                  )
+                    .then((res) => res.json())
+                    .then((jsoned) => setShareCode(jsoned.share_code))
+                    .then((jsonedo) => setQRModalIsOpen(true));
+                  setSelectionModalIsOpen(false);
+                }}
+              >
+                <p className={stylesitem.modalTopText}> Gift by QR Code</p>
+                <Image
+                  width={24}
+                  height={24}
+                  className={stylesitem.giftsubIcon}
+                  src={QR}
+                  alt="Gift Email"
+                />
+              </div>
+            </div>
+          </Modal>
+
+          <Modal
+            className={stylesitem.shareModal}
+            isOpen={emailmodalIsOpen}
+            onRequestClose={() => setEmailModalIsOpen(false)}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.0)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "86px",
+                right: "16px",
+                left: "calc(30vw-16px)",
+                bottom: "40px",
+                border: "none",
+                background: "#F1F3F4",
+                width: "70vw",
+                "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px",
+                height: "200px",
+                "z-index": "150",
+              },
+            }}
+          >
+            <div className={stylesitem.modalTop}>
+              <p className={stylesitem.modalTopText}>Gift this Recipe</p>
+              <a
+                className={stylesitem.modalTopButton}
+                onClick={() => setEmailModalIsOpen(false)}
+              >
+                <Image
+                  width={24}
+                  height={24}
+                  className={stylesitem.giftIcon}
+                  src={closeButton}
+                  alt="Close Modal"
+                />
+              </a>
+            </div>
+            <div className={stylesitem.inputgroup}>
+              <label className={stylesitem.inputlabel}>Email Address</label>
+              <input
+                value={email}
+                autoComplete="off"
+                onChange={(event) => {
+                  handleChanges(event.target.value, props.user_relationships);
+                  setIsSharing(ShareState.Default);
+                }}
+                type="email"
+                id="email"
+                onBlur={() => {
+                  setTimeout(() => {
+                    setSuggestions([]);
+                  }, 900);
+                }}
+                name="email"
+              ></input>
+              <div className={stylesitem.suggestions}>
+                {suggestions &&
+                  suggestions.map((suggestion, i) => (
+                    <div
+                      key={i}
+                      className={stylesitem.suggestion}
+                      onClick={() => SuggestHandler(suggestion)}
+                    >
+                      <p key={i} className={stylesitem.top_section}>
+                        {suggestion}
+                      </p>
+                      <div className={stylesitem.bottom_section}>
+                        <img
+                          className={stylesitem.small_suggestion_icon}
+                          src={
+                            props.user_relationships.user_relationships.map(
+                              (item) => item
+                            )[
+                              props.user_relationships.user_relationships.findIndex(
+                                (e) => e.email === suggestion
+                              )
+                            ].profile_picture.url
+                          }
+                        ></img>
+                        <p className={stylesitem.small_suggestion_name}>
+                          {
+                            props.user_relationships.user_relationships.map(
+                              (item) => item
+                            )[
+                              props.user_relationships.user_relationships.findIndex(
+                                (e) => e.email === suggestion
+                              )
+                            ].name
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <ShareButton
+              className={stylesitem.loginbutton}
+              value={isSharing}
+              onClick={attemptToGift}
+            ></ShareButton>
+          </Modal>
+
+          <Modal
+            className={stylesitem.shareModal}
+            isOpen={nearbymodalIsOpen}
+            onRequestClose={() => setNearbyModalIsOpen(false)}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.0)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "86px",
+                right: "16px",
+                left: "calc(25vw-16px)",
+                bottom: "40px",
+                border: "none",
+                background: "#F1F3F4",
+                "max-width": "75vw",
+                "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px 16px 16px 16px",
+                "min-height": "fit-content",
+                height: "fit-content",
+                "z-index": "150",
+              },
+            }}
+          >
+            <div className={stylesitem.modalTop}>
+              <p className={stylesitem.modalTopText}>Gift this Recipe</p>
+              <a
+                className={stylesitem.modalTopButton}
+                onClick={() => {
+                  setNearbyModalIsOpen(false);
+                  console.log(props.nearby_users);
+                }}
+              >
+                <Image
+                  width={24}
+                  height={24}
+                  className={stylesitem.giftIcon}
+                  src={closeButton}
+                  alt="Close Modal"
+                />
+              </a>
+            </div>
+            {props.nearby_users.length === 0 ? (
+              <div>
+                <p>There are no nearby users who have enabled this feature</p>
+                <a
+                  className={stylesitem.modalA}
+                  onClick={() => {
+                    setNearbyModalIsOpen(false);
+                    setEmailModalIsOpen(true);
+                    console.log(props.nearby_users);
+                  }}
+                >
+                  Share using email address
+                </a>
+              </div>
+            ) : (
+              <div className={stylesitem.group_of_nearby_users}>
+                {props.nearby_users &&
+                  props.nearby_users.map((user, i) => (
+                    <div
+                      key={i}
+                      className={stylesitem.individual_nearby}
+                      onClick={() => {
+                        setLoadingNearby((loadingnearby) => [
+                          ...loadingnearby,
+                          user.id,
+                        ]);
+                        console.log(loadingnearby);
+                        attemptToGiftNearby(user.email, recipeId);
+                      }}
+                    >
+                      <div key={i} className={stylesitem.stack_profile_pic}>
+                        <img
+                          key={i}
+                          className={stylesitem.nearby_profile_icon}
+                          src={user.profile_picture.url}
+                        ></img>
+                        <div key={i} data-isOn={loadingnearby}>
+                          {loadingnearby.includes(user.id) ? (
+                            <motion.svg
+                              width="76"
+                              height="76"
+                              viewBox="0 0 76 76"
+                              initial="hidden"
+                              animate="visible"
+                              className={stylesitem.nearbyCircleLarge}
+                            >
+                              <motion.circle
+                                className={stylesitem.nearbyCircle}
+                                cx="38"
+                                cy="38"
+                                variants={draw}
+                                custom={i}
+                                key={i}
+                              />
+                            </motion.svg>
+                          ) : null}
+                        </div>
+                      </div>
+                      <p key={i} className={stylesitem.nearby_name}>
+                        {user.name}
+                      </p>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </Modal>
+
+          <Modal
+            className={stylesitem.shareModal}
+            isOpen={QRmodalIsOpen}
+            onRequestClose={() => setQRModalIsOpen(false)}
+            preventScroll={true}
+            style={{
+              overlay: {
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.0)",
+              },
+              content: {
+                "border-radius": "12px",
+                position: "absolute",
+                top: "86px",
+                right: "16px",
+                left: "calc(25vw-16px)",
+                bottom: "40px",
+                border: "none",
+                background: "#F1F3F4",
+                "box-shadow": "4px 5px 20px rgba(0, 0, 0, 0.5)",
+                overflow: "none",
+                WebkitOverflowScrolling: "touch",
+                outline: "none",
+                padding: "16px 16px 16px 16px",
+                height: "365px",
+                "z-index": "150",
+                width: "290px",
+              },
+            }}
+          >
+            <div>
+              <div className={stylesitem.modalTop}>
+                <p className={stylesitem.modalTopText}>Scannable Recipe</p>
+                <a
+                  className={stylesitem.modalTopButton}
+                  onClick={() => {
+                    setQRModalIsOpen(false);
+                    console.log(props.nearby_users);
+                  }}
+                >
+                  <Image
+                    width={24}
+                    height={24}
+                    className={stylesitem.giftIcon}
+                    src={closeButton}
+                    alt="Close Modal"
+                  />
+                </a>
+              </div>
+
+              <div>
+                {/* <p>{props.user.name} created this scannable recipe code for you</p> */}
+                <div className={stylesitem.qrCode}>
+                  <QRCode
+                    className={stylesitem.qrCodeActual}
+                    value={shareCode}
+                    logoImage={mylogo.src}
+                    logoOpacity={1}
+                    size={249}
+                    bgColor={"#f1f3f4"}
+                    quietZone={0}
+                    enableCORS={true}
+                    removeQrCodeBehindLogo={true}
+                    eyeRadius={200}
+                    qrStyle={"dots"}
+                    fgColor={"#2874E8"}
+                    onClick={() => {
+                      console.log(shareCode);
+                    }}
+                  />
+                </div>
+                <p className={stylesitem.subtext}>Scan with Meal Pack Scanner</p>{" "}
+              </div>
+            </div>
+          </Modal>
+
+          <div className={stylesitem.thumbnail} alt="">
+            <img
+              className={stylesitem.thumbnailcontent}
+              src={thumbnail}
+            ></img>
+          </div>
+          {props.user.id == author ? (
+            <h1
+              contentEditable
+              className={stylesitem.title}
+              ref={myrecipename}
+              onKeyUp={(e) => {
+                console.log(title);
+                setTitle(e.target.innerText);
+              }}
+            >
+              {title}
+            </h1>
+          ) : (
+            <h1 ref={myrecipename} className={stylesitem.title}>
+              {title}
+            </h1>
+          )}
+          <div className={stylesitem.author}>
+            <img
+              className={stylesitem.authorimg}
+              src={avatarURL}
+              alt=""
+            />
+
+            <p>{authorName}</p>
+          </div>
+          {props.user.id == author ? (
+            <p
+              contentEditable
+              className={stylesitem.description}
+              ref={mydescriptionname}
+            >
+              {description}
+            </p>
+          ) : (
+            <p className={stylesitem.description} ref={mydescriptionname}>
+              {description}
+            </p>
+          )}
+          <h2 className={stylesitem.section_title}>Ingredients</h2>
+          {props.user.id == author
+            ? ingredients.map((item, index) => {
+                return (
+                  <li key={index} className={stylesitem.recipe_ingredients}>
+                    <span
+                      className={stylesitem.recipe_ingredient}
+                      contentEditable
+                      onKeyUp={(e) => {
+                        console.log(ingredients);
+                        setIngredients((current_ingredients) => {
+                          const copy_of_current = [...current_ingredients];
+                          copy_of_current[index] = e.target.innerText;
+                          return copy_of_current;
+                        });
+                      }}
+                    >
+                      <SmartText value={item}></SmartText>
+                    </span>
+                  </li>
+                );
+              })
+            : ingredients.map((item, index) => {
+                return (
+                  <li key={index} className={stylesitem.recipe_ingredients}>
+                    <SmartText value={item}></SmartText>
+                  </li>
+                );
+              })}
+          <h2 className={stylesitem.section_title}>Directions</h2>
+          {props.user.id == author ? (
+            <ol type="1">
+              {directions.map((item, index) => {
+                return (
+                  <li key={index} className={stylesitem.recipe_directions}>
+                    <span
+                      className={stylesitem.recipe_direction}
+                      contentEditable
+                      onKeyUp={(e) => {
+                        console.log(directions);
+                        setDirections((current_directions) => {
+                          const copy_of_current = [...current_directions];
+                          copy_of_current[index] = e.target.innerText;
+                          return copy_of_current;
+                        });
+                      }}
+                    >
+                      {item}
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+          ) : (
+            <ol type="1">
+              {directions.map((item, index) => {
+                return (
+                  <li key={index} className={stylesitem.recipe_directions}>
+                    <SmartText value={item}></SmartText>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </div>
+      ) : (
+        <p onClick={console.log(props.selected_recipe.message)}>
+          Invalid Permission
+        </p>
+      )}
+    </div>
+
+        
+      </main>
+      ) : 
+      (
+        // Home Page
+      <main className={styles.main} ref={componentRef}>
         <Modal
           className={styles.Modal}
           isOpen={mode == "iOS"}
@@ -633,7 +1500,7 @@ export default function Home(props) {
             Install Meal Pack App
           </div>
         )}
-        {props.unread_messages.length === 0 ? null : (
+        {props.unread_messages?.length === 0 ? null : (
           <Modal
             className={styles.Modal}
             isOpen={modalIsOpen}
@@ -842,7 +1709,6 @@ export default function Home(props) {
                   <div key={item.id} className={styles.massivecontainer}>
                     <SwipeToDelete
                       key={item.id}
-                      onDelete={console.log("deleted")} // required
                       // optional
                       height={114} // default
                       transitionDuration={250} // default
@@ -875,7 +1741,26 @@ export default function Home(props) {
                         }
                       }}
                     >
-                      <div className={styles.backgroundcoloradder}>
+                      <div className={styles.backgroundcoloradder} onClick={() => {
+                            
+                            setRecipeId(item.id)
+                            window.scrollTo(0,0)
+                            setTitle(item.recipe_name)
+                            setThumbnail(item.recipe_thumbnail.url)
+
+                            setTags(item.tags)
+                            setAvatarURL(item.author_details.profile_picture.url)
+                            setAuthorName(item.author_details.name)
+                            setAuthor(item.author_details.id)
+
+
+                            setDirections(item.directions)
+                            setDescription(item.description)
+
+                            setIngredients(item.ingredients)
+
+                            console.log(recipeId)
+                          }}>
                         <motion.div
                           className={styles.backgroundcoloradder}
                           key={item.id}
@@ -889,6 +1774,7 @@ export default function Home(props) {
                           }}
                         >
                           <Recipepreview
+                          
                             author={identify_author.name}
                             avatar={identify_author.profile_picture.url}
                             title={item.recipe_name}
@@ -907,7 +1793,7 @@ export default function Home(props) {
                 );
               })}
         </div>
-      </main>
+      </main>)}
     </div>
   );
 }

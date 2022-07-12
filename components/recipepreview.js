@@ -22,7 +22,7 @@ export default function recipepreview (props) {
         //Take div component styles
         //Called styles bc that's what we imported 
     <div className={styles.recipepreview}>
-        <Link href={`/recipe_page/${props.id}`} className={styles.link}>
+        <div className={styles.link}>
             <a>
             <div className={styles.left}>
                 <h1 className={styles.title}>{props.title}</h1>
@@ -37,7 +37,7 @@ export default function recipepreview (props) {
                 </div>
             </div>
             </a>
-        </Link>
+        </div>
 
         <div className={styles.divider}></div>
     </div>

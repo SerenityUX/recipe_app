@@ -1,7 +1,7 @@
 //Import router hook (a function that lets one access internal routing of next js)
 import { useRouter } from "next/router";
 //import list_of_recipes from "../../recipes.json";
-import styles from "../../styles/recipeview.module.css";
+import stylesitem from "../../styles/recipeview.module.css";
 import Image from "next/image";
 import Modal from "react-modal";
 import React, { useState, useEffect, useRef } from "react";
@@ -315,39 +315,39 @@ export default function Recipe(props) {
       {props.selected_recipe.message !== "Missing var entry: recipes" ||
       props.status == "temporary" ? (
         <div>
-          <div className={styles.top_bar}>
+          <div className={stylesitem.top_bar}>
             {props.user.id == props.selected_recipe.recipe_author ? (
-              <a onClick={upload_change} className={styles.backbutton}>
+              <a onClick={upload_change} className={stylesitem.backbutton}>
                 <Image
                   src={backButton}
                   width={24}
                   height={24}
                   alt=""
-                  className={styles.backbutton}
+                  className={stylesitem.backbutton}
                 />
               </a>
             ) : (
-              <a onClick={() => router.back()} className={styles.backbutton}>
+              <a onClick={() => router.back()} className={stylesitem.backbutton}>
                 <Image
                   src={backButton}
                   width={24}
                   height={24}
                   alt=""
-                  className={styles.backbutton}
+                  className={stylesitem.backbutton}
                 />
               </a>
             )}
             <p>{title}</p>
             {/*         {(props.user.id == props.selected_recipe.recipe_author)? 
-        <a className={styles.giftIconButton} href={`/create_recipe/form`}>
-        <img className={styles.giftIcon} src="https://svgshare.com/i/gJH.svg" />
+        <a className={stylesitem.giftIconButton} href={`/create_recipe/form`}>
+        <img className={stylesitem.giftIcon} src="https://svgshare.com/i/gJH.svg" />
         </a>
         : null            
         }
  */}
             {props.status !== "temporary" ? (
               <a
-                className={styles.giftIconButton}
+                className={stylesitem.giftIconButton}
                 onClick={() => {
                   setSelectionModalIsOpen(true);
                   setEmailModalIsOpen(false);
@@ -357,14 +357,14 @@ export default function Recipe(props) {
                 <Image
                   width={32}
                   height={32}
-                  className={styles.giftIcon}
+                  className={stylesitem.giftIcon}
                   src={GiftButton}
                   alt="Gift"
                 />
               </a>
             ) : (
               <a
-                className={styles.redeemText}
+                className={stylesitem.redeemText}
                 onClick={() => {
                   upload(props.selected_recipe.id);
                 }}
@@ -375,7 +375,7 @@ export default function Recipe(props) {
           </div>
 
           <Modal
-            className={styles.shareModal}
+            className={stylesitem.shareModal}
             isOpen={selectionmodalIsOpen}
             onRequestClose={() => setSelectionModalIsOpen(false)}
             preventScroll={true}
@@ -409,45 +409,45 @@ export default function Recipe(props) {
               },
             }}
           >
-            <div className={styles.modalTopSelection}>
+            <div className={stylesitem.modalTopSelection}>
               <div
-                className={styles.modalOption}
+                className={stylesitem.modalOption}
                 onClick={() => {
                   setSelectionModalIsOpen(false);
                   setEmailModalIsOpen(true);
                 }}
               >
-                <p className={styles.modalTopText}> Gift by Email</p>
+                <p className={stylesitem.modalTopText}> Gift by Email</p>
                 <Image
                   width={24}
                   height={24}
-                  className={styles.giftsubIcon}
+                  className={stylesitem.giftsubIcon}
                   src={email_icon}
                   alt="Gift Email"
                 />
               </div>
 
-              <div className={styles.smalldivider}></div>
+              <div className={stylesitem.smalldivider}></div>
               <div
-                className={styles.modalOption}
+                className={stylesitem.modalOption}
                 onClick={() => {
                   setSelectionModalIsOpen(false);
                   setNearbyModalIsOpen(true);
                 }}
               >
-                <p className={styles.modalTopText}> Gift Nearby</p>
+                <p className={stylesitem.modalTopText}> Gift Nearby</p>
                 <Image
                   width={24}
                   height={24}
-                  className={styles.giftsubIcon}
+                  className={stylesitem.giftsubIcon}
                   src={nearby}
                   alt="Gift Nearby"
                 />
               </div>
-              <div className={styles.smalldivider}></div>
+              <div className={stylesitem.smalldivider}></div>
 
               <div
-                className={styles.modalOption}
+                className={stylesitem.modalOption}
                 onClick={() => {
                   const response = fetch(
                     "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/share_codes",
@@ -475,11 +475,11 @@ export default function Recipe(props) {
                   setSelectionModalIsOpen(false);
                 }}
               >
-                <p className={styles.modalTopText}> Gift by QR Code</p>
+                <p className={stylesitem.modalTopText}> Gift by QR Code</p>
                 <Image
                   width={24}
                   height={24}
-                  className={styles.giftsubIcon}
+                  className={stylesitem.giftsubIcon}
                   src={QR}
                   alt="Gift Email"
                 />
@@ -488,7 +488,7 @@ export default function Recipe(props) {
           </Modal>
 
           <Modal
-            className={styles.shareModal}
+            className={stylesitem.shareModal}
             isOpen={emailmodalIsOpen}
             onRequestClose={() => setEmailModalIsOpen(false)}
             preventScroll={true}
@@ -521,23 +521,23 @@ export default function Recipe(props) {
               },
             }}
           >
-            <div className={styles.modalTop}>
-              <p className={styles.modalTopText}>Gift this Recipe</p>
+            <div className={stylesitem.modalTop}>
+              <p className={stylesitem.modalTopText}>Gift this Recipe</p>
               <a
-                className={styles.modalTopButton}
+                className={stylesitem.modalTopButton}
                 onClick={() => setEmailModalIsOpen(false)}
               >
                 <Image
                   width={24}
                   height={24}
-                  className={styles.giftIcon}
+                  className={stylesitem.giftIcon}
                   src={closeButton}
                   alt="Close Modal"
                 />
               </a>
             </div>
-            <div className={styles.inputgroup}>
-              <label className={styles.inputlabel}>Email Address</label>
+            <div className={stylesitem.inputgroup}>
+              <label className={stylesitem.inputlabel}>Email Address</label>
               <input
                 value={email}
                 autoComplete="off"
@@ -554,20 +554,20 @@ export default function Recipe(props) {
                 }}
                 name="email"
               ></input>
-              <div className={styles.suggestions}>
+              <div className={stylesitem.suggestions}>
                 {suggestions &&
                   suggestions.map((suggestion, i) => (
                     <div
                       key={i}
-                      className={styles.suggestion}
+                      className={stylesitem.suggestion}
                       onClick={() => SuggestHandler(suggestion)}
                     >
-                      <p key={i} className={styles.top_section}>
+                      <p key={i} className={stylesitem.top_section}>
                         {suggestion}
                       </p>
-                      <div className={styles.bottom_section}>
+                      <div className={stylesitem.bottom_section}>
                         <img
-                          className={styles.small_suggestion_icon}
+                          className={stylesitem.small_suggestion_icon}
                           src={
                             props.user_relationships.user_relationships.map(
                               (item) => item
@@ -578,7 +578,7 @@ export default function Recipe(props) {
                             ].profile_picture.url
                           }
                         ></img>
-                        <p className={styles.small_suggestion_name}>
+                        <p className={stylesitem.small_suggestion_name}>
                           {
                             props.user_relationships.user_relationships.map(
                               (item) => item
@@ -595,14 +595,14 @@ export default function Recipe(props) {
               </div>
             </div>
             <ShareButton
-              className={styles.loginbutton}
+              className={stylesitem.loginbutton}
               value={isSharing}
               onClick={attemptToGift}
             ></ShareButton>
           </Modal>
 
           <Modal
-            className={styles.shareModal}
+            className={stylesitem.shareModal}
             isOpen={nearbymodalIsOpen}
             onRequestClose={() => setNearbyModalIsOpen(false)}
             preventScroll={true}
@@ -636,10 +636,10 @@ export default function Recipe(props) {
               },
             }}
           >
-            <div className={styles.modalTop}>
-              <p className={styles.modalTopText}>Gift this Recipe</p>
+            <div className={stylesitem.modalTop}>
+              <p className={stylesitem.modalTopText}>Gift this Recipe</p>
               <a
-                className={styles.modalTopButton}
+                className={stylesitem.modalTopButton}
                 onClick={() => {
                   setNearbyModalIsOpen(false);
                   console.log(props.nearby_users);
@@ -648,7 +648,7 @@ export default function Recipe(props) {
                 <Image
                   width={24}
                   height={24}
-                  className={styles.giftIcon}
+                  className={stylesitem.giftIcon}
                   src={closeButton}
                   alt="Close Modal"
                 />
@@ -658,7 +658,7 @@ export default function Recipe(props) {
               <div>
                 <p>There are no nearby users who have enabled this feature</p>
                 <a
-                  className={styles.modalA}
+                  className={stylesitem.modalA}
                   onClick={() => {
                     setNearbyModalIsOpen(false);
                     setEmailModalIsOpen(true);
@@ -669,12 +669,12 @@ export default function Recipe(props) {
                 </a>
               </div>
             ) : (
-              <div className={styles.group_of_nearby_users}>
+              <div className={stylesitem.group_of_nearby_users}>
                 {props.nearby_users &&
                   props.nearby_users.map((user, i) => (
                     <div
                       key={i}
-                      className={styles.individual_nearby}
+                      className={stylesitem.individual_nearby}
                       onClick={() => {
                         setLoadingNearby((loadingnearby) => [
                           ...loadingnearby,
@@ -684,10 +684,10 @@ export default function Recipe(props) {
                         attemptToGiftNearby(user.email, recipe_id);
                       }}
                     >
-                      <div key={i} className={styles.stack_profile_pic}>
+                      <div key={i} className={stylesitem.stack_profile_pic}>
                         <img
                           key={i}
-                          className={styles.nearby_profile_icon}
+                          className={stylesitem.nearby_profile_icon}
                           src={user.profile_picture.url}
                         ></img>
                         <div key={i} data-isOn={loadingnearby}>
@@ -698,10 +698,10 @@ export default function Recipe(props) {
                               viewBox="0 0 76 76"
                               initial="hidden"
                               animate="visible"
-                              className={styles.nearbyCircleLarge}
+                              className={stylesitem.nearbyCircleLarge}
                             >
                               <motion.circle
-                                className={styles.nearbyCircle}
+                                className={stylesitem.nearbyCircle}
                                 cx="38"
                                 cy="38"
                                 variants={draw}
@@ -712,7 +712,7 @@ export default function Recipe(props) {
                           ) : null}
                         </div>
                       </div>
-                      <p key={i} className={styles.nearby_name}>
+                      <p key={i} className={stylesitem.nearby_name}>
                         {user.name}
                       </p>
                     </div>
@@ -722,7 +722,7 @@ export default function Recipe(props) {
           </Modal>
 
           <Modal
-            className={styles.shareModal}
+            className={stylesitem.shareModal}
             isOpen={QRmodalIsOpen}
             onRequestClose={() => setQRModalIsOpen(false)}
             preventScroll={true}
@@ -756,10 +756,10 @@ export default function Recipe(props) {
             }}
           >
             <div>
-              <div className={styles.modalTop}>
-                <p className={styles.modalTopText}>Scannable Recipe</p>
+              <div className={stylesitem.modalTop}>
+                <p className={stylesitem.modalTopText}>Scannable Recipe</p>
                 <a
-                  className={styles.modalTopButton}
+                  className={stylesitem.modalTopButton}
                   onClick={() => {
                     setQRModalIsOpen(false);
                     console.log(props.nearby_users);
@@ -768,7 +768,7 @@ export default function Recipe(props) {
                   <Image
                     width={24}
                     height={24}
-                    className={styles.giftIcon}
+                    className={stylesitem.giftIcon}
                     src={closeButton}
                     alt="Close Modal"
                   />
@@ -777,9 +777,9 @@ export default function Recipe(props) {
 
               <div>
                 {/* <p>{props.user.name} created this scannable recipe code for you</p> */}
-                <div className={styles.qrCode}>
+                <div className={stylesitem.qrCode}>
                   <QRCode
-                    className={styles.qrCodeActual}
+                    className={stylesitem.qrCodeActual}
                     value={shareCode}
                     logoImage={mylogo.src}
                     logoOpacity={1}
@@ -796,21 +796,21 @@ export default function Recipe(props) {
                     }}
                   />
                 </div>
-                <p className={styles.subtext}>Scan with Meal Pack Scanner</p>{" "}
+                <p className={stylesitem.subtext}>Scan with Meal Pack Scanner</p>{" "}
               </div>
             </div>
           </Modal>
 
-          <div className={styles.thumbnail} alt="">
+          <div className={stylesitem.thumbnail} alt="">
             <img
-              className={styles.thumbnailcontent}
+              className={stylesitem.thumbnailcontent}
               src={props.selected_recipe.recipe_thumbnail?.url}
             ></img>
           </div>
           {props.user.id == props.selected_recipe.recipe_author ? (
             <h1
               contentEditable
-              className={styles.title}
+              className={stylesitem.title}
               ref={myrecipename}
               onKeyUp={(e) => {
                 console.log(title);
@@ -820,13 +820,13 @@ export default function Recipe(props) {
               {props?.selected_recipe?.recipe_name || <Skeleton />}
             </h1>
           ) : (
-            <h1 ref={myrecipename} className={styles.title}>
+            <h1 ref={myrecipename} className={stylesitem.title}>
               {props?.selected_recipe?.recipe_name}
             </h1>
           )}
-          <div className={styles.author}>
+          <div className={stylesitem.author}>
             <img
-              className={styles.authorimg}
+              className={stylesitem.authorimg}
               src={identify_author?.profile_picture?.url}
               alt=""
             />
@@ -836,23 +836,23 @@ export default function Recipe(props) {
           {props.user.id == props?.selected_recipe?.recipe_author ? (
             <p
               contentEditable
-              className={styles.description}
+              className={stylesitem.description}
               ref={mydescriptionname}
             >
               {props.selected_recipe.recipe_description}
             </p>
           ) : (
-            <p className={styles.description} ref={mydescriptionname}>
+            <p className={stylesitem.description} ref={mydescriptionname}>
               {props.selected_recipe.recipe_description}
             </p>
           )}
-          <h2 className={styles.section_title}>Ingredients</h2>
+          <h2 className={stylesitem.section_title}>Ingredients</h2>
           {props.user.id == props.selected_recipe.recipe_author
             ? props.selected_recipe?.ingredients.map((item, index) => {
                 return (
-                  <li key={index} className={styles.recipe_ingredients}>
+                  <li key={index} className={stylesitem.recipe_ingredients}>
                     <span
-                      className={styles.recipe_ingredient}
+                      className={stylesitem.recipe_ingredient}
                       contentEditable
                       onKeyUp={(e) => {
                         console.log(ingredients);
@@ -870,19 +870,19 @@ export default function Recipe(props) {
               })
             : props.selected_recipe?.ingredients.map((item, index) => {
                 return (
-                  <li key={index} className={styles.recipe_ingredients}>
+                  <li key={index} className={stylesitem.recipe_ingredients}>
                     <SmartText value={item}></SmartText>
                   </li>
                 );
               })}
-          <h2 className={styles.section_title}>Directions</h2>
+          <h2 className={stylesitem.section_title}>Directions</h2>
           {props.user.id == props.selected_recipe.recipe_author ? (
             <ol type="1">
               {props.selected_recipe.directions.map((item, index) => {
                 return (
-                  <li key={index} className={styles.recipe_directions}>
+                  <li key={index} className={stylesitem.recipe_directions}>
                     <span
-                      className={styles.recipe_direction}
+                      className={stylesitem.recipe_direction}
                       contentEditable
                       onKeyUp={(e) => {
                         console.log(directions);
@@ -903,7 +903,7 @@ export default function Recipe(props) {
             <ol type="1">
               {props.selected_recipe.directions.map((item, index) => {
                 return (
-                  <li key={index} className={styles.recipe_directions}>
+                  <li key={index} className={stylesitem.recipe_directions}>
                     <SmartText value={item}></SmartText>
                   </li>
                 );
