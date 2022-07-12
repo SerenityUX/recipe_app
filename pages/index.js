@@ -930,7 +930,7 @@ export default function Home(props) {
                           Math.random().toString(36).substring(2, 20) +
                           Math.random().toString(36).substring(2, 20) +
                           Math.random().toString(36).substring(2, 20),
-                        recipes_id: recipe_id,
+                        recipes_id: recipeId,
                       }),
                     }
                   )
