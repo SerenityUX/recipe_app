@@ -9,9 +9,17 @@
     background-color: #e0e0e0;
 }
 
-.author Image {
+.authorImage {
 
-    margin-left: 16px;
+    width: 32px;
+    height: 32px;
+    display: inline;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.authorIcon {
+
     width: 32px;
     height: 32px;
     display: inline;
@@ -32,9 +40,10 @@
 }
 
 .author {
+    margin-left: 16px;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: calc(100% -16px);
     color: #484848;
     margin-top: 8;
 }
@@ -46,7 +55,7 @@
     display: flex;
     position: fixed;
     align-items: center;
-    width: 100%;
+    width: 100vw;
 }
 
 .top_bar p {

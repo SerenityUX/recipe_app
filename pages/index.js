@@ -821,7 +821,7 @@ export default function Home(props) {
             <p>{title}</p>
             {/*         {(props.user.id == author)? 
         <a className={stylesitem.giftIconButton} href={`/create_recipe/form`}>
-        <img className={stylesitem.giftIcon} src="https://svgshare.com/i/gJH.svg" />
+        <Image className={stylesitem.giftIcon} src="https://svgshare.com/i/gJH.svg" />
         </a>
         : null            
         }
@@ -1047,7 +1047,7 @@ export default function Home(props) {
                         {suggestion}
                       </p>
                       <div className={stylesitem.bottom_section}>
-                        <img
+                        <Image
                           className={stylesitem.small_suggestion_icon}
                           src={
                             props.user_relationships.user_relationships.map(
@@ -1058,7 +1058,7 @@ export default function Home(props) {
                               )
                             ].profile_picture.url
                           }
-                        ></img>
+                        ></Image>
                         <p className={stylesitem.small_suggestion_name}>
                           {
                             props.user_relationships.user_relationships.map(
@@ -1166,11 +1166,11 @@ export default function Home(props) {
                       }}
                     >
                       <div key={i} className={stylesitem.stack_profile_pic}>
-                        <img
+                        <Image
                           key={i}
                           className={stylesitem.nearby_profile_icon}
                           src={user.profile_picture.url}
-                        ></img>
+                        ></Image>
                         <div key={i} data-isOn={loadingnearby}>
                           {loadingnearby.includes(user.id) ? (
                             <motion.svg
@@ -1283,10 +1283,11 @@ export default function Home(props) {
           </Modal>
 
           <div className={stylesitem.thumbnail} alt="">
-            <img
+            <Image
+            layout="fill"
               className={stylesitem.thumbnailcontent}
               src={thumbnail.url}
-            ></img>
+            ></Image>
           </div>
           {props.user.id == author ? (
             <h1
@@ -1307,8 +1308,10 @@ export default function Home(props) {
           )}
           <div className={stylesitem.author}>
             <img
-              className={stylesitem.authorimg}
-              src={avatarURL}
+            width={32}
+            height={32}
+              className={stylesitem.authorIcon}
+              src={avatarURL + "?tpl=med:box"}
               alt=""
             />
 
@@ -1467,6 +1470,7 @@ export default function Home(props) {
             </div>
             <div className={styles.ImageHolder}>
               <Image
+              layout={"fill"}
                 className={styles.BannerImage}
                 src={appBanner}
                 alt="Add to Homescreen Banner"
@@ -1591,13 +1595,13 @@ export default function Home(props) {
                 }
                 avatar={
                   props.unread_messages[0]?.recipes_details.recipe_author[0]
-                    .profile_picture.url
+                    .profile_picture.url + "?tpl=med:box"
                 }
                 title={props.unread_messages[0]?.recipes_details.recipe_name}
                 key={props.unread_messages[0]?.recipes_details.id}
                 id={props.unread_messages[0]?.recipes_details.id}
                 thumbnail={
-                  props.unread_messages[0]?.recipes_details.recipe_thumbnail.url
+                  props.unread_messages[0]?.recipes_details.recipe_thumbnail.url + "?tpl=large"
                 }
               ></Minirecipepreview>
             </div>
