@@ -1283,11 +1283,11 @@ export default function Home(props) {
           </Modal>
 
           <div className={stylesitem.thumbnail} alt="">
-            <Image
+            <img
             layout="fill"
               className={stylesitem.thumbnailcontent}
               src={thumbnail.url}
-            ></Image>
+            ></img>
           </div>
           {props.user.id == author ? (
             <h1
