@@ -321,6 +321,7 @@ text-decoration: underline;
 .small_suggestion_icon {
     height: 16px;
     width: 16px;
+    overflow: hidden;
     border-radius: 100%;
     display: inline;
     object-fit: cover;

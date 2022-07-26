@@ -1047,7 +1047,7 @@ export default function Home(props) {
                         {suggestion}
                       </p>
                       <div className={stylesitem.bottom_section}>
-                        <Image
+                        <img
                           className={stylesitem.small_suggestion_icon}
                           src={
                             props.user_relationships.user_relationships.map(
@@ -1058,7 +1058,7 @@ export default function Home(props) {
                               )
                             ].profile_picture.url
                           }
-                        ></Image>
+                        ></img>
                         <p className={stylesitem.small_suggestion_name}>
                           {
                             props.user_relationships.user_relationships.map(
