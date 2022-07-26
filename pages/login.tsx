@@ -88,6 +88,9 @@ const Login = () => {
           type="password"
           id="password"
           name="password"
+          onClick={() => {
+            setIsUploading( UploadState.Default )
+          }}
         ></input>
         <LoginButton
           value={isUploading}

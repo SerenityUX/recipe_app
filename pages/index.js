@@ -1413,7 +1413,7 @@ export default function Home(props) {
       <main className={styles.main} ref={componentRef}>
         <Modal
           className={styles.Modal}
-          isOpen={mode == "iOS"}
+          isOpen={false}
           onRequestClose={() => {
             setMode("iOSDenied");
           }}

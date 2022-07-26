@@ -146,7 +146,9 @@ const Signup = () => {
         <input
           className={styles.inputcreds}
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={(event) => {
+            setPassword(event.target.value)
+            setIsUploading( UploadState.Default )}}
           type="password"
           id="password"
           name="password"
