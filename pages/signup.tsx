@@ -1,4 +1,4 @@
-import styles from "../styles/login_signup.module.css";
+import styles from "../styles/loginsignup.module.css";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import getImage from "../lib/getImage";
