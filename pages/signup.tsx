@@ -6,6 +6,7 @@ import requestSignUp from "../lib/requestSignUp";
 import { ChangeEventHandler } from "react";
 import { useRouter } from "next/router";
 import SignupButton from "../components/sign_up_button";
+
 export enum UploadState {
   Default = "Default",
   Uploading = "Uploading",
@@ -24,6 +25,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [nameInput, setNameInput] = useState("");
   const [phoneInput, setPhoneInput] = useState("");
+
 
   const onTextAreaChange = () => {
     const value = textArea.current.value;

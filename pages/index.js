@@ -186,8 +186,13 @@ export async function getServerSideProps(context) {
     const user_list = await getAllUsers();
 
     const recipes_list = await fetch(
-      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipe_list?users_id=" +
-        user?.id
+      "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/recipe_list",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
     ).then((res) => res.json());
 
     const unread_messages = await fetch(
