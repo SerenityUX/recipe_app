@@ -1,6 +1,7 @@
-import styles from "../styles/login_signup.module.css";
 import { generate } from "shortid";
 import next from "next";
+import styles from "../styles/login_signup.module.css";
+
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { rootCertificates } from "tls";
