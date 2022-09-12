@@ -1171,11 +1171,11 @@ export default function Home(props) {
                       }}
                     >
                       <div key={i} className={stylesitem.stack_profile_pic}>
-                        <Image
+                        <img
                           key={i}
                           className={stylesitem.nearby_profile_icon}
                           src={user.profile_picture.url}
-                        ></Image>
+                        ></img>
                         <div key={i} data-isOn={loadingnearby}>
                           {loadingnearby.includes(user.id) ? (
                             <motion.svg
