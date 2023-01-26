@@ -1747,6 +1747,7 @@ export default function Home(props) {
               {primaryCategories.map((chipItem) => {
                 return selectedCategory == chipItem ? (
                   <div
+                    key={chipItem}
                     style={{
                       backgroundColor: "#ECF7F3",
                       whiteSpace: "nowrap",
@@ -1762,7 +1763,7 @@ export default function Home(props) {
                     }}
                   >
                     <p style={{ margin: "0px", color: "#17936D" }}>
-                    ✓ {chipItem !== "" ? chipItem : "All Recipes"}
+                      ✓ {chipItem !== "" ? chipItem : "All Recipes"}
                     </p>
                   </div>
                 ) : (
@@ -1792,12 +1793,9 @@ export default function Home(props) {
               {Array.isArray(props.recipes_list) &&
                 props.recipes_list
                   .filter((item) => {
-                    if (
-                      !item.tags.includes(selectedCategory)
-                    ) {
-                      return
-                    }
-                    else if (searchTerm == "") {
+                    if (!item.tags.includes(selectedCategory)) {
+                      return;
+                    } else if (searchTerm == "") {
                       return item;
                     } else if (
                       item.recipe_name
