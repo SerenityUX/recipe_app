@@ -27,7 +27,7 @@ export default function recipepreview (props) {
             <div className={styles.left}>
                 <h1 className={styles.title}>{props.title}</h1>
                 <div className={styles.author}>
-                    <Image src={props.avatar} alt="" height={24} width={24} />
+                    <img src={props.avatar} alt="" height={24} width={24} />
                     <p>{props.author}</p>
                 </div>
             </div>

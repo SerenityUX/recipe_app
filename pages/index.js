@@ -1902,6 +1902,7 @@ export default function Home(props) {
                             >
                               <Recipepreview
                                 author={identify_author.name}
+                                
                                 avatar={identify_author.profile_picture.url}
                                 title={item.recipe_name}
                                 key={item.id}
