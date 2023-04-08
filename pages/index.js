@@ -188,6 +188,7 @@ export async function getServerSideProps(context) {
         },
       }
     ).then((res) => res.json());
+    console.log(recipes_list)
 
     const unread_messages = await fetch(
       "https://xxm8-77n0-ua23.n7.xano.io/api:lSOVAmsS/get_unread_messages",
@@ -1793,7 +1794,7 @@ export default function Home(props) {
               {Array.isArray(props.recipes_list) &&
                 props.recipes_list
                   .filter((item) => {
-                    if (!item.tags.includes(selectedCategory)) {
+                    if (!item.tags.includes(selectedCategory) && selectedCategory != "") {
                       return;
                     } else if (searchTerm == "") {
                       return item;
